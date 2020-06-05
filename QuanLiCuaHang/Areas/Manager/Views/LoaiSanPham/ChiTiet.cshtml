@@ -1,0 +1,36 @@
+﻿@model QuanLiCuaHang.Models.LoaiSanPham
+
+@{
+    ViewBag.Title = "ChiTiet";
+    Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi Tiết Loại Sản Phẩm</h2>
+<table>
+    <tr>
+        <td>
+            <b> Mã LSP</b>
+        </td>
+        <td>
+            @Model.MaLoaiSP
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b> Tên Loại Sản Phẩm</b>
+        </td>
+        <td>
+            @Model.TenLoaiSP  
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b> Mã DVT</b>
+        </td>
+        <td>
+            @Model.MaDVT
+           
+        </td>
+    </tr>
+</table>
+

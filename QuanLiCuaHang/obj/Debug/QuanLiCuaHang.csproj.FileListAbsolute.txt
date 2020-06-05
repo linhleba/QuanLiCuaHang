@@ -77,3 +77,7 @@ C:\Users\linh\source\repos\QuanLiCuaHang\QuanLiCuaHang\obj\Debug\QuanLiCuaHang.c
 C:\Users\linh\source\repos\QuanLiCuaHang\QuanLiCuaHang\obj\Debug\QuanLiCuaHang.csproj.CopyComplete
 C:\Users\linh\source\repos\QuanLiCuaHang\QuanLiCuaHang\obj\Debug\QuanLiCuaHang.dll
 C:\Users\linh\source\repos\QuanLiCuaHang\QuanLiCuaHang\obj\Debug\QuanLiCuaHang.pdb
+C:\Users\linh\source\repos\QuanLiCuaHang\QuanLiCuaHang\bin\EntityFramework.dll
+C:\Users\linh\source\repos\QuanLiCuaHang\QuanLiCuaHang\bin\EntityFramework.SqlServer.dll
+C:\Users\linh\source\repos\QuanLiCuaHang\QuanLiCuaHang\bin\EntityFramework.xml
+C:\Users\linh\source\repos\QuanLiCuaHang\QuanLiCuaHang\bin\EntityFramework.SqlServer.xml
