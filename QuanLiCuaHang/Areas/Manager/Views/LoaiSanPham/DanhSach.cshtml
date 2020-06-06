@@ -27,10 +27,11 @@
 </style>
 
 <h2 style="text-align:center; color:red">Danh sách các loại sản phẩm</h2>
-
-    <button type="button" class="button button1">
+<form action="~/Manager/LoaiSanPham/Tao">
+    <button type="submit" class="button button1">
         Thêm sản phẩm
     </button>
+</form>
 <table class="table">
     <tr>
         <th style="color:blue">
@@ -48,22 +49,28 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td style="text-align:center">
-                @Html.DisplayFor(modelItem => item.TenLoaiSP)
-            </td>
-            <td style="text-align:center">
-                @Html.DisplayFor(modelItem => item.PhanTramLoiNhuan)
-            </td>
-            <td style="text-align:center">
-                @Html.DisplayFor(modelItem => item.MaDVT)
-            </td>
-            <td>
-                @Html.ActionLink("Sửa", "Sửa", new { id = item.MaLoaiSP }) |
-                @Html.ActionLink("Chi Tiết", "Chi tiết", new { id = item.MaLoaiSP }) |
-                @Html.ActionLink("Xóa", "Xóa", new { id = item.MaLoaiSP })
-            </td>
-        </tr>
+        using (Html.BeginForm("Xoa", "LoaiSanPham", new { id = item.MaLoaiSP }))
+        {
+            <tr>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.TenLoaiSP)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.PhanTramLoiNhuan)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.MaDVT)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Sua", new { id = item.MaLoaiSP }) |
+                    @*@Html.ActionLink("Chi Tiết", "ChiTiet", new { id = item.MaLoaiSP }) |*@
+                    @*@Html.ActionLink("Xóa", "Xoa", new { id = item.MaLoaiSP })*@
+
+                    <input type="submit" value="Xóa" onclick="return confirm ('Bạn chắc chắn muốn xóa không?')" />
+
+                </td>
+            </tr>
+        }
     }
 
 </table>

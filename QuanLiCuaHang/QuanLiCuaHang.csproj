@@ -187,7 +187,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Manager\Views\web.config" />
     <Content Include="Areas\Manager\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Manager\Views\Home\Index.cshtml" />
     <Content Include="Assets\Manager\src\pug\layouts\authentication.pug" />
     <Content Include="Assets\Manager\src\pug\layouts\dashboard.pug" />
     <Content Include="Assets\Manager\src\pug\layouts\error.pug" />
@@ -228,7 +227,10 @@
     <Content Include="Assets\Manager\src\scss\_variables.scss" />
     <Content Include="Assets\Manager\dist\.DS_Store" />
     <Content Include="Areas\Manager\Views\LoaiSanPham\ChiTiet.cshtml" />
-    <Content Include="Areas\Manager\Views\LoaiSanPham\Test.cshtml" />
+    <Content Include="Areas\Manager\Views\LoaiSanPham\DanhSach.cshtml" />
+    <Content Include="Areas\Manager\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\LoaiSanPham\Tao.cshtml" />
+    <Content Include="Areas\Manager\Views\LoaiSanPham\Sua.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
