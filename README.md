@@ -1,5 +1,5 @@
 # Quản Lí Cửa Hàng Vàng Bạc Đá Quý
--------- Đề tài quản lí cửa hàng vàng bạc đá -----
+--- Đề tài quản lí cửa hàng vàng bạc đá quý ---
 
 1. Lê Bá Lĩnh
 2. Nguyễn Anh Hào
