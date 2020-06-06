@@ -1,6 +1,6 @@
 # QuanLiCuaHang
 -------- Đề tài quản lí cửa hàng -----
-Thành viên TEAM 1
+
 1. Lê Bá Lĩnh
 2. Nguyễn Anh Hào
 3. Phan Thanh Hải
