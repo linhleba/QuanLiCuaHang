@@ -1,4 +1,4 @@
-﻿
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
@@ -67,7 +67,7 @@
             <div class="card-header"><i class="fas fa-table mr-1"></i>Thông tin sản phẩm</div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="dataTable" width:100%; cellspacing="0">
                     </table>
                 </div>
             </div>
@@ -76,6 +76,22 @@
         <div class="phieubanhang">
 
             <style>
+                buttont1 {
+                    position: relative;
+                    bottom: -10px;
+                }
+                th1 {
+                    padding: 5px;
+                    background-color: white;
+                    width: 100%;
+                    border-color: black;
+                    text-align: center;
+                }
+                td1 {
+                    background-color: white;
+                    width: 100%;
+                    border-color: black;
+                }
                 body {
                     font-family: Arial, Helvetica, sans-serif;
                     background-color: white;
@@ -158,13 +174,10 @@
                 }
                 /*button tao san pham*/
                 .button {
-                    border: none;
-                    color: white;
-                    padding: 16px 32px;
+                    border: 2px white;
+                    color: black;
                     text-align: center;
-                    text-decoration: none;
                     display: inline-block;
-                    font-size: 16px;
                     margin: 4px 0px 4px 900px;
                     transition-duration: 0.4s;
                     cursor: pointer;
@@ -172,9 +185,25 @@
                 }
 
                 .button1 {
+                    font-size: 14px;
+                    padding: 10px;
+                    position: relative;
+                    right: 300px;
+                    bottom: 25px;
+                    box-shadow: 0 2px #999;
                     background-color: white;
-                    color: black;
-                    border: 2px solid #4CAF50;
+                    border-radius: 12px
+                }
+                .button2 {
+                    font-size: 20px;
+                    padding: 10px;
+                    position: relative;
+                    right: 480px;
+                    width: 30%;
+                    bottom: 50px;
+                    box-shadow: 0 2px #999;
+                    background-color: green;
+                    border-radius: 12px
                 }
             </style>
             @* chưa làm xong *@
@@ -193,6 +222,7 @@
                     var html = "<tr>";
                     html += "<td> </td>";
                     html += "<td> <input name='itemName'> </td>";
+                    html += "<td> </td>";
                     html += "</tr>";
                     document.getElementById("test").insertRow().innerHTML = html;
                 }
@@ -201,7 +231,7 @@
             <span id="datetime"> hehe</span>
             <div class="bodyform">
                 <form action="/action_page.php">
-                    <h1 style="text-align:center; color: red; font-size: 35px; font-weight: bold">NHẬP PHIẾU BÁN HÀNG</h1>
+                    <h1 style="text-align:center; color: black; font-size: 35px; font-weight: bold">NHẬP PHIẾU BÁN HÀNG</h1>
                     <div class="container">
                         @*<p style="text-align:center">Vui lòng nhập thông tin bên dưới</p>*@
                         @*<hr>*@
@@ -230,30 +260,46 @@
                                     @*     oninvalid="this.setCustomValidity('Không được để trống')" onvalid="this.setCustomValidity('')" *@
                                 </td>
                             </tr>
-                            <tr>
-                            </tr>
+                            <tr></tr>
                         </table>
-                        <hr style="background-color:red" />
+                        <hr style="background-color:black" />
                         @*<button type="button" onclick="addItem()"> Thêm sản phẩm </button>*@
                         @*<input type="button" name="Ten" onclick="addItem()" style="width:50px; height:50px" />*@
-                        <button type="button" class="button button1" onclick="addItem()">Thêm sản phẩm</button>
+                        <span onclick="addItem()" class="button button1">Thêm sản phẩm</span>
+                        @*<button type="button" class="button button1" onclick="addItem()">
+        Thêm sản phẩm
+        </button>*@
                         @* noi dung phan san pham *@
-                        <table style="border:solid">
+                        <table style="position: relative; bottom: 25px;
+                        left: 200px; border-spacing: 15px; border-collapse: collapse;
+                        background-color: white; width: 55%; border:2px solid black; border-color: black;">
                             <thead>
                                 <tr>
-                                    <td> Số thứ tự </td>
-                                    <td align="center"> Tên sản phẩm </td>
-                                    <td align="center"> Giá sản phẩm </td>
+                                    <th align="left">&nbsp Số thứ tự </th>
+                                    <th align="center">&nbsp &nbsp &nbsp Tên sản phẩm </th>
+                                    <th align="right"> Giá sản phẩm </th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                             </thead>
-                            <tbody id="test">
-                            </tbody>
+                            <tbody id="test"></tbody>
                         </table>
-                        <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-                        <button type="submit" class="registerbtn">Tạo</button>
-                    </div>
-                    <div class="container signin">
-                        <p>Already have an account? <a href="#">Sign in</a>.</p>
+                        <table style="
+                         position: relative; bottom: 20px;
+                         left: 810px;border-collapse: collapse; background-color: white; width: 26%; border:2px solid; border-color: black">
+                            <thead>
+                                <tr>
+                                    <th align:right>&nbsp Tổng Tiền: </th>
+                                </tr>
+                            </thead>
+                            <tbody id="test"></tbody>
+                        </table>
+                        <span onclick="" class="button button2">Tạo</span>
+                        @*<p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>*@
+                        @*@<button type="submit" class="registerbtn">Tạo</button>*@
                     </div>
                 </form>
             </div>
