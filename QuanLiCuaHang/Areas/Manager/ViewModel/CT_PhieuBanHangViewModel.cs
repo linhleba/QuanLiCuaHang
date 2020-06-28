@@ -19,5 +19,6 @@ namespace QuanLiCuaHang.Areas.Manager.ViewModel
 
        
         public decimal ThanhTien { get; set; }
+        public int SoLuongTon { get; set; }
     }
 }

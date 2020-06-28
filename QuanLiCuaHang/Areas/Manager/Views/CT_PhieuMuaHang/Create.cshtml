@@ -17,7 +17,14 @@
 <script type="text/javascript">
     // Hàm chọn sản phẩm hiển thị đơn giá, đơn vị tinnhs
     $(document).ready(function () {
-        $("#txtNgayGiaoDich").val(new Date().toJSON().slice(0, 19));
+        // Hiển thị ngày tháng năm, thời gian
+        Date.prototype.toDateInputValue = (function () {
+            var local = new Date(this);
+            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+            return local.toJSON().slice(0, 10);
+        });
+
+        $('#txtNgayGiaoDich').val(new Date().toDateInputValue());
         $("#MaSP").val(0);
         $("#MaNCC").val(0);
         $("#MaSP").change(function () {
@@ -44,13 +51,13 @@
             phieuMuaHang.NgayLap = $("#txtNgayGiaoDich").val();
             phieuMuaHang.TongTien = TongTien;
             $("#tblDanhSachSanPham").find("tr:gt(0)").each(function () {
-            //$("table tr:not(:first)").each(function () {
+                //$("table tr:not(:first)").each(function () {
                 var ct_PhieuMuaHang = {};
                 ct_PhieuMuaHang.MaSP = parseFloat($(this).find("td:eq(0)").text());
                 ct_PhieuMuaHang.SoLuong = parseFloat($(this).find("td:eq(3)").text());
                 ct_PhieuMuaHang.DonGia = parseFloat($(this).find("td:eq(5)").text());
                 ct_PhieuMuaHang.ThanhTien = parseFloat($(this).find("td:eq(6)").text());
-
+                ct_PhieuMuaHang.SoLuongTon = parseFloat($(this).find("td:eq(7)").text());
                 dsct_PhieuMuaHang.push(ct_PhieuMuaHang);
             });
             phieuMuaHang.DSChiTiet = dsct_PhieuMuaHang;
@@ -66,7 +73,7 @@
                     });
                 }
 
-                else if (phieuMuaHang.NgayLap == "" ){
+                else if (phieuMuaHang.NgayLap == "") {
                     //alert('Thông tin các trường rỗng, vui lòng xem lại các yêu cầu');
                     swal({
                         title: "Lỗi !",
@@ -89,10 +96,8 @@
 
             else {
                 var check = 0;
-                for (i = 0; i < phieuMuaHang.DSChiTiet.length; i++)
-                {
-                    for ( j = i + 1; j < phieuMuaHang.DSChiTiet.length; j++)
-                    {
+                for (i = 0; i < phieuMuaHang.DSChiTiet.length; i++) {
+                    for (j = i + 1; j < phieuMuaHang.DSChiTiet.length; j++) {
                         if (phieuMuaHang.DSChiTiet[i].MaSP == phieuMuaHang.DSChiTiet[j].MaSP) {
                             swal({
                                 title: "Lỗi !",
@@ -106,27 +111,29 @@
                     }
                 }
                 if (check == 0) {
-                $.ajax({
-                    async: true,
-                    type: 'POST',
-                    dataType: 'JSON',
-                    contentType: 'application/json; charset=utf-8',
-                    data: JSON.stringify(phieuMuaHang),
-                    url: '/Manager/CT_PhieuMuaHang/Create',
-                    success: function (data) {
-                        //alert(data);
-                        swal({
-                            title: "Thành công !",
-                            text: "Tạo phiếu thành công!",
-                            icon: "success",
-                            button: "Đồng ý!",
-                        });
-                    },
-                    error: function () {
-                        alert('Lỗi');
-                    },
-                });
-            }
+                    $.ajax({
+                        async: true,
+                        type: 'POST',
+                        dataType: 'JSON',
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify(phieuMuaHang),
+                        url: '/Manager/CT_PhieuMuaHang/Create',
+                        success: function (data) {
+                            //alert(data);
+                            swal({
+                                title: "Thành công !",
+                                text: "Tạo phiếu thành công!",
+                                icon: "success",
+                                button: "Đồng ý!",
+                            });
+
+                            Refresh();
+                        },
+                        error: function () {
+                            alert('Lỗi');
+                        },
+                    });
+                }
             }
 
             return View();
@@ -146,6 +153,7 @@
         var soLuong = $("#txtSoLuong").val();
         var donViTinh = $("#txtDonViTinh").val();
         var donGia = $("#txtDonGia").val();
+        var soLuongTon = $("#txtSoLuongTon").val();
         var tongTien = soLuong * donGia;
         var checkfor = 0;
 
@@ -168,14 +176,7 @@
             });
         }
 
-        else if (parseFloat(soLuong) > parseFloat(slTon)) {
-            swal({
-                title: "Lỗi !",
-                text: "Vượt quá số lượng tồn",
-                icon: "error",
-                button: "Đồng ý!",
-            });
-        }
+
 
         else if (donGia == 0) {
             swal({
@@ -211,11 +212,13 @@
                 html += "<td>" + donViTinh + "</td>";
                 html += "<td>" + donGia + "</td>";
                 html += "<td>" + tongTien + "</td>";
+                html += "<td hidden>" + soLuongTon + "</td>";
                 html += "<td> <input type='button' value='Xóa' name='Xoa' class='btn btn-danger' onclick='RemoveItem(this)'/> </tr>";
                 html += "</tr>";
                 document.getElementById("#tblDSSanPham").insertRow().innerHTML = html;
                 document.getElementById("#")
                 CalTotal();
+                Clear();
             }
         }
     }
@@ -346,6 +349,25 @@
         $("txtTongThanhTien").val(TongTien);
     }
 
+    function Clear() {
+        $("#MaSP").val(0);
+        $("#txtLoaiSanPham").val('');
+        $("#txtDonViTinh").val('');
+        $("#txtDonGia").val('');
+        $("#txtSoLuong").val(0);
+    }
+    // Refresh trang
+    function Refresh() {
+        $("#MaNCC").val(0);
+        $("#txtSDT").val('');
+        $("#txtDiaChi").val('');
+        $("#MaSP").val(0);
+        $("#txtLoaiSanPham").val('');
+        $("#txtDonViTinh").val('');
+        $("#txtDonGia").val('');
+        $("#txtSoLuong").val(0);
+        $("table tr:not(:first)").remove();
+    }
 </script>
 
 
@@ -354,9 +376,13 @@
 
 @* Begin CSS *@
 <style>
+    div {
+        font-family: Arial;
+    }
+
     fieldset {
         /* tạo khung viền bên ngoài*/
-        border: 1px solid #ddd !important;
+        border: 3px solid #ddd !important;
         margin: 0;
         /*xmin-width: 0;*/
         padding: 10px;
@@ -376,16 +402,27 @@
         border: 1px solid #ddd;
         border-radius: 4px;
         padding: 5px 5px 5px 10px;
-        background-color: ghostwhite;
+        background-color: lightblue;
     }
 
     td {
         text-align: center;
     }
+
+    #nhapphieu {
+        text-align: center;
+        color: white;
+        font-size: 35px;
+        font-weight: bold;
+        border: 1px solid #ddd;
+        background-color: forestgreen;
+        padding: 0px 0px;
+        margin: 0px 380px;
+    }
 </style>
 @* End CSS *@
 
-<h1 style="text-align:center; color: red; font-size: 35px; font-weight: bold">NHẬP PHIẾU MUA HÀNG</h1>
+<h1 id="nhapphieu">NHẬP PHIẾU MUA HÀNG</h1>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -402,7 +439,7 @@
 
                         @*<input type="text" class="form-control" />*@
                         @*@Html.EditorFor(model => model.PHIEUMUAHANG.MaNCC, new { htmlAttributes = new { @class = "form-control", id = "txtTenKH", required = "true", @maxLength = "30", style = "width:150px" } })
-        @Html.ValidationMessageFor(model => model.PHIEUMUAHANG.MaNCC, "", new { @class = "text-danger" })*@
+                            @Html.ValidationMessageFor(model => model.PHIEUMUAHANG.MaNCC, "", new { @class = "text-danger" })*@
 
                         @Html.DropDownList("MaNCC", null, htmlAttributes: new { @class = "form-control", type = "text", required = "true", style = "width:180px" })
                         @Html.ValidationMessageFor(model => model.PHIEUMUAHANG.MaNCC, "", new { @class = "text-danger" })
@@ -414,13 +451,13 @@
 
                 @*<div class="row col-md-3">
 
-            </div>*@
+                    </div>*@
 
                 <div class="row col-md-4">
                     <div class="form-group">
                         Ngày lập
 
-                        @Html.EditorFor(model => model.PHIEUMUAHANG.NgayLap, new { htmlAttributes = new { @class = "form-control", id = "txtNgayGiaoDich", type = "datetime-local" } })
+                        @Html.EditorFor(model => model.PHIEUMUAHANG.NgayLap, new { htmlAttributes = new { @class = "form-control", id = "txtNgayGiaoDich", type = "date" } })
                         @Html.ValidationMessageFor(model => model.PHIEUMUAHANG.NgayLap, "", new { @class = "text-danger" })
 
                     </div>
@@ -428,7 +465,7 @@
             </div>
 
             <div class="row">
-               
+
 
                 <div class="row col-md-4">
                     <div class="form-group">
@@ -547,6 +584,10 @@
                     </th>
                     <th style="text-align: center">
                         Thành tiền
+                    </th>
+
+                    <th hidden>
+                        Số lượng tồn
                     </th>
 
                     <th style="text-align: center">

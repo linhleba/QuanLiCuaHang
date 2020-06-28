@@ -20,6 +20,7 @@ namespace QuanLiCuaHang.Areas.Manager.Repository
         public bool AddCT_PhieuMuaHang(PhieuMuaHangViewModel phieuMuaHangViewModel)
         {
             PHIEUMUAHANG phieumuahang = new PHIEUMUAHANG();
+
             phieumuahang.MaNCC = phieuMuaHangViewModel.MaNCC;
             phieumuahang.NgayLap = phieuMuaHangViewModel.NgayLap;
             phieumuahang.TongTien = phieuMuaHangViewModel.TongTien;
@@ -30,11 +31,14 @@ namespace QuanLiCuaHang.Areas.Manager.Repository
             foreach (var item in phieuMuaHangViewModel.DSChiTiet)
             {
                 CHITIET_PMH ct_phieumuahang = new CHITIET_PMH();
+                SANPHAM sanpham = objQUANLYCUAHANGEntity.SANPHAMs.Find(item.MaSP);
                 ct_phieumuahang.MaPMH = maPMH;
                 ct_phieumuahang.MaSP = item.MaSP;
                 ct_phieumuahang.SoLuong = item.SoLuong;
                 ct_phieumuahang.DonGia = item.DonGia;
                 ct_phieumuahang.ThanhTien = item.ThanhTien;
+
+                sanpham.SoLuongTon = (item.SoLuongTon + item.SoLuong);
                 objQUANLYCUAHANGEntity.CHITIET_PMH.Add(ct_phieumuahang);
                 objQUANLYCUAHANGEntity.SaveChanges();
             }

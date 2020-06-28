@@ -3,6 +3,7 @@ using QuanLiCuaHang.Areas.Manager.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 
@@ -30,11 +31,15 @@ namespace QuanLiCuaHang.Areas.Manager.Repository
             foreach (var item in phieuBanHangViewModel.DSChiTiet)
             {
                 CT_PHIEUBANHANG ct_phieubanhang = new CT_PHIEUBANHANG();
+                SANPHAM sanpham = objQUANLYCUAHANGEntity.SANPHAMs.Find(item.MaSP);
+
                 ct_phieubanhang.MaPBH = maPBH;
                 ct_phieubanhang.MaSP = item.MaSP;
                 ct_phieubanhang.SoLuong = item.SoLuong;
                 ct_phieubanhang.DonGia = item.DonGia;
                 ct_phieubanhang.ThanhTien = item.ThanhTien;
+
+                sanpham.SoLuongTon = (item.SoLuongTon - item.SoLuong);
                 objQUANLYCUAHANGEntity.CT_PHIEUBANHANG.Add(ct_phieubanhang);
                 objQUANLYCUAHANGEntity.SaveChanges();
             }
