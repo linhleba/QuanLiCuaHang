@@ -101,7 +101,7 @@
     </Key>
     <Property Name="MaPBH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TenKH" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="NgayLap" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NgayLap" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <NavigationProperty Name="CT_PHIEUBANHANG" Relationship="Self.FK_MaPBH_CTPHIEUBANHANG" FromRole="PHIEUBANHANG" ToRole="CT_PHIEUBANHANG" />
   </EntityType>
@@ -112,7 +112,7 @@
     <Property Name="MaPDV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="NgayLap" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="TenKH" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="SDT" Type="Int32" />
+    <Property Name="SDT" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
     <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="TongTienTraTruoc" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="TongTienConLai" Type="Decimal" Precision="19" Scale="4" Nullable="false" />

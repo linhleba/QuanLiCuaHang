@@ -13,7 +13,7 @@ namespace QuanLiCuaHang.Areas.Manager.ViewModel
 
         public DateTime NgayLap { get; set; }
 
-        public int SDT { get; set; }
+        public string SDT { get; set; }
 
         public decimal TongTien { get; set; }
 

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QUANLYCUAHANGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QUANLYCUAHANGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BCTONKHO">
           <Key>
             <PropertyRef Name="Thang" />
@@ -93,7 +93,7 @@
           </Key>
           <Property Name="MaPBH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenKH" Type="nvarchar" MaxLength="30" />
-          <Property Name="NgayLap" Type="datetime" Nullable="false" />
+          <Property Name="NgayLap" Type="date" Nullable="false" />
           <Property Name="TongTien" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="PHIEUDV">
@@ -103,7 +103,7 @@
           <Property Name="MaPDV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NgayLap" Type="datetime" Nullable="false" />
           <Property Name="TenKH" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="SDT" Type="int" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="TongTien" Type="money" Nullable="false" />
           <Property Name="TongTienTraTruoc" Type="money" Nullable="false" />
           <Property Name="TongTienConLai" Type="money" Nullable="false" />
@@ -151,7 +151,7 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
           <Property Name="MaTinhTrangPDV" Type="int" Nullable="false" />
           <Property Name="TenTinhTrang" Type="nvarchar" MaxLength="30" Nullable="false" />
         </EntityType>
-        <Association Name="FK__BCTONKHO__MaSP__160F4887">
+        <Association Name="FK__BCTONKHO__MaSP__4C6B5938">
           <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
           <End Role="BCTONKHO" Type="Self.BCTONKHO" Multiplicity="*" />
           <ReferentialConstraint>
@@ -163,7 +163,7 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CHITIET_P__MaLoa__123EB7A3">
+        <Association Name="FK__CHITIET_P__MaLoa__489AC854">
           <End Role="LOAIDV" Type="Self.LOAIDV" Multiplicity="1" />
           <End Role="CHITIET_PHIEUDV" Type="Self.CHITIET_PHIEUDV" Multiplicity="*" />
           <ReferentialConstraint>
@@ -175,7 +175,7 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CHITIET_P__MaPDV__114A936A">
+        <Association Name="FK__CHITIET_P__MaPDV__47A6A41B">
           <End Role="PHIEUDV" Type="Self.PHIEUDV" Multiplicity="1" />
           <End Role="CHITIET_PHIEUDV" Type="Self.CHITIET_PHIEUDV" Multiplicity="*" />
           <ReferentialConstraint>
@@ -315,15 +315,15 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
     [THAMSO].[PhanTramTraTruoc] AS [PhanTramTraTruoc]
     FROM [dbo].[THAMSO] AS [THAMSO]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__BCTONKHO__MaSP__160F4887" Association="Self.FK__BCTONKHO__MaSP__160F4887">
+          <AssociationSet Name="FK__BCTONKHO__MaSP__4C6B5938" Association="Self.FK__BCTONKHO__MaSP__4C6B5938">
             <End Role="SANPHAM" EntitySet="SANPHAM" />
             <End Role="BCTONKHO" EntitySet="BCTONKHO" />
           </AssociationSet>
-          <AssociationSet Name="FK__CHITIET_P__MaLoa__123EB7A3" Association="Self.FK__CHITIET_P__MaLoa__123EB7A3">
+          <AssociationSet Name="FK__CHITIET_P__MaLoa__489AC854" Association="Self.FK__CHITIET_P__MaLoa__489AC854">
             <End Role="LOAIDV" EntitySet="LOAIDV" />
             <End Role="CHITIET_PHIEUDV" EntitySet="CHITIET_PHIEUDV" />
           </AssociationSet>
-          <AssociationSet Name="FK__CHITIET_P__MaPDV__114A936A" Association="Self.FK__CHITIET_P__MaPDV__114A936A">
+          <AssociationSet Name="FK__CHITIET_P__MaPDV__47A6A41B" Association="Self.FK__CHITIET_P__MaPDV__47A6A41B">
             <End Role="PHIEUDV" EntitySet="PHIEUDV" />
             <End Role="CHITIET_PHIEUDV" EntitySet="CHITIET_PHIEUDV" />
           </AssociationSet>
@@ -364,8 +364,7 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
             <End Role="PHIEUDV" EntitySet="PHIEUDV" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QUANLYCUAHANGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -470,7 +469,7 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
           </Key>
           <Property Name="MaPBH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenKH" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="NgayLap" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NgayLap" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="CT_PHIEUBANHANG" Relationship="Self.FK_MaPBH_CTPHIEUBANHANG" FromRole="PHIEUBANHANG" ToRole="CT_PHIEUBANHANG" />
         </EntityType>
@@ -481,7 +480,7 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
           <Property Name="MaPDV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NgayLap" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="TenKH" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SDT" Type="Int32" />
+          <Property Name="SDT" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
           <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="TongTienTraTruoc" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="TongTienConLai" Type="Decimal" Precision="19" Scale="4" Nullable="false" />

@@ -96,9 +96,9 @@
             phieuDichVu.SDT = $("#txtSDT").val();
             phieuDichVu.NgayLap = $("#txtNgayLap").val();
             phieuDichVu.TongTien = $("#txtTongTien").val();
-            phieuDichVu.TongTienTraTruoc = $("#txtTongTraTruoc").val();
+            phieuDichVu.TongTienTraTruoc = parseFloat($("#txtTongTraTruoc").text());
             phieuDichVu.TongTienConLai = $("#txtTongConLai").val();
-            phieuDichVu.MaTinhTrangPDV = $("txtMaTinhTrangPDV").val();
+            phieuDichVu.MaTinhTrangPDV = $("#txtMaTinhTrangPDV").val();
             $("#tblDanhSachSanPham").find("tr:gt(0)").each(function () {
                 //$("table tr:not(:first)").each(function () {
                 var ct_PhieuDichVu = {};
@@ -142,6 +142,14 @@
                     swal({
                         title: "Lỗi !",
                         text: "Vui lòng nhập số điện thoại",
+                        icon: "error",
+                        button: "Đồng ý!",
+                    });
+                }
+                else if (phieuDichVu.DSChiTiet.length == 0) {
+                    swal({
+                        title: "Lỗi !",
+                        text: "Vui lòng thêm danh sách dịch vụ",
                         icon: "error",
                         button: "Đồng ý!",
                     });
@@ -190,7 +198,6 @@
         $("#txtConLai").val('');
         $("#txtNgayGiao").val('');
         $("#MaTinhTrangDV").val(0);
-        $("#txtSDT").val('');
     }
     // Hàm thêm sản phẩm vào bảng tbl
     var soThuTu = 0;
@@ -207,6 +214,8 @@
         var maTinhTrang = $("#MaTinhTrangDV").val();
         var tinhTrang = $("#MaTinhTrangDV option:selected").text();
         var checkfor = 0;
+        // check Tình Trạng
+        var checkStatus = 0;
 
         // check phần trăm trả trước
         var phanTramTraTruoc = parseFloat($("#txtPhanTramTraTruoc").val());
@@ -334,6 +343,18 @@
                 // hàm tính trả trước, tổng tiền, còn lại
                 Reset();
             }
+            $("table tr:not(:first)").each(function () {
+                 if (parseFloat($(this).find("td:eq(9)").text()) == 0) {
+                checkStatus = 1;
+                }
+
+            });
+            if (checkStatus == 0) {
+                $("#txtMaTinhTrangPDV").val(1);
+            }
+            else {
+                $("#txtMaTinhTrangPDV").val(0);
+            }
         }
 
     }
@@ -396,10 +417,29 @@
 
     // Xóa sản phẩm
     function RemoveItem(id) {
-        TongTien = TongTien - parseFloat($(id).closest('tr').find('td:eq(6)').text());
+        TongTien = TongTien - parseFloat($(id).closest('tr').find('td:eq(5)').text());
+        TongTraTruoc = TongTraTruoc - parseFloat($(id).closest('tr').find('td:eq(6)').text());
+        TongConLai = TongConLai - parseFloat($(id).closest('tr').find('td:eq(7)').text());
         $(id).closest('tr').remove();
-        document.getElementById('txtThanhTien').innerHTML = TongTien;
-        $("txtTongTien").val(TongTien);
+        //document.getElementById('txtTongTien').innerHTML = TongTien;
+        $("#txtTongTien").val(TongTien);
+        $("#txtTongTraTruoc").val(TongTraTruoc);
+        $("#txtTongConLai").val(TongConLai);
+
+        var checkStatus = 0;
+        $("table tr:not(:first)").each(function () {
+            if (parseFloat($(this).find("td:eq(9)").text()) == 0) {
+                checkStatus = 1;
+            }
+        });
+
+        if (checkStatus == 0) {
+            $("#txtMaTinhTrangPDV").val(1);
+        }
+        else {
+            $("#txtMaTinhTrangPDV").val(0);
+        }
+
     }
 
 </script>
@@ -548,7 +588,7 @@
                     <div class="form-group">
                         Tình trạng
 
-                        @Html.DropDownList("MaTinhTrangPDV", null, htmlAttributes: new { @class = "form-control", id = "MaTinhTrangPDV", required = "true", style = "width:180px", @readonly = "readonly" })
+                        @Html.DropDownList("MaTinhTrangPDV", null, htmlAttributes: new { @class = "form-control", id = "txtMaTinhTrangPDV", required = "true", style = "width:180px", @readonly = "readonly" })
                         @Html.ValidationMessageFor(model => model.PHIEUDV.MaTinhTrangPDV, "", new { @class = "text-danger" })
                     </div>
                 </div>
