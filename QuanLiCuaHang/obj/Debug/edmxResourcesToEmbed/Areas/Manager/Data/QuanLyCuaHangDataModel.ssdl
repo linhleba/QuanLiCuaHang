@@ -3,9 +3,11 @@
   <EntityType Name="BCTONKHO">
     <Key>
       <PropertyRef Name="Thang" />
+      <PropertyRef Name="Nam" />
       <PropertyRef Name="MaSP" />
     </Key>
-    <Property Name="Thang" Type="date" Nullable="false" />
+    <Property Name="Thang" Type="int" Nullable="false" />
+    <Property Name="Nam" Type="int" Nullable="false" />
     <Property Name="MaSP" Type="int" Nullable="false" />
     <Property Name="Tondau" Type="int" Nullable="false" />
     <Property Name="TonCuoi" Type="int" Nullable="false" />
@@ -146,7 +148,7 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
     <Property Name="MaTinhTrangPDV" Type="int" Nullable="false" />
     <Property Name="TenTinhTrang" Type="nvarchar" MaxLength="30" Nullable="false" />
   </EntityType>
-  <Association Name="FK__BCTONKHO__MaSP__4C6B5938">
+  <Association Name="FK__BCTONKHO__MaSP__55F4C372">
     <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
     <End Role="BCTONKHO" Type="Self.BCTONKHO" Multiplicity="*" />
     <ReferentialConstraint>
@@ -290,6 +292,15 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="CREATE_BCTONKHO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Thang" Type="int" Mode="In" />
+    <Parameter Name="Nam" Type="int" Mode="In" />
+    <Parameter Name="MaSanPham" Type="int" Mode="In" />
+    <Parameter Name="TonDau" Type="int" Mode="In" />
+    <Parameter Name="TonCuoi" Type="int" Mode="In" />
+    <Parameter Name="SLMuaVao" Type="int" Mode="In" />
+    <Parameter Name="SLBanRa" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="QUANLYCUAHANGModelStoreContainer">
     <EntitySet Name="BCTONKHO" EntityType="Self.BCTONKHO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CHITIET_PHIEUDV" EntityType="Self.CHITIET_PHIEUDV" Schema="dbo" store:Type="Tables" />
@@ -310,7 +321,7 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
     [THAMSO].[PhanTramTraTruoc] AS [PhanTramTraTruoc]
     FROM [dbo].[THAMSO] AS [THAMSO]</DefiningQuery>
     </EntitySet>
-    <AssociationSet Name="FK__BCTONKHO__MaSP__4C6B5938" Association="Self.FK__BCTONKHO__MaSP__4C6B5938">
+    <AssociationSet Name="FK__BCTONKHO__MaSP__55F4C372" Association="Self.FK__BCTONKHO__MaSP__55F4C372">
       <End Role="SANPHAM" EntitySet="SANPHAM" />
       <End Role="BCTONKHO" EntitySet="BCTONKHO" />
     </AssociationSet>

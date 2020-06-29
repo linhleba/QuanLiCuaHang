@@ -16,7 +16,7 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
     {
         private QUANLYCUAHANGEntity db = new QUANLYCUAHANGEntity();
 
-        // Ham lay ra don vi tinh
+        // Ham lay ra don gia DV
         public JsonResult GetDonGiaDV(int MaLoaiDV)
         {
             decimal dongiaDV = db.LOAIDVs.Single(d => d.MaLoaiDV == MaLoaiDV).DonGiaDV;

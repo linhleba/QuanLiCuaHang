@@ -1,18 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="QUANLYCUAHANGModelStoreContainer" CdmEntityContainer="QUANLYCUAHANGEntity">
-    <EntitySetMapping Name="BCTONKHOes">
-      <EntityTypeMapping TypeName="QUANLYCUAHANGModel.BCTONKHO">
-        <MappingFragment StoreEntitySet="BCTONKHO">
-          <ScalarProperty Name="Thang" ColumnName="Thang" />
-          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
-          <ScalarProperty Name="Tondau" ColumnName="Tondau" />
-          <ScalarProperty Name="TonCuoi" ColumnName="TonCuoi" />
-          <ScalarProperty Name="SLMuaVao" ColumnName="SLMuaVao" />
-          <ScalarProperty Name="SLBanRa" ColumnName="SLBanRa" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="CHITIET_PHIEUDV">
       <EntityTypeMapping TypeName="QUANLYCUAHANGModel.CHITIET_PHIEUDV">
         <MappingFragment StoreEntitySet="CHITIET_PHIEUDV">
@@ -156,5 +144,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="BCTONKHOes">
+      <EntityTypeMapping TypeName="QUANLYCUAHANGModel.BCTONKHO">
+        <MappingFragment StoreEntitySet="BCTONKHO">
+          <ScalarProperty Name="SLBanRa" ColumnName="SLBanRa" />
+          <ScalarProperty Name="SLMuaVao" ColumnName="SLMuaVao" />
+          <ScalarProperty Name="TonCuoi" ColumnName="TonCuoi" />
+          <ScalarProperty Name="Tondau" ColumnName="Tondau" />
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="Nam" ColumnName="Nam" />
+          <ScalarProperty Name="Thang" ColumnName="Thang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CREATE_BCTONKHO" FunctionName="QUANLYCUAHANGModel.Store.CREATE_BCTONKHO" />
+    <FunctionImportMapping FunctionImportName="Fun_CreateBCTonKho" FunctionName="QUANLYCUAHANGModel.Store.CREATE_BCTONKHO" />
   </EntityContainerMapping>
 </Mapping>

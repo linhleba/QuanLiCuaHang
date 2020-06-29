@@ -8,9 +8,11 @@
         <EntityType Name="BCTONKHO">
           <Key>
             <PropertyRef Name="Thang" />
+            <PropertyRef Name="Nam" />
             <PropertyRef Name="MaSP" />
           </Key>
-          <Property Name="Thang" Type="date" Nullable="false" />
+          <Property Name="Thang" Type="int" Nullable="false" />
+          <Property Name="Nam" Type="int" Nullable="false" />
           <Property Name="MaSP" Type="int" Nullable="false" />
           <Property Name="Tondau" Type="int" Nullable="false" />
           <Property Name="TonCuoi" Type="int" Nullable="false" />
@@ -151,7 +153,7 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
           <Property Name="MaTinhTrangPDV" Type="int" Nullable="false" />
           <Property Name="TenTinhTrang" Type="nvarchar" MaxLength="30" Nullable="false" />
         </EntityType>
-        <Association Name="FK__BCTONKHO__MaSP__4C6B5938">
+        <Association Name="FK__BCTONKHO__MaSP__55F4C372">
           <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
           <End Role="BCTONKHO" Type="Self.BCTONKHO" Multiplicity="*" />
           <ReferentialConstraint>
@@ -295,6 +297,15 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="CREATE_BCTONKHO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Thang" Type="int" Mode="In" />
+          <Parameter Name="Nam" Type="int" Mode="In" />
+          <Parameter Name="MaSanPham" Type="int" Mode="In" />
+          <Parameter Name="TonDau" Type="int" Mode="In" />
+          <Parameter Name="TonCuoi" Type="int" Mode="In" />
+          <Parameter Name="SLMuaVao" Type="int" Mode="In" />
+          <Parameter Name="SLBanRa" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="QUANLYCUAHANGModelStoreContainer">
           <EntitySet Name="BCTONKHO" EntityType="Self.BCTONKHO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CHITIET_PHIEUDV" EntityType="Self.CHITIET_PHIEUDV" Schema="dbo" store:Type="Tables" />
@@ -315,7 +326,7 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
     [THAMSO].[PhanTramTraTruoc] AS [PhanTramTraTruoc]
     FROM [dbo].[THAMSO] AS [THAMSO]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__BCTONKHO__MaSP__4C6B5938" Association="Self.FK__BCTONKHO__MaSP__4C6B5938">
+          <AssociationSet Name="FK__BCTONKHO__MaSP__55F4C372" Association="Self.FK__BCTONKHO__MaSP__55F4C372">
             <End Role="SANPHAM" EntitySet="SANPHAM" />
             <End Role="BCTONKHO" EntitySet="BCTONKHO" />
           </AssociationSet>
@@ -368,19 +379,6 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QUANLYCUAHANGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="BCTONKHO">
-          <Key>
-            <PropertyRef Name="Thang" />
-            <PropertyRef Name="MaSP" />
-          </Key>
-          <Property Name="Thang" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="MaSP" Type="Int32" Nullable="false" />
-          <Property Name="Tondau" Type="Int32" Nullable="false" />
-          <Property Name="TonCuoi" Type="Int32" Nullable="false" />
-          <Property Name="SLMuaVao" Type="Int32" Nullable="false" />
-          <Property Name="SLBanRa" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SANPHAM" Relationship="Self.FK__BCTONKHO__MaSP__160F4887" FromRole="BCTONKHO" ToRole="SANPHAM" />
-        </EntityType>
         <EntityType Name="CHITIET_PHIEUDV">
           <Key>
             <PropertyRef Name="MaPDV" />
@@ -509,10 +507,10 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
           <Property Name="GiaBanRa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="SoLuongTon" Type="Int32" Nullable="false" />
           <Property Name="MaLoaiSP" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="BCTONKHOes" Relationship="Self.FK__BCTONKHO__MaSP__160F4887" FromRole="SANPHAM" ToRole="BCTONKHO" />
           <NavigationProperty Name="CHITIET_PMH" Relationship="Self.FK_MaSP_CHITIET_PMH" FromRole="SANPHAM" ToRole="CHITIET_PMH" />
           <NavigationProperty Name="CT_PHIEUBANHANG" Relationship="Self.FK_MaSP_CTPHIEUBANHANG" FromRole="SANPHAM" ToRole="CT_PHIEUBANHANG" />
           <NavigationProperty Name="LOAISANPHAM" Relationship="Self.FK_MaLoaiSP_SANPHAM" FromRole="SANPHAM" ToRole="LOAISANPHAM" />
+          <NavigationProperty Name="BCTONKHOes" Relationship="QUANLYCUAHANGModel.FK__BCTONKHO__MaSP__55F4C372" FromRole="SANPHAM" ToRole="BCTONKHO" />
         </EntityType>
         <EntityType Name="TINHTRANGDV">
           <Key>
@@ -536,18 +534,6 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
           </Key>
           <Property Name="PhanTramTraTruoc" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="FK__BCTONKHO__MaSP__160F4887">
-          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
-          <End Role="BCTONKHO" Type="Self.BCTONKHO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SANPHAM">
-              <PropertyRef Name="MaSP" />
-            </Principal>
-            <Dependent Role="BCTONKHO">
-              <PropertyRef Name="MaSP" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__CHITIET_P__MaLoa__123EB7A3">
           <End Role="LOAIDV" Type="Self.LOAIDV" Multiplicity="1" />
           <End Role="CHITIET_PHIEUDV" Type="Self.CHITIET_PHIEUDV" Multiplicity="*" />
@@ -681,7 +667,6 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="QUANLYCUAHANGEntity" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="BCTONKHOes" EntityType="Self.BCTONKHO" />
           <EntitySet Name="CHITIET_PHIEUDV" EntityType="Self.CHITIET_PHIEUDV" />
           <EntitySet Name="CHITIET_PMH" EntityType="Self.CHITIET_PMH" />
           <EntitySet Name="CT_PHIEUBANHANG" EntityType="Self.CT_PHIEUBANHANG" />
@@ -696,10 +681,6 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
           <EntitySet Name="TINHTRANGDVs" EntityType="Self.TINHTRANGDV" />
           <EntitySet Name="TINHTRANGPDVs" EntityType="Self.TINHTRANGPDV" />
           <EntitySet Name="THAMSOes" EntityType="Self.THAMSO" />
-          <AssociationSet Name="FK__BCTONKHO__MaSP__160F4887" Association="Self.FK__BCTONKHO__MaSP__160F4887">
-            <End Role="SANPHAM" EntitySet="SANPHAMs" />
-            <End Role="BCTONKHO" EntitySet="BCTONKHOes" />
-          </AssociationSet>
           <AssociationSet Name="FK__CHITIET_P__MaLoa__123EB7A3" Association="Self.FK__CHITIET_P__MaLoa__123EB7A3">
             <End Role="LOAIDV" EntitySet="LOAIDVs" />
             <End Role="CHITIET_PHIEUDV" EntitySet="CHITIET_PHIEUDV" />
@@ -744,25 +725,63 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
             <End Role="TINHTRANGPDV" EntitySet="TINHTRANGPDVs" />
             <End Role="PHIEUDV" EntitySet="PHIEUDVs" />
           </AssociationSet>
+          <EntitySet Name="BCTONKHOes" EntityType="QUANLYCUAHANGModel.BCTONKHO" />
+          <AssociationSet Name="FK__BCTONKHO__MaSP__55F4C372" Association="QUANLYCUAHANGModel.FK__BCTONKHO__MaSP__55F4C372">
+            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+            <End Role="BCTONKHO" EntitySet="BCTONKHOes" />
+          </AssociationSet>
+          <FunctionImport Name="CREATE_BCTONKHO">
+            <Parameter Name="Thang" Mode="In" Type="Int32" />
+            <Parameter Name="Nam" Mode="In" Type="Int32" />
+            <Parameter Name="MaSanPham" Mode="In" Type="Int32" />
+            <Parameter Name="TonDau" Mode="In" Type="Int32" />
+            <Parameter Name="TonCuoi" Mode="In" Type="Int32" />
+            <Parameter Name="SLMuaVao" Mode="In" Type="Int32" />
+            <Parameter Name="SLBanRa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Fun_CreateBCTonKho" EntitySet="BCTONKHOes" ReturnType="Collection(QUANLYCUAHANGModel.BCTONKHO)">
+            <Parameter Name="Thang" Mode="In" Type="Int32" />
+            <Parameter Name="Nam" Mode="In" Type="Int32" />
+            <Parameter Name="MaSanPham" Mode="In" Type="Int32" />
+            <Parameter Name="TonDau" Mode="In" Type="Int32" />
+            <Parameter Name="TonCuoi" Mode="In" Type="Int32" />
+            <Parameter Name="SLMuaVao" Mode="In" Type="Int32" />
+            <Parameter Name="SLBanRa" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <EntityType Name="BCTONKHO">
+          <Key>
+            <PropertyRef Name="Thang" />
+            <PropertyRef Name="Nam" />
+            <PropertyRef Name="MaSP" />
+          </Key>
+          <Property Name="Thang" Type="Int32" Nullable="false" />
+          <Property Name="Nam" Type="Int32" Nullable="false" />
+          <Property Name="MaSP" Type="Int32" Nullable="false" />
+          <Property Name="Tondau" Type="Int32" Nullable="false" />
+          <Property Name="TonCuoi" Type="Int32" Nullable="false" />
+          <Property Name="SLMuaVao" Type="Int32" Nullable="false" />
+          <Property Name="SLBanRa" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SANPHAM" Relationship="QUANLYCUAHANGModel.FK__BCTONKHO__MaSP__55F4C372" FromRole="BCTONKHO" ToRole="SANPHAM" />
+        </EntityType>
+        <Association Name="FK__BCTONKHO__MaSP__55F4C372">
+          <End Type="QUANLYCUAHANGModel.SANPHAM" Role="SANPHAM" Multiplicity="1" />
+          <End Type="QUANLYCUAHANGModel.BCTONKHO" Role="BCTONKHO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MaSP" />
+            </Principal>
+            <Dependent Role="BCTONKHO">
+              <PropertyRef Name="MaSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="QUANLYCUAHANGModelStoreContainer" CdmEntityContainer="QUANLYCUAHANGEntity">
-          <EntitySetMapping Name="BCTONKHOes">
-            <EntityTypeMapping TypeName="QUANLYCUAHANGModel.BCTONKHO">
-              <MappingFragment StoreEntitySet="BCTONKHO">
-                <ScalarProperty Name="Thang" ColumnName="Thang" />
-                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
-                <ScalarProperty Name="Tondau" ColumnName="Tondau" />
-                <ScalarProperty Name="TonCuoi" ColumnName="TonCuoi" />
-                <ScalarProperty Name="SLMuaVao" ColumnName="SLMuaVao" />
-                <ScalarProperty Name="SLBanRa" ColumnName="SLBanRa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CHITIET_PHIEUDV">
             <EntityTypeMapping TypeName="QUANLYCUAHANGModel.CHITIET_PHIEUDV">
               <MappingFragment StoreEntitySet="CHITIET_PHIEUDV">
@@ -906,6 +925,21 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BCTONKHOes">
+            <EntityTypeMapping TypeName="QUANLYCUAHANGModel.BCTONKHO">
+              <MappingFragment StoreEntitySet="BCTONKHO">
+                <ScalarProperty Name="SLBanRa" ColumnName="SLBanRa" />
+                <ScalarProperty Name="SLMuaVao" ColumnName="SLMuaVao" />
+                <ScalarProperty Name="TonCuoi" ColumnName="TonCuoi" />
+                <ScalarProperty Name="Tondau" ColumnName="Tondau" />
+                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+                <ScalarProperty Name="Thang" ColumnName="Thang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CREATE_BCTONKHO" FunctionName="QUANLYCUAHANGModel.Store.CREATE_BCTONKHO" />
+          <FunctionImportMapping FunctionImportName="Fun_CreateBCTonKho" FunctionName="QUANLYCUAHANGModel.Store.CREATE_BCTONKHO" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

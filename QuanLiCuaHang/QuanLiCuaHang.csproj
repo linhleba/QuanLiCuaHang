@@ -1973,11 +1973,6 @@
     <Content Include="Areas\Manager\Views\TT_PhieuDichVu\Details.cshtml" />
     <Content Include="Areas\Manager\Views\TT_PhieuDichVu\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\TT_PhieuDichVu\Index.cshtml" />
-    <Content Include="Areas\Manager\Views\BCTonKho\Create.cshtml" />
-    <Content Include="Areas\Manager\Views\BCTonKho\Delete.cshtml" />
-    <Content Include="Areas\Manager\Views\BCTonKho\Details.cshtml" />
-    <Content Include="Areas\Manager\Views\BCTonKho\Edit.cshtml" />
-    <Content Include="Areas\Manager\Views\BCTonKho\Index.cshtml" />
     <Content Include="Areas\Manager\Views\ThamSo\Create.cshtml" />
     <Content Include="Areas\Manager\Views\ThamSo\Delete.cshtml" />
     <Content Include="Areas\Manager\Views\ThamSo\Details.cshtml" />
@@ -2095,6 +2090,11 @@
     <Content Include="Assets\Manager\dist\assets\sweetalert\src\scss\_toasts.scss" />
     <Content Include="Assets\Manager\dist\assets\sweetalert\src\sweetalert2.scss" />
     <Content Include="Assets\Manager\dist\assets\sweetalert\src\variables.scss" />
+    <Content Include="Areas\Manager\Views\BCTonKho\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\BCTonKho\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\BCTonKho\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\BCTonKho\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\BCTonKho\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

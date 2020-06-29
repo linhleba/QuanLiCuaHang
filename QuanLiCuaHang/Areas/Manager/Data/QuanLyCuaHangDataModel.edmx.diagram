@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="998f7ab52c1a4c2ca9443c0628e897fe" Name="Diagram1">
-        <EntityTypeShape EntityType="QUANLYCUAHANGModel.BCTONKHO" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QUANLYCUAHANGModel.CHITIET_PHIEUDV" Width="1.5" PointX="15.25" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="QUANLYCUAHANGModel.CHITIET_PMH" Width="1.5" PointX="10.5" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QUANLYCUAHANGModel.CT_PHIEUBANHANG" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
@@ -20,7 +19,6 @@
         <EntityTypeShape EntityType="QUANLYCUAHANGModel.TINHTRANGDV" Width="1.5" PointX="13" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QUANLYCUAHANGModel.TINHTRANGPDV" Width="1.5" PointX="10.75" PointY="9.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QUANLYCUAHANGModel.THAMSO" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <AssociationConnector Association="QUANLYCUAHANGModel.FK__BCTONKHO__MaSP__160F4887" ManuallyRouted="false" />
         <AssociationConnector Association="QUANLYCUAHANGModel.FK__CHITIET_P__MaLoa__123EB7A3" ManuallyRouted="false" />
         <AssociationConnector Association="QUANLYCUAHANGModel.FK__CHITIET_P__MaPDV__114A936A" ManuallyRouted="false" />
         <AssociationConnector Association="QUANLYCUAHANGModel.FK_MaTinhTrangDV_CHITIETPDV" ManuallyRouted="false" />
@@ -32,6 +30,8 @@
         <AssociationConnector Association="QUANLYCUAHANGModel.FK_MaLoaiSP_SANPHAM" ManuallyRouted="false" />
         <AssociationConnector Association="QUANLYCUAHANGModel.FK_MaNCC_PHIEUMUAHANG" ManuallyRouted="false" />
         <AssociationConnector Association="QUANLYCUAHANGModel.FK_MATINHTRANGPDV_PHIEUDV" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QUANLYCUAHANGModel.BCTONKHO" Width="1.5" PointX="7.5" PointY="4.75" />
+        <AssociationConnector Association="QUANLYCUAHANGModel.FK__BCTONKHO__MaSP__55F4C372" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

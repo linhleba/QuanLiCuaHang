@@ -22,11 +22,11 @@ public partial class SANPHAM
     public SANPHAM()
     {
 
-        this.BCTONKHOes = new HashSet<BCTONKHO>();
-
         this.CHITIET_PMH = new HashSet<CHITIET_PMH>();
 
         this.CT_PHIEUBANHANG = new HashSet<CT_PHIEUBANHANG>();
+
+        this.BCTONKHOes = new HashSet<BCTONKHO>();
 
     }
 
@@ -47,10 +47,6 @@ public partial class SANPHAM
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<BCTONKHO> BCTONKHOes { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
     public virtual ICollection<CHITIET_PMH> CHITIET_PMH { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -58,6 +54,10 @@ public partial class SANPHAM
     public virtual ICollection<CT_PHIEUBANHANG> CT_PHIEUBANHANG { get; set; }
 
     public virtual LOAISANPHAM LOAISANPHAM { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<BCTONKHO> BCTONKHOes { get; set; }
 
 }
 

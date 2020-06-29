@@ -18,7 +18,9 @@ using System;
 public partial class BCTONKHO
 {
 
-    public System.DateTime Thang { get; set; }
+    public int Thang { get; set; }
+
+    public int Nam { get; set; }
 
     public int MaSP { get; set; }
 

@@ -1,76 +1,111 @@
-﻿@model QuanLiCuaHang.Areas.Manager.Data.BCTONKHO
+﻿@*@model QuanLiCuaHang.Areas.Manager.Data.BCTONKHO*@
+@model IEnumerable<QuanLiCuaHang.Areas.Manager.Data.BCTONKHO>
 
 @{
     ViewBag.Title = "Create";
     Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+@if (TempData["testmsg"] != null)
+{
+    @Html.Raw(TempData["testmsg"])
+}
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>BCTONKHO</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Thang, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Thang, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Thang, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaSP, "MaSP", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("MaSP", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.MaSP, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <fieldset>
+            <legend style="border-bottom: 3px solid #e5e5e5; text-align: center">TẠO BÁO CÁO TỒN KHO</legend>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="row col-md-2">
+                        <div class="form-group">
+                            <label>Chọn tháng</label>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Tondau, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Tondau, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Tondau, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            @*<input style="width:80px" type="number" class="form-control" required>*@
+                            @Html.EditorFor(model => model.FirstOrDefault().Thang, new { htmlAttributes = new { @class = "form-control", style = "width:80px" } })
+                            @Html.ValidationMessageFor(model => model.FirstOrDefault().Thang, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TonCuoi, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TonCuoi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TonCuoi, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.SLMuaVao, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SLMuaVao, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SLMuaVao, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <div class="row col-md-2">
+                        <div class="form-group">
+                            <label>Chọn năm</label>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.SLBanRa, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SLBanRa, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SLBanRa, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            @*<input style="width:80px" type="text" class="form-control" required>*@
+                            @Html.EditorFor(model => model.FirstOrDefault().Nam, new { htmlAttributes = new { @class = "form-control", style = "width:80px" } })
+                            @Html.ValidationMessageFor(model => model.FirstOrDefault().Nam, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+                <input type="submit"  style="margin-left:-10px" class="btn btn-primary" value="Thêm"/>
+
             </div>
-        </div>
+        </fieldset>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="card-header"><b>BÁO CÁO TỒN KHO </b></div>
+<div class="card-body">
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped mb-none" id="datatable-editable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Tên loại sản phẩm</th>
+                    <th>Tồn đầu</th>
+                    <th>Tồn cuối</th>
+                    <th>Số lượng mua vào</th>
+                    <th>Số lượng bán ra</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+                @foreach (var item in Model)
+                {
+
+                <tr>
+                    <td style="text-align:center">
+                        @Html.DisplayFor(modelItem => item.SANPHAM.TenSanPham)
+                    </td>
+                    <td style="text-align:center">
+                        @Html.DisplayFor(modelItem => item.Tondau)
+                    </td>
+                    <td style="text-align:center">
+                        @Html.DisplayFor(modelItem => item.TonCuoi)
+                    </td>
+                    <td style="text-align:center">
+                        @Html.DisplayFor(modelItem => item.SLMuaVao)
+                    </td>
+                    <td style="text-align:center">
+                        @Html.DisplayFor(modelItem => item.SLBanRa)
+                    </td>
+                    <td class="actions">
+                        <a href="#" class="hidden on-editing save-row"><i class="fa fa-save" style="font-size:20px"></i></a>
+                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times" style="font-size:20px"></i></a>
+                        <a href="#" class="on-default edit-row"><i class="fa fa-pencil-alt"></i></a>
+                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+
+                }
+
+            </tbody>
+        </table>
+    </div>
 </div>
+        
+
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
