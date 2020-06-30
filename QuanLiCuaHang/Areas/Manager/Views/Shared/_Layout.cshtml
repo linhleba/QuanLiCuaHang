@@ -1,210 +1,255 @@
 ﻿<!DOCTYPE html>
-<html lang="vn">
 <head>
+    <title>Quản lý thông tin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- bootstrap-css -->
+    <link rel="stylesheet" href="~/Assets/Manager/layout/css/bootstrap.min.css">
+    <!-- //bootstrap-css -->
+    <!-- Custom CSS -->
+    <link href="~/Assets/Manager/layout/css/style.css" rel='stylesheet' type='text/css' /> 
+    <link href="~/Assets/Manager/layout/css/style-responsive.css" rel="stylesheet" />
+    <!-- font CSS -->
+    <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <!-- font-awesome icons -->
+    <link rel="stylesheet" href="~/Assets/Manager/layout/css/font.css" type="text/css" />
+    <link href="~/Assets/Manager/layout/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Assets/Manager/layout/css/morris.css" type="text/css" />
+    <!-- calendar -->
+    <link rel="stylesheet" href="~/Assets/Manager/layout/css/monthly.css">
+    <!-- //calendar -->
+    <!-- //font-awesome icons -->
+    <script src="~/Assets/Manager/layout/js/jquery2.0.3.min.js"></script>
+    <script src="~/Assets/Manager/layout/js/raphael-min.js"></script>
+    <script src="~/Assets/Manager/layout/js/morris.js"></script>
+
+    <!-- meta-->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Quản lí thông tin</title>
     <link href="~/Assets/Manager/dist/css/styles.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+    @*<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />*@
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>*@ 
 </head>
-<body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.html">BẢNG ĐIỀU KHIỂN</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="">
-            <i class="fas fa-bars"></i>
-        </button><!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Tìm kiếm ...." aria-label="Search" aria-describedby="basic-addon2" />
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+<body>
+    <section id="container">
+        <!--header start-->
+        <header class="header fixed-top clearfix">
+            <!--logo start-->
+            <div class="brand">
+                <a style="font-size: 1.4em" href="index.html" class="logo">
+                    BẢNG ĐIỀU KHIỂN
+                </a>
+                <div class="sidebar-toggle-box">
+                    <div class="fa fa-bars"></div>
                 </div>
             </div>
-        </form>
-        <!-- Navbar-->
-        <ul class="navbar-nav ml-auto ml-md-0">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#">Cài đặt</a><a class="dropdown-item" href="#">Hoạt động</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="login.html">Đăng xuất</a>
-                </div>
-            </li>
-        </ul>
-    </nav>
-    <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
-                    <div class="nav">
-                        @*<div class="sb-sidenav-menu-heading">Trang chủ</div>*@
-                        <a class="nav-link" href="/Manager/Home/Index">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Trang chủ
+            <!--logo end-->
+            <div class="nav notify-row" id="top_menu">
+
+            </div>
+            <div class="top-nav clearfix">
+                <!--search & user info start-->
+                <ul class="nav pull-right top-menu">
+                    <!-- user login dropdown start-->
+                    <li class="dropdown">
+                        <a style="padding: 10px;" data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="username"> <i class="fa fa-user"></i> Nhóm 1</span>
+                            <b class="caret"></b>
                         </a>
+                        <ul class="dropdown-menu extended logout">
+                            <li><a href="#"><i class=" fa fa-suitcase"></i>Hoạt động</a></li>
+                            <li><a href="#"><i class="fa fa-cog"></i>Cài đặt</a></li>
+                            <li><a href="login.html"><i class="fa fa-key"></i>Đăng xuất</a></li>
+                        </ul>
+                    </li>
+                    <!-- user login dropdown end -->
 
+                </ul>
+                <!--search & user info end-->
+            </div>
+        </header>
+        <!--header end-->
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar" class="nav-collapse">
+                <!-- sidebar menu start-->
+                <div style="background-color: white;" class="leftside-navigation">
+                    <ul class="sidebar-menu" id="nav-accordion">
+                        <li>
+                            <a class="active" href="index.html">
+                                <i style="color: rgb(11,167,17);" class="fa fa-dashboard"></i>
+                                <span style="color: black;">Trang chủ</span>
+                            </a>
+                        </li>
 
-                        @* Insert something *@
-                        <a class="nav-link collapse" href="item.html" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Sản phẩm
-
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/Manager/SanPham/DanhSach">Sản phẩm</a> </nav>
-                        </div>
-
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/Manager/LoaiSP/DanhSach">Loại sản phẩm</a></nav>
-                        </div>
-
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/Manager/DVT/DanhSach">Đơn vị tính</a></nav>
-                        </div>
-
-
-                        <a class="nav-link" href="item.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Dịch vụ
-                        </a>
-
-                        <a class="nav-link" href="item.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Nhà cung cấp
-                        </a>
-                        @* Stop something *@
-                        @*<div class="sb-sidenav-menu-heading">Interface</div>*@
-
-
-
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
-                            Phiếu bán hàng
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/Manager/CT_PhieuBanHang/Create">Lập phiếu bán hàng</a> </nav>
-                        </div>
-
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="buyform.html">Thông tin bán hàng</a></nav>
-                        </div>
-
-
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBody" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                            Phiếu mua hàng
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseBody" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/Manager/CT_PhieuBanHang/Create">Lập phiếu</a> </nav>
-                        </div>
-
-                        <div class="collapse" id="collapseBody" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="buyform.html">Chi tiết mua hàng</a></nav>
-                        </div>
-
-
-
-                        <a class="nav-link" href="#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
-                            Tra cứu
-                        </a>
-
-                        <a class="nav-link" href="#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-angle-down"></i></div>
-                            Báo cáo tồn kho
-                        </a>
-
-                        @* Stop something *@
-                        @*<div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                    Authentication
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
-                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                    <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="login.html">Login</a><a class="nav-link" href="register.html">Register</a><a class="nav-link" href="password.html">Forgot Password</a></nav>
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i style="color: rgb(11,167,17);" class="fa fa-table"></i>
+                                <span style="color: black;">Sản phẩm</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a style="color: black;" href="#">Sản phẩm</a></li>
+                                <li><a style="color: black;" href="#">Loại sản phẩm</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="fontawesome.html">
+                                <i style="color: rgb(11,167,17);" class="fa fa-bullhorn"></i>
+                                <span style="color: black;">Dịch vụ</span>
+                            </a>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i style="color: rgb(11,167,17);" class="fa fa-user"></i>
+                                <span style="color: black;">Nhà cung cấp</span>
+                            </a>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i style="color: rgb(11,167,17);" class="fa fa-tasks"></i>
+                                <span style="color: black;">Lập phiếu</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a style="color: black;" href="#">Phiếu bán hàng</a></li>
+                                <li><a style="color: black;" href="#">Phiếu mua hàng</a></li>
+                                <li><a style="color: black;" href="#">Phiếu dịch vụ</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i style="color: rgb(11,167,17);" class="fa fa-search"></i>
+                                <span style="color: black;">Tra cứu </span>
+                            </a>
+                            <ul class="sub">
+                                <li><a style="color: black;" href="#">Hóa đơn bán</a></li>
+                                <li><a style="color: black;" href="#">Hóa đơn mua</a></li>
+                                <li><a style="color: black;" href="#">Dịch vụ</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i style="color: rgb(11,167,17);" class=" fa fa-bar-chart-o"></i>
+                                <span style="color: black;">Báo cáo tồn kho</span>
+                            </a>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i style="color: rgb(11,167,17);" class="fa fa-cogs"></i>
+                                <span style="color: black;">Cài đặt</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                    Error
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
-                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                    <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="401.html">401 Page</a><a class="nav-link" href="404.html">404 Page</a><a class="nav-link" href="500.html">500 Page</a></nav>
-                </div>
-            </nav>
-        </div>*@
-                        @* Insert something *@
-                        @*<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-            Quản lí
-            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-        </a>
-        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                    Lập phiếu bán hàng
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
-                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                    <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="login.html">Login</a><a class="nav-link" href="register.html">Register</a><a class="nav-link" href="password.html">Forgot Password</a></nav>
-                </div>
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                    Lập phiếu mua hàng
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
-                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                    <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="401.html">401 Page</a><a class="nav-link" href="404.html">404 Page</a><a class="nav-link" href="500.html">500 Page</a></nav>
-                </div>
-            </nav>
-        </div>*@
-                        @*<div class="sb-sidenav-menu-heading">Addons</div>*@
-                        @*<a class="nav-link" href="charts.html">
-            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-            Quản lí
-        </a><a class="nav-link" href="tables.html">
-            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-            Tables
-        </a>*@
-                    </div>
-                </div>
-                <div class="sb-sidenav-footer">
-                    <div class="small">Đăng nhập hiện tại:</div>
-                    TEAM 1
-                </div>
-            </nav>
-        </div>
-        <div id="layoutSidenav_content">
-            @RenderBody()
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Bản quyền &copy;  </div>
-                        <div>
-                            <a href="#">Chính sách bảo mật</a>
-                            &middot;
-                            <a href="#">Điều khoản &amp; điều kiện</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </div>
-    </div>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+        <section id="main-content">
+            <section class="wrapper">
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+                @RenderBody()
+            </section>
+        </section>
+    </section>
+    <script src="~/Assets/Manager/layout/js/bootstrap.js"></script>
+    <script src="~/Assets/Manager/layout/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="~/Assets/Manager/layout/js/scripts.js"></script>
+    <script src="~/Assets/Manager/layout/js/jquery.slimscroll.js"></script>
+    <script src="~/Assets/Manager/layout/js/jquery.nicescroll.js"></script>
+    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
+    <script src="~/Assets/Manager/layout/js/jquery.scrollTo.js"></script>
+    <!-- morris JavaScript -->
+    @* old version *@
+    @*<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="~/Assets/Manager/dist/js/scripts.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 
-    <script src="~/Assets/Manager/src/assets/demo/datatables-demo.js"></script>
+    <script src="~/Assets/Manager/src/assets/demo/datatables-demo.js"></script>*@
 
+    <script>
+        $(document).ready(function () {
+            //BOX BUTTON SHOW AND CLOSE
+            jQuery('.small-graph-box').hover(function () {
+                jQuery(this).find('.box-button').fadeIn('fast');
+            }, function () {
+                jQuery(this).find('.box-button').fadeOut('fast');
+            });
+            jQuery('.small-graph-box .box-close').click(function () {
+                jQuery(this).closest('.small-graph-box').fadeOut(200);
+                return false;
+            });
+
+            //CHARTS
+            function gd(year, day, month) {
+                return new Date(year, month - 1, day).getTime();
+            }
+
+            graphArea2 = Morris.Area({
+                element: 'hero-area',
+                padding: 10,
+                behaveLikeLine: true,
+                gridEnabled: false,
+                gridLineColor: '#dddddd',
+                axes: true,
+                resize: true,
+                smooth: true,
+                pointSize: 0,
+                lineWidth: 0,
+                fillOpacity: 0.85,
+                data: [
+                    { period: '2017 Q4', iphone: 2668, ipad: null, itouch: 2649 },
+                    { period: '2018 Q1', iphone: 15780, ipad: 13799, itouch: 12051 },
+                    { period: '2018 Q2', iphone: 12920, ipad: 10975, itouch: 9910 },
+                    { period: '2018 Q3', iphone: 8770, ipad: 6600, itouch: 6695 },
+                    { period: '2018 Q4', iphone: 10820, ipad: 10924, itouch: 12300 },
+                    { period: '2019 Q1', iphone: 9680, ipad: 9010, itouch: 7891 },
+                    { period: '2019 Q2', iphone: 4830, ipad: 3805, itouch: 1598 },
+                    { period: '2019 Q3', iphone: 15083, ipad: 8977, itouch: 5185 },
+                    { period: '2019 Q4', iphone: 10697, ipad: 4470, itouch: 2038 },
+
+                ],
+                lineColors: ['#eb6f6f', '#926383', '#eb6f6f'],
+                xkey: 'period',
+                redraw: true,
+                ykeys: ['iphone', 'ipad', 'itouch'],
+                labels: ['Tất cả khách hàng', 'Khách hàng cũ', 'Khách hàng mới'],
+                pointSize: 2,
+                hideHover: 'auto',
+                resize: true
+            });
+
+
+        });
+    </script>
+    <!-- calendar -->
+    <script type="text/javascript" src="~/Assets/Manager/layout/js/monthly.js"></script>
+    <script type="text/javascript">
+        $(window).load(function () {
+
+            $('#mycalendar').monthly({
+                mode: 'event',
+
+            });
+
+            $('#mycalendar2').monthly({
+                mode: 'picker',
+                target: '#mytarget',
+                setWidth: '250px',
+                startHidden: true,
+                showTrigger: '#mytarget',
+                stylePast: true,
+                disablePast: true
+            });
+        });
+    </script>
+    <!-- //calendar -->
 </body>
-</html>
+

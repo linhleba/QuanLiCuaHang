@@ -5,306 +5,382 @@
 }
 
 
-<main>
-    <div class="container-fluid">
-        <h1 class="mt-4" style="color: black">CỬA HÀNG VÀNG BẠC ĐÁ QUÝ - TEAM 1</h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active" style="font-style:italic">----- Cung cấp các loại đá quý, vàng bạc cao cấp, các dịch vụ đặc biệt -----</li>
-        </ol>
-        @*<div class="row">
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-primary text-white mb-4">
-                        <div class="card-body">Primary Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-warning text-white mb-4">
-                        <div class="card-body">Warning Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success text-white mb-4">
-                        <div class="card-body">Success Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-danger text-white mb-4">
-                        <div class="card-body">Danger Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-            </div>*@
-        @*<div class="row">
-                <div class="col-xl-6">
-                    <div class="">
-                        <div class="card-header"><i class="fas fa-chart-area mr-1"></i>Area Chart Example</div>
-                        <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                    </div>
-                </div>
-                <div class="col-xl-6">
-                    <div class="card mb-4">
-                        <div class="card-header"><i class="fas fa-chart-bar mr-1"></i>Bar Chart Example</div>
-                        <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                    </div>
-                </div>
-            </div>*@
-        <div class="card mb-4">
-            <div class="card-header"><i class="fas fa-table mr-1"></i>Thông tin sản phẩm</div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width:100%; cellspacing="0">
-                    </table>
-                </div>
+<div class="market-updates">
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-2">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-eye"> </i>
             </div>
+            <div class="col-md-8 market-update-left">
+                <h4>Lượt truy cập</h4>
+                <h3>13,500</h3>
+            </div>
+            <div class="clearfix"> </div>
         </div>
+    </div>
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-1">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-users"></i>
+            </div>
+            <div class="col-md-8 market-update-left">
+                <h4>Khách hàng</h4>
+                <h3>1,250</h3>
 
-        <div class="phieubanhang">
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-3">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-usd"></i>
+            </div>
+            <div class="col-md-8 market-update-left">
+                <h4>Doanh số</h4>
+                <h3>1,500</h3>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-4">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            </div>
+            <div class="col-md-8 market-update-left">
+                <h4>Đơn hàng</h4>
+                <h3>1,500</h3>
 
-            <style>
-                buttont1 {
-                    position: relative;
-                    bottom: -10px;
-                }
-                th1 {
-                    padding: 5px;
-                    background-color: white;
-                    width: 100%;
-                    border-color: black;
-                    text-align: center;
-                }
-                td1 {
-                    background-color: white;
-                    width: 100%;
-                    border-color: black;
-                }
-                body {
-                    font-family: Arial, Helvetica, sans-serif;
-                    background-color: white;
-                }
-
-                * {
-                    box-sizing: border-box;
-                }
-                /* Add padding to containers */
-                .container {
-                    padding: 15px;
-                    background-color: lightblue;
-                }
-                /* tùy chỉnh nội dung form bên ngoài*/
-                .bodyform {
-                    padding: 15px;
-                    margin-left: 0px 0px;
-                    background-color: whitesmoke;
-                    border: solid;
-                }
-                /* Full-width input fields */
-                input[type=text], input[type=password] {
-                    width: 100%;
-                    padding: 15px;
-                    margin: 5px 0 22px 0;
-                    display: inline-block;
-                    border: none;
-                    background: #f1f1f1;
-                }
-
-                    input[type=text]:focus, input[type=password]:focus {
-                        background-color: #ddd;
-                        outline: none;
-                    }
-                /* Overwrite default styles of hr */
-                hr {
-                    border: 1px solid #f1f1f1;
-                    margin-bottom: 25px;
-                }
-                /* Set a style for the submit button */
-                .registerbtn {
-                    background-color: #4CAF50;
-                    color: white;
-                    padding: 16px 20px;
-                    margin: 8px 0;
-                    border: none;
-                    cursor: pointer;
-                    width: 100%;
-                    opacity: 0.9;
-                }
-
-                    .registerbtn:hover {
-                        opacity: 1;
-                    }
-                /* Add a blue text color to links */
-                a {
-                    color: dodgerblue;
-                }
-                /* Set a grey background color and center the text of the "sign in" section */
-                .signin {
-                    background-color: #f1f1f1;
-                    text-align: center;
-                }
-
-                .id {
-                    display: inline-block;
-                }
-                /*tạo padding di chuyển ngày lập phiếu bán hàng*/
-                .date {
-                    padding-left: 380px;
-                }
-                /*tạo padding right giữa khoảng cách ô nhập và dòng text hiển thị*/
-                #paddingright {
-                    padding-right: 10px;
-                }
-                /*tạo ô vuông để hiển thị số*/
-                #boxid {
-                    width: 50px;
-                    height: 50px;
-                }
-                /*button tao san pham*/
-                .button {
-                    border: 2px white;
-                    color: black;
-                    text-align: center;
-                    display: inline-block;
-                    margin: 4px 0px 4px 900px;
-                    transition-duration: 0.4s;
-                    cursor: pointer;
-                    float: right;
-                }
-
-                .button1 {
-                    font-size: 14px;
-                    padding: 10px;
-                    position: relative;
-                    right: 300px;
-                    bottom: 25px;
-                    box-shadow: 0 2px #999;
-                    background-color: white;
-                    border-radius: 12px
-                }
-                .button2 {
-                    font-size: 20px;
-                    padding: 10px;
-                    position: relative;
-                    right: 480px;
-                    width: 30%;
-                    bottom: 50px;
-                    box-shadow: 0 2px #999;
-                    background-color: green;
-                    border-radius: 12px
-                }
-            </style>
-            @* chưa làm xong *@
-            <script>
-                var dt = new Date();
-                var month = dt.getMonth();
-                var day = dt.getDate();
-                var year = dt.getFullYear;
-                var fullDay = month + "/" + day + "/" + year;
-                document.getElementById("datetime").innerHTML = fullDay;
-                alert("tuc");
-                //hàm thêm sản phẩm
-                var item = 0;
-                function addItem() {
-                    item++;
-                    var html = "<tr>";
-                    html += "<td> </td>";
-                    html += "<td> <input name='itemName'> </td>";
-                    html += "<td> </td>";
-                    html += "</tr>";
-                    document.getElementById("test").insertRow().innerHTML = html;
-                }
-            </script>
-
-            <span id="datetime"> hehe</span>
-            <div class="bodyform">
-                <form action="/action_page.php">
-                    <h1 style="text-align:center; color: black; font-size: 35px; font-weight: bold">NHẬP PHIẾU BÁN HÀNG</h1>
-                    <div class="container">
-                        @*<p style="text-align:center">Vui lòng nhập thông tin bên dưới</p>*@
-                        @*<hr>*@
-                        <table>
-                            <tr>
-                                <td align="center" id="paddingright">
-                                    <label for="sophieu" style="width:auto" "><b>Số phiếu</b></label>
-                                </td>
-                                <td class="id">
-                                    <input type="text" placeholder="1" style="text-align:center" id="boxid" required>
-                                </td>
-                                <td class="date" align="right" id="paddingright">
-                                    <label for="ngaylap"><b>Ngày lập</b></label>
-                                </td>
-                                <td align="right" class="ngaylap">
-                                    <input type="text" placeholder="Ngày hiện tại" name="datetime" id="datetime" required>
-                                </td>
-                            </tr>
-                            @* Nội dung hiển thị bảng tên khách hàng *@
-                            <tr>
-                                <td>
-                                    <label for="email" id="paddingright"><b>Khách hàng</b></label>
-                                </td>
-                                <td>
-                                    <input type="text" placeholder="Điền đầy đủ họ tên" name="name" id="name" required>
-                                    @*     oninvalid="this.setCustomValidity('Không được để trống')" onvalid="this.setCustomValidity('')" *@
-                                </td>
-                            </tr>
-                            <tr></tr>
-                        </table>
-                        <hr style="background-color:black" />
-                        @*<button type="button" onclick="addItem()"> Thêm sản phẩm </button>*@
-                        @*<input type="button" name="Ten" onclick="addItem()" style="width:50px; height:50px" />*@
-                        <span onclick="addItem()" class="button button1">Thêm sản phẩm</span>
-
-                        @*<button type="button" class="button button1" onclick="addItem()">
-        Thêm sản phẩm
-        </button>*@
-                        @* noi dung phan san pham *@
-                        <table style="position: relative; bottom: 25px;
-                        left: 200px; border-spacing: 15px; border-collapse: collapse;
-                        background-color: white; width: 55%; border:2px solid black; border-color: black;">
-                            <thead>
-                                <tr>
-                                    <th align="left">&nbsp Số thứ tự </th>
-                                    <th align="center">&nbsp &nbsp &nbsp Tên sản phẩm </th>
-                                    <th align="right"> Giá sản phẩm </th>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </thead>
-                            <tbody id="test"></tbody>
-                        </table>
-                        <table style="
-                         position: relative; bottom: 20px;
-                         left: 810px;border-collapse: collapse; background-color: white; width: 26%; border:2px solid; border-color: black">
-                            <thead>
-                                <tr>
-                                    <th align:right>&nbsp Tổng Tiền: </th>
-                                </tr>
-                            </thead>
-                            <tbody id="test"></tbody>
-                        </table>
-                        <span onclick="" class="button button2">Tạo</span>
-                        @*<p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>*@
-                        @*@<button type="submit" class="registerbtn">Tạo</button>*@
-                    </div>
-                </form>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+<!-- //market-->
+<!-- //tasks -->
+<div class="agileits-w3layouts-stats">
+    <div class="col-md-4 stats-info widget">
+        <div class="stats-info-agileits">
+            <div class="stats-title">
+                <h4 class="title">Ứng dụng dùng để truy cập</h4>
+            </div>
+            <div class="stats-body">
+                <ul class="list-unstyled">
+                    <li>
+                        GoogleChrome <span class="pull-right">85%</span>
+                        <div class="progress progress-striped active progress-right">
+                            <div class="bar green" style="width:85%;"></div>
+                        </div>
+                    </li>
+                    <li>
+                        Firefox <span class="pull-right">35%</span>
+                        <div class="progress progress-striped active progress-right">
+                            <div class="bar yellow" style="width:35%;"></div>
+                        </div>
+                    </li>
+                    <li>
+                        Internet Explorer <span class="pull-right">78%</span>
+                        <div class="progress progress-striped active progress-right">
+                            <div class="bar red" style="width:78%;"></div>
+                        </div>
+                    </li>
+                    <li>
+                        Safari <span class="pull-right">50%</span>
+                        <div class="progress progress-striped active progress-right">
+                            <div class="bar blue" style="width:50%;"></div>
+                        </div>
+                    </li>
+                    <li>
+                        Opera <span class="pull-right">80%</span>
+                        <div class="progress progress-striped active progress-right">
+                            <div class="bar light-blue" style="width:80%;"></div>
+                        </div>
+                    </li>
+                    <li class="last">
+                        Others <span class="pull-right">60%</span>
+                        <div class="progress progress-striped active progress-right">
+                            <div class="bar orange" style="width:60%;"></div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
-</main>
+    <div class="col-md-8 stats-info stats-last widget-shadow">
+        <div class="stats-last-agile">
+            <h4 class="title">Sản phẩm bán chạy nhất</h4>
+            <table class="table stats-table ">
+                <thead>
+                    <tr>
+                        <th>Số thứ tự</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Chỉ tiêu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>BÔNG TAI VÀNG TRẮNG Ý 18K</td>
+                        <td><span class="label label-success">8.651</span></td>
+                        <td><h5>85% <i class="fa fa-level-up"></i></h5></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>NHẪN BẠC Ý ĐÍNH ĐÁ PNJSILVER</td>
+                        <td><span class="label label-warning">7.962</span></td>
+                        <td><h5>35% <i class="fa fa-level-up"></i></h5></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>KIỀNG VÀNG TRẮNG Ý 18K PNJ</td>
+                        <td><span class="label label-danger">6.964</span></td>
+                        <td><h5 class="down">40% <i class="fa fa-level-down"></i></h5></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>NHẪN NAM VÀNG TRẮNG 14K ĐÍNH ĐÁ TOPAZ</td>
+                        <td><span class="label label-info">6.351</span></td>
+                        <td><h5>100% <i class="fa fa-level-up"></i></h5></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>KIỀNG VÀNG TRẮNG Ý 18K PNJ</td>
+                        <td><span class="label label-success">4.968</span></td>
+                        <td><h5 class="down">10% <i class="fa fa-level-down"></i></h5></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>NHẪN CƯỚI KIM CƯƠNG VÀNG</td>
+                        <td><span class="label label-warning">4.324</span></td>
+                        <td><h5>38% <i class="fa fa-level-up"></i></h5></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+<div class="agil-info-calendar">
+
+    <!-- tasks -->
+    <div class="agile-last-grids">
+        <div class="col-md-4 agile-last-left">
+            <div class="agile-last-grid">
+                <div class="area-grids-heading">
+                    <h3>Thống kê theo tháng</h3>
+                </div>
+                <div id="graph7"></div>
+                <script>
+                    // This crosses a DST boundary in the UK.
+                    Morris.Area({
+                        element: 'graph7',
+                        data: [
+                            { x: '2013-03-30 22:00:00', y: 3, z: 3 },
+                            { x: '2013-03-31 00:00:00', y: 2, z: 0 },
+                            { x: '2013-03-31 02:00:00', y: 6, z: 2 },
+                            { x: '2013-03-31 04:00:00', y: 4, z: 4 }
+                        ],
+                        xkey: 'x',
+                        ykeys: ['y', 'z'],
+                        labels: ['Lượt truy cập', 'Lượt mua hàng']
+                    });
+                </script>
+
+            </div>
+        </div>
+        <div class="col-md-4 agile-last-left agile-last-middle">
+            <div class="agile-last-grid">
+                <div class="area-grids-heading">
+                    <h3>Thống kê theo ngày</h3>
+                </div>
+                <div id="graph8"></div>
+                <script>
+                    /* data stolen from http://howmanyleft.co.uk/vehicle/jaguar_'e'_type */
+                    var day_data = [
+                        { "period": "2016-10-01", "licensed": 3407, "sorned": 660 },
+                        { "period": "2016-09-30", "licensed": 3351, "sorned": 629 },
+                        { "period": "2016-09-29", "licensed": 3269, "sorned": 618 },
+                        { "period": "2016-09-20", "licensed": 3246, "sorned": 661 },
+                        { "period": "2016-09-19", "licensed": 3257, "sorned": 667 },
+                        { "period": "2016-09-18", "licensed": 3248, "sorned": 627 },
+                        { "period": "2016-09-17", "licensed": 3171, "sorned": 660 },
+                        { "period": "2016-09-16", "licensed": 3171, "sorned": 676 },
+                        { "period": "2016-09-15", "licensed": 3201, "sorned": 656 },
+                        { "period": "2016-09-10", "licensed": 3215, "sorned": 622 }
+                    ];
+                    Morris.Bar({
+                        element: 'graph8',
+                        data: day_data,
+                        xkey: 'period',
+                        ykeys: ['licensed', 'sorned'],
+                        labels: ['Lượt truy cập', 'Lượt mua hàng'],
+                        xLabelAngle: 60
+                    });
+                </script>
+            </div>
+        </div>
+        <div class="col-md-4 agile-last-left agile-last-right">
+            <div class="agile-last-grid">
+                <div class="area-grids-heading">
+                    <h3>Thống kê theo năm</h3>
+                </div>
+                <div id="graph9"></div>
+                <script>
+                    var day_data = [
+                        { "elapsed": "I", "value": 34 },
+                        { "elapsed": "II", "value": 24 },
+                        { "elapsed": "III", "value": 3 },
+                        { "elapsed": "IV", "value": 12 },
+                        { "elapsed": "V", "value": 13 },
+                        { "elapsed": "VI", "value": 22 },
+                        { "elapsed": "VII", "value": 5 },
+                        { "elapsed": "VIII", "value": 26 },
+                        { "elapsed": "IX", "value": 12 },
+                        { "elapsed": "X", "value": 19 }
+                    ];
+                    Morris.Line({
+                        element: 'graph9',
+                        data: day_data,
+                        xkey: 'elapsed',
+                        ykeys: ['value'],
+                        labels: ['Tổng cộng'],
+                        parseTime: false
+                    });
+                </script>
+
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+
+    <!-- calendar -->
+    <div class="col-md-6 agile-calendar">
+        <div class="calendar-widget">
+            <div class="panel-heading ui-sortable-handle">
+                <span class="panel-icon">
+                    <i class="fa fa-calendar-o"></i>
+                </span>
+                <span class="panel-title"> Lịch </span>
+            </div>
+            <!-- grids -->
+            <div class="agile-calendar-grid">
+                <div class="page">
+
+                    <div class="w3l-calendar-left">
+                        <div class="calendar-heading">
+
+                        </div>
+                        <div class="monthly" id="mycalendar"></div>
+                    </div>
+
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //calendar -->
+    <div class="col-md-6 w3agile-notifications">
+        <div class="notifications">
+            <!--notification start-->
+
+            <header class="panel-heading">
+                Thông báo
+            </header>
+            <div class="notify-w3ls">
+                <div class="alert alert-info clearfix">
+                    <span class="alert-icon"><i class="fa fa-envelope-o"></i></span>
+                    <div class="notification-info">
+                        <ul class="clearfix notification-meta">
+                            <li class="pull-left notification-sender"><span><a href="#">Nguyễn Thị Mai</a></span> gửi bạn một tin nhắn </li>
+                            <li class="pull-right notification-time">1 phút trước</li>
+                        </ul>
+                        <p>
+                            Cuộc họp khẩn cấp cho đề xuất tiếp theo
+                        </p>
+                    </div>
+                </div>
+                <div class="alert alert-danger">
+                    <span class="alert-icon"><i class="fa fa-facebook"></i></span>
+                    <div class="notification-info">
+                        <ul class="clearfix notification-meta">
+                            <li class="pull-left notification-sender"><span><a href="#">Huỳnh Văn Sỹ</a></span> nhắc đến bạn trong một bài viết </li>
+                            <li class="pull-right notification-time">7 giờ trước</li>
+                        </ul>
+                        <p>
+                            Đôi bông tai này giá bao nhiêu vậy?
+                        </p>
+                    </div>
+                </div>
+                <div class="alert alert-success ">
+                    <span class="alert-icon"><i class="fa fa-comments-o"></i></span>
+                    <div class="notification-info">
+                        <ul class="clearfix notification-meta">
+                            <li class="pull-left notification-sender">Có 5 người muốn liên lạc với bạn</li>
+                            <li class="pull-right notification-time">15 giờ trước</li>
+                        </ul>
+                        <p>
+                            <a href="#">Thảo Suri, Nguyễn Hào</a> and <a href="#">3 người khác</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="alert alert-warning ">
+                    <span class="alert-icon"><i class="fa fa-bell-o"></i></span>
+                    <div class="notification-info">
+                        <ul class="clearfix notification-meta">
+                            <li class="pull-left notification-sender">Nguyên Tây đã bình luận bài viết của bạn </li>
+                            <li class="pull-right notification-time">5 ngày trước</li>
+                        </ul>
+                        <p>
+                            Chiếc nhẫn này ngoài đính đá vàng còn đá màu khác không shop?
+                        </p>
+                    </div>
+                </div>
+                <div class="alert alert-info clearfix">
+                    <span class="alert-icon"><i class="fa fa-envelope-o"></i></span>
+                    <div class="notification-info">
+                        <ul class="clearfix notification-meta">
+                            <li class="pull-left notification-sender"><span><a href="#">Lê Linh</a></span> gửi cho bạn một tin nhắn </li>
+                            <li class="pull-right notification-time">10 ngày trước</li>
+                        </ul>
+                        <p>
+                            Mình đã nhận được hàng rồi, sản phẩm rất đẹp. Mình rất thích!
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--notification end-->
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+
+
+<div class="row">
+    <div class="panel-body">
+        <div class="col-md-12 w3ls-graph">
+            <!--agileinfo-grap-->
+            <div class="agileinfo-grap">
+                <div class="agileits-box">
+                    <header class="agileits-box-header clearfix">
+                        <h3>Doanh thu theo quí</h3>
+                        <div class="toolbar">
+
+
+                        </div>
+                    </header>
+                    <div class="agileits-box-body clearfix">
+                        <div id="hero-area"></div>
+                    </div>
+                </div>
+            </div>
+         
+
+        </div>
+    </div>
+</div>
 
