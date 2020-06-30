@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using QuanLiCuaHang.Areas.Manager.Data;
+using QuanLiCuaHang.Areas.Manager.ViewModel;
 
 namespace QuanLiCuaHang.Areas.Manager.Controllers
 {
@@ -16,10 +17,10 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         private QUANLYCUAHANGEntity db = new QUANLYCUAHANGEntity();
 
         // GET: Manager/BCTonKho
-        public ActionResult Index()
+        public ActionResult Index(int Thang)
         {
             var bCTONKHOes = db.BCTONKHOes.Include(b => b.SANPHAM);
-            return View(bCTONKHOes.ToList());
+            return View(bCTONKHOes.Where(x => x.Thang.Equals(Thang)).ToList());
         }
 
         // GET: Manager/BCTonKho/Details/5
@@ -40,16 +41,23 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         // GET: Manager/BCTonKho/Create
         public ActionResult Create()
         {
-            ViewBag.MaSP = new SelectList(db.SANPHAMs, "MaSP", "TenSanPham");
+            //BCTonKhoViewModel viewModelList = new BCTonKhoViewModel();
+            //ViewBag.MaSP = new SelectList(db.SANPHAMs, "MaSP", "TenSanPham");
+            //var bCTONKHOes = db.BCTONKHOes.Include(b => b.SANPHAM);
+            //viewModelList.LBCTONKHO = (from bctonkho in db.BCTONKHOes where  bctonkho.Thang == "6" select bctonkho).ToList();
+            //var bCTONKHOes = db.BCTONKHOes.Include(b => b.SANPHAM);
+            //viewModelList.LBCTONKHO = bCTONKHOes.ToList();
+
             var bCTONKHOes = db.BCTONKHOes.Include(b => b.SANPHAM);
-            return View(bCTONKHOes.ToList());
+            ViewBag.MaSP = new SelectList(db.SANPHAMs, "MaSP", "TenSP");
+
+            return View();
         }
 
         // POST: Manager/BCTonKho/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
+
         //public ActionResult Create([Bind(Include = "Thang,Nam,MaSP,Tondau,TonCuoi,SLMuaVao,SLBanRa")] BCTONKHO bCTONKHO)
         //{
         //    if (ModelState.IsValid)
@@ -62,9 +70,10 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         //    ViewBag.MaSP = new SelectList(db.SANPHAMs, "MaSP", "TenSanPham", bCTONKHO.MaSP);
         //    return View(bCTONKHO);
         //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BCTONKHO bCTONKHO)
+        public ActionResult Create([Bind(Include = "Thang,Nam,MaSP,Tondau,TonCuoi,SLMuaVao,SLBanRa")] BCTONKHO bCTONKHO)
         {
             if (ModelState.IsValid)
             {
@@ -72,12 +81,15 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
                 {
                     if (db.BCTONKHOes.Any(x => x.Nam == bCTONKHO.Nam))
                     {
-                        TempData["testmsg"] = "<script> alert('Khong the tao');</script>";
+                        //Index(bCTONKHO.Thang);
+                        
+                        TempData["testmsg"] = "<script> alert('Tạo không thành cônng');</script>";
                     }
                 }
                 else
                 {
                     db.CREATE_BCTONKHO(bCTONKHO.Thang, bCTONKHO.Nam, 0, 0, 0, 0, 0);
+                    db.SaveChanges();
                 }
 
             }
@@ -85,7 +97,9 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
             {
                 TempData["testmsg"] = "<script> alert('Khong the tao');</script>";
             }
-            return View(bCTONKHO);
+            ViewBag.MaSP = new SelectList(db.SANPHAMs, "MaSP", "TenSP", bCTONKHO.MaSP);
+
+            return View();
 
         } 
         // GET: Manager/BCTonKho/Edit/5

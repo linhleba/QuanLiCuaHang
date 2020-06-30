@@ -18,7 +18,7 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         public ActionResult DanhSach()
         {
             var lOAISANPHAMs = db.LOAISANPHAMs.Include(l => l.DONVITINH);
-            return View(lOAISANPHAMs.ToList());
+            return View();
         }
 
         // GET: Manager/LOAISP/ChiTiet/5

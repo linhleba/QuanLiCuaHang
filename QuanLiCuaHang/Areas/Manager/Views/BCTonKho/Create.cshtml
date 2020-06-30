@@ -1,5 +1,9 @@
-﻿@*@model QuanLiCuaHang.Areas.Manager.Data.BCTONKHO*@
-@model IEnumerable<QuanLiCuaHang.Areas.Manager.Data.BCTONKHO>
+﻿@model QuanLiCuaHang.Areas.Manager.Data.BCTONKHO
+@*@model IEnumerable<QuanLiCuaHang.Areas.Manager.Data.BCTONKHO>*@
+
+@*@model QuanLiCuaHang.Areas.Manager.ViewModel.BCTonKhoViewModel*@
+
+@*@model Tuple<IEnumerable<QuanLiCuaHang.Areas.Manager.Data.BCTONKHO, QuanLiCuaHang.Areas.Manager.Data.BCTONKHO>*@
 
 @{
     ViewBag.Title = "Create";
@@ -11,7 +15,25 @@
     @Html.Raw(TempData["testmsg"])
 }
 
-@using (Html.BeginForm())
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+@*<link rel="stylesheet" type="text/css" href="~/Assets/Manager/dist/assets/sweetalert/dist/sweetalert2.css">*@
+@*<script src="~/Assets/Manager/dist/assets/sweetalert/dist/sweetalert2.all.min.js"></script>*@
+<link rel="stylesheet" href="https://npmcdn.com/sweetalert2@4.0.15/dist/sweetalert2.min.css">
+@*<script src="https://npmcdn.com/sweetalert2@4.0.15/dist/sweetalert2.min.js"></script>*@
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#Thang").val(1);
+        $("#Nam").val(2020);
+        var Chan = $("#Thang").val();
+    });
+
+</script>
+
+
+@using (Html.BeginForm("Create","BCTonKho", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -19,91 +41,48 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <fieldset>
-            <legend style="border-bottom: 3px solid #e5e5e5; text-align: center">TẠO BÁO CÁO TỒN KHO</legend>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="row col-md-2">
-                        <div class="form-group">
-                            <label>Chọn tháng</label>
+    <fieldset>
+        <legend style="border-bottom: 3px solid #e5e5e5; text-align: center">TẠO BÁO CÁO TỒN KHO</legend>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="row col-md-2">
+                    <div class="form-group">
+                        <label>Chọn tháng</label>
 
-                            @*<input style="width:80px" type="number" class="form-control" required>*@
-                            @Html.EditorFor(model => model.FirstOrDefault().Thang, new { htmlAttributes = new { @class = "form-control", style = "width:80px" } })
-                            @Html.ValidationMessageFor(model => model.FirstOrDefault().Thang, "", new { @class = "text-danger" })
-
-                        </div>
+                        @*<input style="width:80px" type="text" class="form-control" required>*@
+                        @Html.EditorFor(model => model.Thang, new { htmlAttributes = new { @class = "form-control", style = "width:80px" } })
+                        @Html.ValidationMessageFor(model => model.Thang, "", new { @class = "text-danger" })
                     </div>
-
-                    <div class="row col-md-2">
-                        <div class="form-group">
-                            <label>Chọn năm</label>
-
-                            @*<input style="width:80px" type="text" class="form-control" required>*@
-                            @Html.EditorFor(model => model.FirstOrDefault().Nam, new { htmlAttributes = new { @class = "form-control", style = "width:80px" } })
-                            @Html.ValidationMessageFor(model => model.FirstOrDefault().Nam, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
                 </div>
-                <input type="submit"  style="margin-left:-10px" class="btn btn-primary" value="Thêm"/>
+
+
+                <div class="row col-md-2">
+                    <div class="form-group">
+                        <label>Chọn năm</label>
+
+                        @*<input style="width:80px" type="text" class="form-control" required>*@
+                        @Html.EditorFor(model => model.Nam, new { htmlAttributes = new { @class = "form-control", style = "width:80px" } })
+                        @Html.ValidationMessageFor(model => model.Nam, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
 
             </div>
-        </fieldset>
+        </div>
+        <div class="form-group">
+            <input type="submit" style="margin-left:15px" class="btn btn-primary" value="Thêm" />
+        </div>
+
+    </fieldset>
     </div>
 }
 
-<div class="card-header"><b>BÁO CÁO TỒN KHO </b></div>
-<div class="card-body">
-
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped mb-none" id="datatable-editable" width="100%" cellspacing="0">
-            <thead>
-                <tr>
-                    <th>Tên loại sản phẩm</th>
-                    <th>Tồn đầu</th>
-                    <th>Tồn cuối</th>
-                    <th>Số lượng mua vào</th>
-                    <th>Số lượng bán ra</th>
-                    <th>Thao tác</th>
-                </tr>
-            </thead>
-            <tbody>
 
 
-                @foreach (var item in Model)
-                {
 
-                <tr>
-                    <td style="text-align:center">
-                        @Html.DisplayFor(modelItem => item.SANPHAM.TenSanPham)
-                    </td>
-                    <td style="text-align:center">
-                        @Html.DisplayFor(modelItem => item.Tondau)
-                    </td>
-                    <td style="text-align:center">
-                        @Html.DisplayFor(modelItem => item.TonCuoi)
-                    </td>
-                    <td style="text-align:center">
-                        @Html.DisplayFor(modelItem => item.SLMuaVao)
-                    </td>
-                    <td style="text-align:center">
-                        @Html.DisplayFor(modelItem => item.SLBanRa)
-                    </td>
-                    <td class="actions">
-                        <a href="#" class="hidden on-editing save-row"><i class="fa fa-save" style="font-size:20px"></i></a>
-                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times" style="font-size:20px"></i></a>
-                        <a href="#" class="on-default edit-row"><i class="fa fa-pencil-alt"></i></a>
-                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-alt"></i></a>
-                    </td>
-                </tr>
+@Html.Action("Index", "BCTonKho", new {thang = 1})
 
-                }
-
-            </tbody>
-        </table>
-    </div>
-</div>
-        
 
 
 @*<div>

@@ -220,6 +220,7 @@
     <Compile Include="Areas\Manager\Repository\CT_PhieuMuaHangRepository.cs" />
     <Compile Include="Areas\Manager\Repository\PhieuBanHangRepository.cs" />
     <Compile Include="Areas\Manager\Repository\PhieuMuaHangRepository.cs" />
+    <Compile Include="Areas\Manager\ViewModel\BCTonKhoViewModel.cs" />
     <Compile Include="Areas\Manager\ViewModel\CT_PhieuDichVuViewModel.cs" />
     <Compile Include="Areas\Manager\ViewModel\CT_PhieuMuaHangViewModel.cs" />
     <Compile Include="Areas\Manager\ViewModel\PhieuBanHangViewModel.cs" />
