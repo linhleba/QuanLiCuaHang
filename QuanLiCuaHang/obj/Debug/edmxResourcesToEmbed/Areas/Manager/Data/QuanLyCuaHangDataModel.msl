@@ -157,7 +157,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="CREATE_BCTONKHO" FunctionName="QUANLYCUAHANGModel.Store.CREATE_BCTONKHO" />
-    <FunctionImportMapping FunctionImportName="Fun_CreateBCTonKho" FunctionName="QUANLYCUAHANGModel.Store.CREATE_BCTONKHO" />
+    <FunctionImportMapping FunctionImportName="TAO_BCTONKHO" FunctionName="QUANLYCUAHANGModel.Store.TAO_BCTONKHO" />
   </EntityContainerMapping>
 </Mapping>

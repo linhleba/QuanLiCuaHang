@@ -7,20 +7,92 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.WebPages;
 using QuanLiCuaHang.Areas.Manager.Data;
 using QuanLiCuaHang.Areas.Manager.ViewModel;
+using System.Data.Entity.Core.Objects;
+using System.IO;
+using ClosedXML.Excel;
 
 namespace QuanLiCuaHang.Areas.Manager.Controllers
 {
+   
     public class BCTonKhoController : Controller
     {
         private QUANLYCUAHANGEntity db = new QUANLYCUAHANGEntity();
 
-        // GET: Manager/BCTonKho
-        public ActionResult Index(int Thang)
+        [HttpPost]
+        public FileResult Export()
         {
+            QUANLYCUAHANGEntity entities = new QUANLYCUAHANGEntity();
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[5] { new DataColumn("TenSP"),
+                                            new DataColumn("Tondau"),
+                                            new DataColumn("TonCuoi"),
+                                            new DataColumn("SLMuaVao"),
+                                             new DataColumn("SLBanRa"),
+                                            });
+
+            var bctonkhos = from bctonkho in entities.BCTONKHOes.ToList()
+                            select bctonkho;
+
+            foreach (var bctonkho in bctonkhos)
+            {
+                dt.Rows.Add(bctonkho.SANPHAM.TenSanPham, bctonkho.Tondau, bctonkho.TonCuoi, bctonkho.SLMuaVao, bctonkho.SLBanRa);
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+                }
+            }
+        }
+        // GET: Manager/BCTonKho
+        public ActionResult Index(int? Thang, int? Nam)
+        {
+            var thang = Convert.ToInt32(Thang);
             var bCTONKHOes = db.BCTONKHOes.Include(b => b.SANPHAM);
-            return View(bCTONKHOes.Where(x => x.Thang.Equals(Thang)).ToList());
+
+            var result = (bCTONKHOes.Where(x => x.Thang == thang ).ToList());
+            return View(result.Where(y => y.Nam == Nam).ToList());
+            //return View(bCTONKHOes.ToList());
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index([Bind(Include = "Thang,Nam,MaSP,Tondau,TonCuoi,SLMuaVao,SLBanRa")] BCTONKHO bCTONKHO)
+        {
+            if (ModelState.IsValid)
+            {
+                if (db.BCTONKHOes.Any(x => x.Thang == bCTONKHO.Thang))
+                {
+                    if (db.BCTONKHOes.Any(x => x.Nam == bCTONKHO.Nam))
+                    {
+                        //Index(bCTONKHO.Thang);
+
+                        TempData["testmsg"] = "<script> alert('Tạo không thành cônng');</script>";
+                    }
+                }
+                else
+                {
+                    TempData["testmsg"] = "<script> alert('Tạo thành cônng');</script>";
+                    db.TAO_BCTONKHO(bCTONKHO.Thang, bCTONKHO.Nam, 0, 0, 0, 0, 0);
+               
+                    db.SaveChanges();
+                }
+
+            }
+            else
+            {
+                TempData["testmsg"] = "<script> alert('Khong the tao');</script>";
+            }
+            ViewBag.MaSP = new SelectList(db.SANPHAMs, "MaSP", "TenSP", bCTONKHO.MaSP);
+            //return RedirectToAction("Index", "BCTonKho", bCTONKHO.Thang);
+            return View();
+
         }
 
         // GET: Manager/BCTonKho/Details/5
@@ -41,57 +113,34 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         // GET: Manager/BCTonKho/Create
         public ActionResult Create()
         {
-            //BCTonKhoViewModel viewModelList = new BCTonKhoViewModel();
-            //ViewBag.MaSP = new SelectList(db.SANPHAMs, "MaSP", "TenSanPham");
-            //var bCTONKHOes = db.BCTONKHOes.Include(b => b.SANPHAM);
-            //viewModelList.LBCTONKHO = (from bctonkho in db.BCTONKHOes where  bctonkho.Thang == "6" select bctonkho).ToList();
-            //var bCTONKHOes = db.BCTONKHOes.Include(b => b.SANPHAM);
-            //viewModelList.LBCTONKHO = bCTONKHOes.ToList();
-
+          
             var bCTONKHOes = db.BCTONKHOes.Include(b => b.SANPHAM);
             ViewBag.MaSP = new SelectList(db.SANPHAMs, "MaSP", "TenSP");
 
+            //return RedirectToAction("Index", "BCTonKho", new { Thang = 1, Nam = 2020 });
             return View();
         }
 
-        // POST: Manager/BCTonKho/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-
-        //public ActionResult Create([Bind(Include = "Thang,Nam,MaSP,Tondau,TonCuoi,SLMuaVao,SLBanRa")] BCTONKHO bCTONKHO)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.BCTONKHOes.Add(bCTONKHO);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    ViewBag.MaSP = new SelectList(db.SANPHAMs, "MaSP", "TenSanPham", bCTONKHO.MaSP);
-        //    return View(bCTONKHO);
-        //}
+        
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Thang,Nam,MaSP,Tondau,TonCuoi,SLMuaVao,SLBanRa")] BCTONKHO bCTONKHO)
+        public ActionResult Create(BCTONKHO bCTONKHO)
         {
             if (ModelState.IsValid)
             {
-                if (db.BCTONKHOes.Any(x => x.Thang == bCTONKHO.Thang))
-                {
-                    if (db.BCTONKHOes.Any(x => x.Nam == bCTONKHO.Nam))
-                    {
-                        //Index(bCTONKHO.Thang);
-                        
-                        TempData["testmsg"] = "<script> alert('Tạo không thành cônng');</script>";
-                    }
-                }
-                else
-                {
-                    db.CREATE_BCTONKHO(bCTONKHO.Thang, bCTONKHO.Nam, 0, 0, 0, 0, 0);
-                    db.SaveChanges();
+                if (db.BCTONKHOes.Any(x => x.Thang == bCTONKHO.Thang && x.Nam == bCTONKHO.Nam))
+                {        
+                        TempData["testmsg"] = "<script> alert('Báo cáo đã tạo, vui lòng nhấn tra cứu để xem thông tin');</script>";
+
                 }
 
+
+               else
+                {
+                    db.TAO_BCTONKHO(bCTONKHO.Thang, bCTONKHO.Nam, 0, 0, 0, 0, 0);
+                    db.SaveChanges();
+                }
             }
             else
             {
@@ -101,7 +150,7 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
 
             return View();
 
-        } 
+        }
         // GET: Manager/BCTonKho/Edit/5
         public ActionResult Edit(int? id)
         {

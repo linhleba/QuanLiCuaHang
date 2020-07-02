@@ -1,15 +1,17 @@
 ﻿@model IEnumerable<QuanLiCuaHang.Areas.Manager.Data.SANPHAM>
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
 }
+@*<link href="~/Content/Site.css" rel="stylesheet" />*@
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
-<h2>Index</h2>
+<script src="~/Scripts/jquery.validate.min.js"></script>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<h2>Danh sách các sản phẩm</h2>
+
 <table class="table">
     <tr>
         <th>
@@ -30,29 +32,153 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenSanPham)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GiaMuaVao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GiaBanRa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoLuongTon)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LOAISANPHAM.TenLoaiSP)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaSP }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaSP }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaSP })
-        </td>
-    </tr>
-}
+    @foreach (var sp in Model)
+    {
+        sp.GiaBanRa = (sp.GiaMuaVao) * (decimal)((sp.LOAISANPHAM.PhanTramLoiNhuan) / 100);
+    }
 
+
+    @foreach (var item in Model)
+    {
+        using (Html.BeginForm("Xoa", "SanPham", new { id = item.MaSP }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenSanPham)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GiaMuaVao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GiaBanRa)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuongTon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LOAISANPHAM.TenLoaiSP)
+                </td>
+                <td>
+                    <a href='@Url.Action("Sua", "SanPham",new { id = item.MaSP })'>
+
+
+                        <i type="button" class="fa fa-pencil fa-2x"> </i>  |
+                    </a>
+                    @*  @Html.ActionLink("Sửa", "Sua", new { id = item.MaSP }) |*@
+                    @*  @Html.ActionLink("Chi tiết", "ChiTiet", new { id = item.MaSP }) | *@
+                    @*<input type="submit" value="Delete" class="fa fa-trash-alt" onclick="return confirm('Are you sure you want to delete ?');" />*@
+                  <a href='@Url.Action("Xoa", "SanPham",new { id = item.MaSP })'>
+                    <i type="button" class="fa fa-trash fa-2x"> </i>
+                </a>
+                </td>
+            </tr>
+        }
+    }
 </table>
+
+
+
+
+@*
+    <script type="text/javascript">
+
+        function Clear() {
+            document.getElementById("<%=TenSanPham %>").value = "";
+            return true;
+        }
+    </script>
+*@
+@*
+    <script type="text/javascript">
+        function GetPhanTramLoiNhuan(MaLoaiSP)
+        {
+            $.ajax(
+                {
+                    async: true,
+                    type: 'GET',
+                    dataType: 'JSON',
+                    contentType: 'application/json;charset=utf-8',
+                    url: '/Manager/LoaiSP/GetPhanTramLoiNhuan',
+                    data { MaLoaiSP: MaLoaiSP },
+                    success: function (data) {
+                        $("PhanTramLoiNhuan").val(parseFloat(data).toFixed(0));
+                    },
+                    error: function () { alert('Không lấy được phần trăm lợi nhuận');}
+
+
+
+                }
+            );
+        }
+
+        $("#GiaMuaVao").change(function () {
+            var giamuavao = parseFloat($("#GiaMuaVao").val());
+            var phantramloinhuan = parseFloat($("PhanTramLoiNhuan").val());
+            $("#GiaBanRa").val(giamuavao * phantramloinhuan);
+        }
+
+
+
+        );
+    </script>
+*@
+
+@using (Html.BeginForm("Tao", "SanPham", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Tạo mới sản phẩm </h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstOrDefault().TenSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+
+                @Html.EditorFor(model => model.FirstOrDefault().TenSanPham, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstOrDefault().TenSanPham, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstOrDefault().GiaMuaVao, "Giá mua vào", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstOrDefault().GiaMuaVao, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstOrDefault().GiaMuaVao, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstOrDefault().GiaBanRa, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.DisplayFor(model => model.LastOrDefault().GiaBanRa, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.LastOrDefault().GiaBanRa, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastOrDefault().GiaBanRa, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastOrDefault().SoLuongTon, "Số lượng tồn", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastOrDefault().SoLuongTon, new { htmlAttributes = new { @class = "form-control", min = "1" } })
+                @Html.ValidationMessageFor(model => model.LastOrDefault().SoLuongTon, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstOrDefault().LOAISANPHAM.MaLoaiSP, "Tên loại sản phẩm ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaLoaiSP", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FirstOrDefault().LOAISANPHAM.MaLoaiSP, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+
+                <input type="submit" value="Tạo" formaction="Tao" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

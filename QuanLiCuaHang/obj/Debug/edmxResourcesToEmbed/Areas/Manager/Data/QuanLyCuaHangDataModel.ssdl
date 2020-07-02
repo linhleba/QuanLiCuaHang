@@ -292,7 +292,7 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="CREATE_BCTONKHO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="TAO_BCTONKHO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Thang" Type="int" Mode="In" />
     <Parameter Name="Nam" Type="int" Mode="In" />
     <Parameter Name="MaSanPham" Type="int" Mode="In" />

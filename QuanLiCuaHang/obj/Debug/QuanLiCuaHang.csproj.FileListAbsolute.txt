@@ -172,3 +172,11 @@ C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\bin\Newtonsoft.Jso
 C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\bin\Antlr3.Runtime.pdb
 C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\obj\Debug\QuanLiCuaHang.csproj.CopyComplete
+C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\bin\ClosedXML.dll
+C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\bin\DocumentFormat.OpenXml.dll
+C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\bin\ExcelNumberFormat.dll
+C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\bin\System.IO.Packaging.dll
+C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\bin\ClosedXML.pdb
+C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\bin\ClosedXML.xml
+C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\bin\DocumentFormat.OpenXml.xml
+C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\bin\ExcelNumberFormat.xml

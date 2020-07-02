@@ -297,7 +297,7 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="CREATE_BCTONKHO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="TAO_BCTONKHO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Thang" Type="int" Mode="In" />
           <Parameter Name="Nam" Type="int" Mode="In" />
           <Parameter Name="MaSanPham" Type="int" Mode="In" />
@@ -730,16 +730,7 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
             <End Role="BCTONKHO" EntitySet="BCTONKHOes" />
           </AssociationSet>
-          <FunctionImport Name="CREATE_BCTONKHO">
-            <Parameter Name="Thang" Mode="In" Type="Int32" />
-            <Parameter Name="Nam" Mode="In" Type="Int32" />
-            <Parameter Name="MaSanPham" Mode="In" Type="Int32" />
-            <Parameter Name="TonDau" Mode="In" Type="Int32" />
-            <Parameter Name="TonCuoi" Mode="In" Type="Int32" />
-            <Parameter Name="SLMuaVao" Mode="In" Type="Int32" />
-            <Parameter Name="SLBanRa" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Fun_CreateBCTonKho" EntitySet="BCTONKHOes" ReturnType="Collection(QUANLYCUAHANGModel.BCTONKHO)">
+          <FunctionImport Name="TAO_BCTONKHO" EntitySet="BCTONKHOes" ReturnType="Collection(QUANLYCUAHANGModel.BCTONKHO)">
             <Parameter Name="Thang" Mode="In" Type="Int32" />
             <Parameter Name="Nam" Mode="In" Type="Int32" />
             <Parameter Name="MaSanPham" Mode="In" Type="Int32" />
@@ -938,9 +929,8 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="CREATE_BCTONKHO" FunctionName="QUANLYCUAHANGModel.Store.CREATE_BCTONKHO" />
-          <FunctionImportMapping FunctionImportName="Fun_CreateBCTonKho" FunctionName="QUANLYCUAHANGModel.Store.CREATE_BCTONKHO" />
-        </EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="TAO_BCTONKHO" FunctionName="QUANLYCUAHANGModel.Store.TAO_BCTONKHO" />
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

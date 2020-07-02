@@ -32,7 +32,7 @@ public partial class BCTONKHO
 
     public int SLBanRa { get; set; }
 
-    public IEnumerable<BCTONKHO> bcTONKHOS { get; set; }
+
 
     public virtual SANPHAM SANPHAM { get; set; }
 
