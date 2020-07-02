@@ -15,9 +15,8 @@ namespace QuanLiCuaHang
 
             routes.MapRoute(
                 name: "Default",
-                url: "{area}/{controller}/{action}/{id}",
-                defaults: new { area = "Manager", controller = "Home", action = "DanhSach", id = UrlParameter.Optional }
-            );
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }).DataTokens.Add("area", "Manager");
         }
     }
 }

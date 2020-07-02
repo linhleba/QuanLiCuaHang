@@ -1,12 +1,4 @@
 ﻿
-@{
-    ViewBag.Title = "Index2";
-    Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
-}
-
-<h2>Index2</h2>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,14 +9,12 @@
     <meta name="author" content="" />
     <title>Danh sách các loại sản phẩm</title>
     <link href="~/Assets/Manager/dist/css/styles.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
     <!-- Vendor CSS -->
     <link rel="stylesheet" href="~/Assets/Manager/dist/assets/vendor/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="~/Assets/Manager/dist/assets/vendor/magnific-popup/magnific-popup.css" />
 
+    <link rel="stylesheet" href="~/Assets/Manager/dist/assets/stylesheets/theme.css" />
 
 </head>
 <body class="sb-nav-fixed">
@@ -52,256 +42,205 @@
             </li>
         </ul>
     </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <a class="nav-link" href="/Manager/Home/Index">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Trang chủ
+                        </a>
 
-    @*<main>
-            <div class="container-fluid">
-                <h1 class="mt-4">DANH SÁCH CÁC LOẠI SẢN PHẨM</h1>
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item"><a href="">Sản phẩm</a></li>
-                    <li class="breadcrumb-item active">Loại sản phẩm</li>
-                </ol>
 
-                <div class="card mb-4">
 
-                    <div class="card-header"><i class="fas fa-table mr-1"></i>Bảng các loại sản phẩm</div>
-                    <div class="card-body">
-                        <div class="mb-md" align="right">
-                            <button id="addToTable" class="btn btn-primary">Thêm<i class="fa fa-plus"></i></button>
+                        <a class="nav-link collapse" href="item.html" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Sản phẩm
+
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="sellform.html">Sản phẩm</a> </nav>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped mb-none" id="datatable-editable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>Mã loại sản phẩm</th>
-                                        <th>Tên loại sản phẩm</th>
-                                        <th>Phần trăm lợi nhuận</th>
-                                        <th>Đơn vị tính</th>
-                                        <th>Thao tác</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1111</td>
-                                        <td>Chiếc bút tình yêu</td>
-                                        <td>10</td>
-                                        <td>cây</td>
-                                        <td class="actions">
-                                            <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                            <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                            <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                            <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1112</td>
-                                        <td>Hộp bút vị iku</td>
-                                        <td>15</td>
-                                        <td>hộp</td>
-                                        <td class="actions">
-                                            <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                            <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                            <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                            <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1113</td>
-                                        <td>Thước kẻ xóa nhòa khoảng cách</td>
-                                        <td>120</td>
-                                        <td>cái</td>
-                                        <td class="actions">
-                                            <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                            <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                            <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                            <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1114</td>
-                                        <td>Gái đẹp</td>
-                                        <td>1000</td>
-                                        <td>người</td>
-                                        <td class="actions">
-                                            <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                            <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                            <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                            <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1115</td>
-                                        <td>Chày đăm tiu</td>
-                                        <td>0</td>
-                                        <td>cái</td>
-                                        <td class="actions">
-                                            <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                            <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                            <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                            <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/Manager/LoaiSanPham/DanhSach">Loại sản phẩm</a></nav>
                         </div>
+
+
+                        <a class="nav-link" href="item.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            Dịch vụ
+                        </a>
+
+                        <a class="nav-link" href="item.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            Nhà cung cấp
+                        </a>
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                            Lập phiếu
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="sellform.html">Phiếu bán hàng</a> </nav>
+                        </div>
+
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="buyform.html">Phiếu mua hàng</a></nav>
+                        </div>
+
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="serviceform.html">Phiếu dịch vụ</a></nav>
+                        </div>
+
+                        <a class="nav-link" href="#">
+                            <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
+                            Tra cứu
+                        </a>
+
+                        <a class="nav-link" href="#">
+                            <div class="sb-nav-link-icon"><i class="fas fa-angle-down"></i></div>
+                            Báo cáo tồn kho
+                        </a>
                     </div>
                 </div>
-            </div>
-        </main>*@
-    <main>
-        <div class="container-fluid">
-            <h1 class="mt-4">DANH SÁCH CÁC LOẠI SẢN PHẨM</h1>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="C:/Users/Win 10/Downloads/BaLinhIT/QuanLiCuaHang/Areas/Manager/Views/Home">Sản phẩm</a></li>
-                <li class="breadcrumb-item active">Loại sản phẩm</li>
-            </ol>
-            <div class="card mb-4">
-                <div class="card-body">Đây là nơi hiển thị thông tin danh sách các loại sản phẩm có trong cửa hàng.</div>
-            </div>
-            <div col="mb-4">
-
-                <div class="alert alert-success" id="success-alert">
-                    <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
-                    Đã thêm mới loại sản phẩm thành công.
+                <div class="sb-sidenav-footer">
+                    <div class="small">Đăng nhập hiện tại:</div>
+                    TEAM 1
                 </div>
-
-                <div class="alert alert-danger" id="danger-alert">
-                    <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
-                </div>
-                <div class="card mb-4">
-
-                    <div class="card-header"><b>THÊM MỚI LOẠI SẢN PHẨM</b></div>
-                    <div class="card-body">
-                        <form action="/action_page.php" class="needs-validation" novalidate>
-                            <div class="form-row">
-                                <div class="form-group col-sm-3">
-                                    <label>Mã loại sản phẩm</label>
-
-                                    <input type="number" class="form-control" placeholder="Nhập mã loại sản phẩm" id="ma" readonly required>
-                                    <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về mã loại sản phẩm</div>
-
-                                </div>
-
-                                <div class="form-group col-sm-3">
-                                    <label>Tên loại sản phẩm</label>
-
-                                    <input type="text" class="form-control" placeholder="Nhập tên loại sản phẩm" id="ten" required>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-sm-3">
-                                    <label>Phần trăm lợi nhuận</label>
-
-                                    <input type="number" class="form-control" placeholder="Nhập phần trăm lợi nhuận" id="phantramloinhuan" min="0" max="100" required>
-                                    <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về phần trăm lợi nhuận</div>
-                                </div>
-                                <div class="form-group col-sm-3">
-                                    <label for="donvitinh">Đơn vị tính</label>
-                                    <select class="form-control" placeholder="Chọn đơn vị tính" id="donvitinh" required>
-                                        <option>--- Chọn ---</option>
-                                        <option>cây</option>
-                                        <option>người</option>
-                                        <option>viên</option>
-                                    </select>
-                                    <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về đơn vị tính</div>
-
-                                </div>
-                            </div>
-
-
-                            <button id="addToTable" class="btn btn-primary">Thêm</button>
-                        </form>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="card mb-4">
-
-                <div class="card-header"><b>DANH MỤC CÁC LOẠI SẢN PHẨM</b></div>
-                <div class="card-body">
-
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped mb-none" id="datatable-editable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>Mã loại sản phẩm</th>
-                                    <th>Tên loại sản phẩm</th>
-                                    <th>Phần trăm lợi nhuận</th>
-                                    <th>Đơn vị tính</th>
-                                    <th>Thao tác</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1111</td>
-                                    <td>Chiếc bút tình yêu</td>
-                                    <td>10</td>
-                                    <td>cây</td>
-                                    <td class="actions">
-                                        <a href="#" class="hidden on-editing save-row"><i class="fa fa-save" style="font-size:20px"></i></a>
-                                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times" style="font-size:20px"></i></a>
-                                        <a href="#" class="on-default edit-row"><i class="fa fa-pencil-alt"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1112</td>
-                                    <td>Hộp bút vị iku</td>
-                                    <td>15</td>
-                                    <td>hộp</td>
-                                    <td class="actions">
-                                        <a href="#" class="hidden on-editing save-row"><i class="fa fa-save" style="font-size:20px"></i></a>
-                                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times" style="font-size:20px"></i></a>
-                                        <a href="#" class="on-default edit-row"><i class="fa fa-pencil-alt"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1113</td>
-                                    <td>Thước kẻ xóa nhòa khoảng cách</td>
-                                    <td>120</td>
-                                    <td>cái</td>
-                                    <td class="actions">
-                                        <a href="#" class="hidden on-editing save-row"><i class="fa fa-save" style="font-size:20px"></i></a>
-                                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times" style="font-size:20px"></i></a>
-                                        <a href="#" class="on-default edit-row"><i class="fa fa-pencil-alt"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1114</td>
-                                    <td>Gái đẹp</td>
-                                    <td>1000</td>
-                                    <td>người</td>
-                                    <td class="actions">
-                                        <a href="#" class="hidden on-editing save-row"><i class="fa fa-save" style="font-size:20px"></i></a>
-                                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times" style="font-size:20px"></i></a>
-                                        <a href="#" class="on-default edit-row"><i class="fa fa-pencil-alt"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1115</td>
-                                    <td>Chày đăm tiu</td>
-                                    <td>0</td>
-                                    <td>cái</td>
-                                    <td class="actions">
-                                        <a href="#" class="hidden on-editing save-row"><i class="fa fa-save" style="font-size:20px"></i></a>
-                                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times" style="font-size:20px"></i></a>
-                                        <a href="#" class="on-default edit-row"><i class="fa fa-pencil-alt"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            </nav>
         </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <h1 class="mt-4">DANH SÁCH CÁC NHÀ CUNG CẤP</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="~/Areas/Manager/Views/Home">Sản phẩm</a></li>
+                        <li class="breadcrumb-item active">Loại sản phẩm</li>
+                    </ol>
+                    <div class="card mb-4">
+                        <div class="card-body">Đây là nơi hiển thị thông tin của các nhà cung cấp sản phẩm cho cửa hàng.</div>
+                    </div>
+                    <div col="mb-4">
 
-    </main>
+                        <div class="alert alert-success" id="success-alert">
+                            <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
+                            Đã thêm mới loại sản phẩm thành công.
+                        </div>
+
+                        <div class="alert alert-danger" id="danger-alert">
+                            <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
+                        </div>
+                        <div class="card mb-4">
+
+                            <div class="card-header"><b>THÊM MỚI NHÀ CUNG CẤP</b></div>
+                            <div class="card-body">
+                                <form action="/action_page.php" class="needs-validation" novalidate>
+                                    <div class="form-row">
+                                        <div class="form-group col-sm-3">
+                                            <label>Mã nhà cung cấp</label>
+
+                                            <input type="number" class="form-control" id="ma" readonly required>
+                                            <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về mã loại sản phẩm</div>
+
+                                        </div>
+
+                                        <div class="form-group col-sm-3">
+                                            <label>Tên nhà cung cấp</label>
+
+                                            <input type="text" class="form-control" id="ten" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-sm-3">
+                                            <label>Địa chỉ</label>
+
+                                            <input type="text" class="form-control" id="diachi" required>
+                                        </div>
+
+                                        <div class="form-group col-sm-3">
+                                            <label for="donvitinh">Số điện thoại</label>
+                                            <input type="tel" class="form-control" id="sdt" required>
+
+                                        </div>
+                                    </div>
+
+
+                                    <button id="addToTable" class="btn btn-primary">Thêm</button>
+                                </form>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card mb-4">
+
+                        <div class="card-header"><b>DANH MỤC CÁC NHÀ CUNG CẤP</b></div>
+                        <div class="card-body">
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped mb-none" id="nha-cung-cap" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã nhà cung cấp</th>
+                                            <th>Tên nhà cung cấp</th>
+                                            <th>Địa chỉ</th>
+                                            <th>Số điện thoại</th>
+                                            <th>Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2221</td>
+                                            <td>Anh Hào Nghĩa Hiệp</td>
+                                            <td>23 đường XXX, quận X, thành phố Hồ Chí Minh</td>
+                                            <td>0912345678</td>
+                                            <td class="actions">
+                                                <a href="#" class="hidden on-editing save-row"><i class="fa fa-save" style="font-size:20px"></i></a>
+                                                <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times" style="font-size:20px"></i></a>
+                                                <a href="#" class="on-default edit-row"><i class="fa fa-pencil-alt"></i></a>
+                                                <a href="#" class="on-default remove-row"><i class="fa fa-trash-alt"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2222</td>
+                                            <td>Bá Lĩnh sân si</td>
+                                            <td>150 đường Chu Cờ Mo, quận Thủ Đức, thành phố Hồ Chí Minh</td>
+                                            <td>0933124567</td>
+                                            <td class="actions">
+                                                <a href="#" class="hidden on-editing save-row"><i class="fa fa-save" style="font-size:20px"></i></a>
+                                                <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times" style="font-size:20px"></i></a>
+                                                <a href="#" class="on-default edit-row"><i class="fa fa-pencil-alt"></i></a>
+                                                <a href="#" class="on-default remove-row"><i class="fa fa-trash-alt"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2223</td>
+                                            <td>Web Như Quần Què</td>
+                                            <td>120/22/2 hẻm Bạch Bạch Bạch, quận 2, thành phố Hồ Chí Minh</td>
+                                            <td>0927345678</td>
+                                            <td class="actions">
+                                                <a href="#" class="hidden on-editing save-row"><i class="fa fa-save" style="font-size:20px"></i></a>
+                                                <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times" style="font-size:20px"></i></a>
+                                                <a href="#" class="on-default edit-row"><i class="fa fa-pencil-alt"></i></a>
+                                                <a href="#" class="on-default remove-row"><i class="fa fa-trash-alt"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
     <div id="dialog" class="modal-block mfp-hide">
         <section class="panel">
             <header class="panel-heading">
@@ -310,7 +249,7 @@
             <div class="panel-body">
                 <div class="modal-wrapper">
                     <div class="modal-text">
-                        <p>Bạncó chắc chắn muốn xóa dòng này?</p>
+                        <p>Một khi mày đã xóa dòng này thì đéo khôi phục lại được. <br>Mày có chắc chắn muốn xóa dòng này?</p>
                     </div>
                 </div>
             </div>
@@ -338,8 +277,9 @@
     <script src="~/Assets/Manager/dist/assets/vendor/select2/select2.js"></script>
     <script src="~/Assets/Manager/dist/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
 
+
     <!-- Examples -->
-    <script src="~/Assets/Manager/dist/assets/javascripts/tables/examples.datatables.editable.js"></script>
+    <script src="~/Assets/Manager/dist/assets/javascripts/tables/nha-cung-cap.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -350,8 +290,6 @@
 </html>
 
 <style>
-.dataTables_paginate{float:right;text-align:right;padding-top:0.25em}.dataTables_wrapper .dataTables_paginate .paginate_button{box-sizing:border-box;display:inline-block;min-width:1.5em;padding:0.5em 1em;margin-left:2px;text-align:center;text-decoration:none !important;cursor:pointer;*cursor:hand;color:#007bff !important;border:1px solid transparent;border-radius:2px}.dataTables_wrapper .dataTables_paginate .paginate_button.current,.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{color:#333 !important;border:1px solid #979797;background-color:white;background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #dcdcdc));background:-webkit-linear-gradient(top, #fff 0%, #dcdcdc 100%);background:-moz-linear-gradient(top, #fff 0%, #dcdcdc 100%);background:-ms-linear-gradient(top, #fff 0%, #dcdcdc 100%);background:-o-linear-gradient(top, #fff 0%, #dcdcdc 100%);background:linear-gradient(to bottom, #fff 0%, #dcdcdc 100%)}.dataTables_wrapper .dataTables_paginate .paginate_button.disabled,.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active{cursor:default;color:#007bff !important;border:1px solid transparent;background:transparent;box-shadow:none}.dataTables_wrapper .dataTables_paginate .paginate_button:hover{color:white !important;border:1px solid #007bff;background-color:#007bff;background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #007bff), color-stop(100%, #007bff));background:-webkit-linear-gradient(top, #007bff 0%, #007bff 100%);background:-moz-linear-gradient(top, #007bff 0%, #007bff 100%);background:-ms-linear-gradient(top, #007bff 0%, #007bff 100%);background:-o-linear-gradient(top, #007bff 0%, #007bff 100%);background:linear-gradient(to bottom, #585858 0%, #007bff 100%)}.dataTables_wrapper .dataTables_paginate .paginate_button:active{outline:none;background-color:#007bff;background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #2b2b2b), color-stop(100%, #007bff));background:-webkit-linear-gradient(top, #007bff 0%, #007bff 100%);background:-moz-linear-gradient(top, #007bff 0%, #007bff 100%);background:-ms-linear-gradient(top, #007bff 0%, #0c0c0c 100%);background:-o-linear-gradient(top, #2b2b2b 0%, #0c0c0c 100%);background:linear-gradient(to bottom, #2b2b2b 0%, #0c0c0c 100%);box-shadow:inset 0 0 3px #007bff}.dataTables_wrapper .dataTables_paginate .ellipsis{padding:0 1em}.dataTables_wrapper .dataTables_processing{position:absolute;top:50%;left:50%;width:100%;height:40px;margin-left:-50%;margin-top:-25px;padding-top:20px;text-align:center;font-size:1.2em;background-color:white;background:-webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255,255,255,0)), color-stop(25%, rgba(255,255,255,0.9)), color-stop(75%, rgba(255,255,255,0.9)), color-stop(100%, rgba(255,255,255,0)));background:-webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%);background:-moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%);background:-ms-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%);background:-o-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%);background:linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%)}.dataTables_wrapper .dataTables_length,.dataTables_wrapper .dataTables_filter,.dataTables_wrapper .dataTables_info,.dataTables_wrapper .dataTables_processing,.dataTables_wrapper .dataTables_paginate{color:#333}.dataTables_wrapper .dataTables_scroll{clear:both}.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody{*margin-top:-1px;-webkit-overflow-scrolling:touch}.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>thead>tr>th,.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>thead>tr>td,.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>tbody>tr>th,.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>tbody>tr>td{vertical-align:middle}.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>thead>tr>th>div.dataTables_sizing,.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>thead>tr>td>div.dataTables_sizing,.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>tbody>tr>th>div.dataTables_sizing,.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>tbody>tr>td>div.dataTables_sizing{height:0;overflow:hidden;margin:0 !important;padding:0 !important}.dataTables_wrapper.no-footer .dataTables_scrollBody{border-bottom:1px solid #007bff}.dataTables_wrapper.no-footer div.dataTables_scrollHead table.dataTable,.dataTables_wrapper.no-footer div.dataTables_scrollBody>table{border-bottom:none}.dataTables_wrapper:after{visibility:hidden;display:block;content:"";clear:both;height:0}@@media screen and (max-width: 767px){.dataTables_wrapper .dataTables_info,.dataTables_wrapper .dataTables_paginate{float:none;text-align:center}.dataTables_wrapper .dataTables_paginate{margin-top:0.5em}}@@media screen and (max-width: 640px){.dataTables_wrapper .dataTables_length,.dataTables_wrapper .dataTables_filter{float:none;text-align:center}.dataTables_wrapper .dataTables_filter{margin-top:0.5em}}
+/*.dataTables_paginate{float:right;text-align:right;padding-top:0.25em}.dataTables_wrapper .dataTables_paginate .paginate_button{box-sizing:border-box;display:inline-block;min-width:1.5em;padding:0.5em 1em;margin-left:2px;text-align:center;text-decoration:none !important;cursor:pointer;*cursor:hand;color:#007bff !important;border:1px solid transparent;border-radius:2px}.dataTables_wrapper .dataTables_paginate .paginate_button.current,.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{color:#333 !important;border:1px solid #979797;background-color:white;background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #dcdcdc));background:-webkit-linear-gradient(top, #fff 0%, #dcdcdc 100%);background:-moz-linear-gradient(top, #fff 0%, #dcdcdc 100%);background:-ms-linear-gradient(top, #fff 0%, #dcdcdc 100%);background:-o-linear-gradient(top, #fff 0%, #dcdcdc 100%);background:linear-gradient(to bottom, #fff 0%, #dcdcdc 100%)}.dataTables_wrapper .dataTables_paginate .paginate_button.disabled,.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active{cursor:default;color:#007bff !important;border:1px solid transparent;background:transparent;box-shadow:none}.dataTables_wrapper .dataTables_paginate .paginate_button:hover{color:white !important;border:1px solid #007bff;background-color:#007bff;background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #007bff), color-stop(100%, #007bff));background:-webkit-linear-gradient(top, #007bff 0%, #007bff 100%);background:-moz-linear-gradient(top, #007bff 0%, #007bff 100%);background:-ms-linear-gradient(top, #007bff 0%, #007bff 100%);background:-o-linear-gradient(top, #007bff 0%, #007bff 100%);background:linear-gradient(to bottom, #585858 0%, #007bff 100%)}.dataTables_wrapper .dataTables_paginate .paginate_button:active{outline:none;background-color:#007bff;background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #2b2b2b), color-stop(100%, #007bff));background:-webkit-linear-gradient(top, #007bff 0%, #007bff 100%);background:-moz-linear-gradient(top, #007bff 0%, #007bff 100%);background:-ms-linear-gradient(top, #007bff 0%, #0c0c0c 100%);background:-o-linear-gradient(top, #2b2b2b 0%, #0c0c0c 100%);background:linear-gradient(to bottom, #2b2b2b 0%, #0c0c0c 100%);box-shadow:inset 0 0 3px #007bff}.dataTables_wrapper .dataTables_paginate .ellipsis{padding:0 1em}.dataTables_wrapper .dataTables_processing{position:absolute;top:50%;left:50%;width:100%;height:40px;margin-left:-50%;margin-top:-25px;padding-top:20px;text-align:center;font-size:1.2em;background-color:white;background:-webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255,255,255,0)), color-stop(25%, rgba(255,255,255,0.9)), color-stop(75%, rgba(255,255,255,0.9)), color-stop(100%, rgba(255,255,255,0)));background:-webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%);background:-moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%);background:-ms-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%);background:-o-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%);background:linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%)}.dataTables_wrapper .dataTables_length,.dataTables_wrapper .dataTables_filter,.dataTables_wrapper .dataTables_info,.dataTables_wrapper .dataTables_processing,.dataTables_wrapper .dataTables_paginate{color:#333}.dataTables_wrapper .dataTables_scroll{clear:both}.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody{*margin-top:-1px;-webkit-overflow-scrolling:touch}.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>thead>tr>th,.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>thead>tr>td,.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>tbody>tr>th,.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>tbody>tr>td{vertical-align:middle}.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>thead>tr>th>div.dataTables_sizing,.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>thead>tr>td>div.dataTables_sizing,.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>tbody>tr>th>div.dataTables_sizing,.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>tbody>tr>td>div.dataTables_sizing{height:0;overflow:hidden;margin:0 !important;padding:0 !important}.dataTables_wrapper.no-footer .dataTables_scrollBody{border-bottom:1px solid #007bff}.dataTables_wrapper.no-footer div.dataTables_scrollHead table.dataTable,.dataTables_wrapper.no-footer div.dataTables_scrollBody>table{border-bottom:none}.dataTables_wrapper:after{visibility:hidden;display:block;content:"";clear:both;height:0}@@media screen and (max-width: 767px){.dataTables_wrapper .dataTables_info,.dataTables_wrapper .dataTables_paginate{float:none;text-align:center}.dataTables_wrapper .dataTables_paginate{margin-top:0.5em}}@@media screen and (max-width: 640px){.dataTables_wrapper .dataTables_length,.dataTables_wrapper .dataTables_filter{float:none;text-align:center}.dataTables_wrapper .dataTables_filter{margin-top:0.5em}}*/
 
 </style>
-
-

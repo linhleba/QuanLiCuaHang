@@ -5,6 +5,7 @@
     Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
 }
 <script src="~/Assets/Manager/dist/js/FileSaver.js.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 <script type="text/javascript">
@@ -16,24 +17,82 @@
         $("#searchThang").change(function () {
             var thang = $("#searchThang").val();
             $("#Thang").val(thang);
- 
+
         });
 
         $("#searchNam").change(function () {
             var nam = $("#searchNam").val();
             $("#Nam").val(nam);
-   
+
+        });
+        $("#Submit").click(function (event) {
+
+            var error_free = true;
+            var currentMonth = (new Date).getMonth();
+            var currentYear = (new Date).getFullYear();
+            var thang = $("#searchThang").val();
+            var nam = $("#searchNam").val();
+            if (thang < 1 || thang > 12) {
+                swal({
+                    title: "Lỗi !",
+                    text: "Tháng không hợp lệ",
+                    icon: "error",
+                    button: "Đồng ý!",
+                });
+                error_free = false;
+            }
+            else if (nam > currentYear) {
+                swal({
+                    title: "Lỗi !",
+                    text: "Chưa tới ngày lập báo cáo",
+                    icon: "error",
+                    button: "Đồng ý!",
+                });
+                error_free = false;
+            }
+            else if (nam == currentYear) {
+                if (thang > currentMonth) {
+                    swal({
+                        title: "Lỗi !",
+                        text: "Chưa tới ngày lập báo cáo",
+                        icon: "error",
+                        button: "Đồng ý!",
+                    });
+                    error_free = false;
+                }
+            }
+            else if (nam < 2020) {
+                swal({
+                    title: "Lỗi !",
+                    text: "Năm lập báo cáo tối thiểu là tháng 1/2020",
+                    icon: "error",
+                    button: "Đồng ý!",
+                });
+                error_free = false;
+            }
+
+
+
+            if (!error_free) {
+                event.preventDefault();
+            }
+            else {
+
+                swal({
+                    title: "Thành công !",
+                    text: "Lập báo cáo thành công!",
+                    icon: "success",
+                    button: "Đồng ý!",
+                });
+            }
         });
 
 
-        //$("#searchSubmit").click(function () {
-        //    alert("yes");
-        //    //$("#submit").click();
-        //    //$("input[name='submit']").eq[0].trigger("click");
-        //    return false;
-        
-        //});
+
     });
+
+
+
 
     function fnExcelReport(id, name) {
         var tab_text = '<html xmlns:x="urn:schemas-microsoft-com:office:excel">';
@@ -53,58 +112,73 @@
         window.saveAs(blob, fileName);
     }
 </script>
+
+@* CSS Begin *@
+<style>
+   #nhapphieu {
+        text-align: center;
+        color: white;
+        font-size: 35px;
+        font-weight: bold;
+        border: 1px solid #ddd;
+        background-color: forestgreen;
+        padding: 0px 0px;
+        margin: 0px 280px;
+    }
+</style>
+
+@* Index View *@
 <div class="card-body">
     @using (Html.BeginForm("Index", "BCTonKho", FormMethod.Get))
     {
         {
-            @*@Html.AntiForgeryToken()*@
-
-    <div class="form-horizontal">
-       <h1 style="border-bottom: 3px solid #e5e5e5; text-align: center"> TẠO BÁO CÁO TỒN KHO </h1>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-    <fieldset>
+            <div class="form-horizontal">
+                @*<h1 style="border-bottom: 3px solid #e5e5e5; text-align: center"> TẠO BÁO CÁO TỒN KHO </h1>*@
 
-        <div class="container-fluid">
-            <div class="row">
-                <div class="row col-md-2">
-                    <div class="form-group">
-                        <label>Chọn tháng</label>
+                <h1 id="nhapphieu">TẠO BÁO CÁO TỒN KHO</h1>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                        @*<input style="width:80px" type="text" class="form-control" required>*@
-                        @*@Html.TextBox("Thang")*@
 
-                        @Html.EditorFor(model => model.FirstOrDefault().Thang, new { htmlAttributes = new { @class = "form-control", style = "width:80px", @id = "searchThang" } })
-                        @Html.ValidationMessageFor(model => model.FirstOrDefault().Thang, "", new { @class = "text-danger" })
+                <fieldset>
 
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="row col-md-2">
+                                <div class="form-group">
+                                    <label>Chọn tháng</label>
+
+
+
+                                    @Html.EditorFor(model => model.FirstOrDefault().Thang, new { htmlAttributes = new { @class = "form-control", style = "width:80px", @id = "searchThang" } })
+                                    @Html.ValidationMessageFor(model => model.FirstOrDefault().Thang, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+
+
+                            <div class="row col-md-2">
+                                <div class="form-group">
+                                    <label>Chọn năm</label>
+
+                                    @Html.EditorFor(model => model.FirstOrDefault().Nam, new { htmlAttributes = new { @class = "form-control", style = "width:80px", @id = "searchNam" } })
+                                    @Html.ValidationMessageFor(model => model.FirstOrDefault().Nam, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+                        </div>
                     </div>
-                </div>
-
-
-                <div class="row col-md-2">
                     <div class="form-group">
-                        <label>Chọn năm</label>
-
-                        @*<input style="width:80px" type="text" class="form-control" required>*@
-                        @Html.EditorFor(model => model.FirstOrDefault().Nam, new { htmlAttributes = new { @class = "form-control", style = "width:80px", @id = "searchNam" } })
-                        @Html.ValidationMessageFor(model => model.FirstOrDefault().Nam, "", new { @class = "text-danger" })
+                        <button id="searchSubmit" type="submit" name="searchSubmit" style="margin-left:15px; float: left" class="btn btn-primary" hidden> Tra cứu </button>
                     </div>
-                </div>
 
 
-
+                </fieldset>
             </div>
-        </div>
-        <div class="form-group">
-            @*<input name="searchSubmit" id="searchSubmit" type="submit" style="margin-left:15px" class="btn btn-primary" value="Thêm" />*@
-            <button id="searchSubmit" type="submit" name="searchSubmit" style="margin-left:15px; float: left" class="btn btn-primary"> Tra cứu </button>
-        </div>
-
-     
-    </fieldset>
-             </div>
         }
     }
 
@@ -114,15 +188,11 @@
         {
             @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-    @*<fieldset>
-
-        <div class="container-fluid" hidden>*@
-            @*<div class="row">*@
-                <div class="row col-md-2" hidden >
+                <div class="row col-md-2" hidden>
                     <div class="form-group">
                         <label>Chọn tháng</label>
 
@@ -148,84 +218,90 @@
 
 
 
-            @*</div>*@
-        @*</div>*@
-        <div class="form-group">
-            <input name="submit" id="submit" type="submit" style="margin-left:150px; margin-top: -100px" class="btn btn-primary" value="Tạo báo cáo" />
-        </div>
 
-    @*</fieldset>*@
+                @*<div class="form-group">
+                        <input name="submit" id="submit" type="submit" style="margin-left:15px; margin-top:  0px" class="btn btn-primary" value="Tạo" />
+                    </div>*@
+
+                <div class="form-group">
+                    <button id="Submit" type="submit" name="Submit" style="margin-left:15px; margin-top: 0px" ; class="btn btn-primary"> Tạo </button>
+                </div>
 
 
-</div>
+
+
+            </div>
         }
- }
+    }
 
 
-
-<div class="table-responsive">
-    <button style="float:right" class="btn btn-success" onclick="javascript: fnExcelReport('datatable-editable','data')">
-        <i class="fa fa-file-excel-o"></i> Xuất Excel
-    </button>
- 
-    @*<H4 style="text-align:center">
-        BÁO CÁO TỒN KHO THÁNG
-        <label id="lbThang"> 5 </label> / <label id="lbNam"> 2020 </label>
-    </H4>*@
-    <table class="table table-bordered table-striped mb-none" id="datatable-editable" width="100%" cellspacing="0">
-       
-        <thead>
-        
-            <tr>
-                <th colspan="5" style="background-color: lightsteelblue">
-                   
-                    <h4 style="text-align:center; font-weight:bold"> BÁO CÁO TỒN KHO THÁNG <label id="lbThang"> _ </label> / <label id="lbNam"> _ </label> </h4>
-
-                </th>
-            </tr>
-            <tr>
-                <th>Tên loại sản phẩm</th>
-                <th>Tồn đầu</th>
-                <th>Tồn cuối</th>
-                <th>Số lượng mua vào</th>
-                <th>Số lượng bán ra</th>
-            </tr>
-        </thead>
-        <tbody>
+    @* Create BCTonKho Function *@
+    <div class="table-responsive">
+        <button style="float:right" class="btn btn-success" onclick="javascript: fnExcelReport('datatable-editable','data')">
+            <i class="fa fa-file-excel-o"></i> Xuất Excel
+        </button>
 
 
-            @foreach (var item in Model)
-            {
+        <table class="table table-bordered table-striped mb-none" id="datatable-editable" width="100%" cellspacing="0">
+
+            <thead>
 
                 <tr>
-                    <td style="text-align:center">
-                        @Html.DisplayFor(modelItem => item.SANPHAM.TenSanPham)
-                    </td>
-                    <td style="text-align:center">
-                        @Html.DisplayFor(modelItem => item.Tondau)
-                    </td>
-                    <td style="text-align:center">
-                        @Html.DisplayFor(modelItem => item.TonCuoi)
-                    </td>
-                    <td style="text-align:center">
-                        @Html.DisplayFor(modelItem => item.SLMuaVao)
-                    </td>
-                    <td style="text-align:center">
-                        @Html.DisplayFor(modelItem => item.SLBanRa)
-                    </td>
+                    <th colspan="6" style="background-color: lightsteelblue">
+
+                        <h4 style="text-align:center; font-weight:bold"> BÁO CÁO TỒN KHO THÁNG <label id="lbThang">  </label> / <label id="lbNam">  </label> </h4>
+
+                    </th>
+                </tr>
+                <tr>
+                    <th style="text-align:center">Tên loại sản phẩm</th>
+                    <th style="text-align:center">Tồn đầu</th>
+                    <th style="text-align:center">Số lượng mua vào</th>
+                    <th style="text-align:center">Số lượng bán ra</th>
+                    <th style="text-align:center">Tồn cuối</th>
+                    <th style="text-align:center"> Đơn vị tính </th>
 
                 </tr>
+            </thead>
+            <tbody>
 
-            }
+
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.SANPHAM.TenSanPham)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.Tondau)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.SLMuaVao)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.SLBanRa)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.TonCuoi)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.SANPHAM.LOAISANPHAM.DONVITINH.TenDVT)
+                        </td>
 
 
-        </tbody>
-    </table>
-    @*@using (Html.BeginForm("Export", "BCTonKho", FormMethod.Post))
-    {
-        <input type="submit" value="Export" />
-    }*@
+                    </tr>
 
-</div>
+                }
+
+
+            </tbody>
+        </table>
+        @*@using (Html.BeginForm("Export", "BCTonKho", FormMethod.Post))
+            {
+                <input type="submit" value="Export" />
+            }*@
+
+    </div>
 </div>
 

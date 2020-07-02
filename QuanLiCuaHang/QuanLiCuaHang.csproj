@@ -162,7 +162,6 @@
     <Compile Include="Areas\Manager\Controllers\DVTController.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manager\Controllers\LoaiDVController.cs" />
-    <Compile Include="Areas\Manager\Controllers\LoaiSanPhamController.cs" />
     <Compile Include="Areas\Manager\Controllers\LoaiSPController.cs" />
     <Compile Include="Areas\Manager\Controllers\NhaCungCapController.cs" />
     <Compile Include="Areas\Manager\Controllers\PhieuBanHangController.cs" />
@@ -245,7 +244,6 @@
     <Compile Include="Areas\Manager\ViewModel\CT_PhieuBanHangViewModel.cs" />
     <Compile Include="Areas\Manager\ViewModel\PhieuDichVuViewModel.cs" />
     <Compile Include="Areas\Manager\ViewModel\PhieuMuaHangViewModel.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1947,11 +1945,7 @@
     <Content Include="Assets\Manager\src\scss\_global.scss" />
     <Content Include="Assets\Manager\src\scss\_variables.scss" />
     <Content Include="Assets\Manager\dist\.DS_Store" />
-    <Content Include="Areas\Manager\Views\LoaiSanPham\ChiTiet.cshtml" />
-    <Content Include="Areas\Manager\Views\LoaiSanPham\DanhSach.cshtml" />
     <Content Include="Areas\Manager\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Manager\Views\LoaiSanPham\Tao.cshtml" />
-    <Content Include="Areas\Manager\Views\LoaiSanPham\Sua.cshtml" />
     <Content Include="Areas\Manager\Views\LOAISP\Tao.cshtml" />
     <Content Include="Areas\Manager\Views\LOAISP\Xoa.cshtml" />
     <Content Include="Areas\Manager\Views\LOAISP\ChiTiet.cshtml" />

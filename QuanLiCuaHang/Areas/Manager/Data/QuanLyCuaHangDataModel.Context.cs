@@ -66,7 +66,7 @@ public partial class QUANLYCUAHANGEntity : DbContext
     public virtual DbSet<BCTONKHO> BCTONKHOes { get; set; }
 
 
-    public virtual ObjectResult<BCTONKHO> TAO_BCTONKHO(Nullable<int> thang, Nullable<int> nam, Nullable<int> maSanPham, Nullable<int> tonDau, Nullable<int> tonCuoi, Nullable<int> sLMuaVao, Nullable<int> sLBanRa)
+    public virtual int TAO_BCTONKHO(Nullable<int> thang, Nullable<int> nam, Nullable<int> maSanPham, Nullable<int> tonDau, Nullable<int> tonCuoi, Nullable<int> sLMuaVao, Nullable<int> sLBanRa)
     {
 
         var thangParameter = thang.HasValue ?
@@ -104,49 +104,7 @@ public partial class QUANLYCUAHANGEntity : DbContext
             new ObjectParameter("SLBanRa", typeof(int));
 
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BCTONKHO>("TAO_BCTONKHO", thangParameter, namParameter, maSanPhamParameter, tonDauParameter, tonCuoiParameter, sLMuaVaoParameter, sLBanRaParameter);
-    }
-
-
-    public virtual ObjectResult<BCTONKHO> TAO_BCTONKHO(Nullable<int> thang, Nullable<int> nam, Nullable<int> maSanPham, Nullable<int> tonDau, Nullable<int> tonCuoi, Nullable<int> sLMuaVao, Nullable<int> sLBanRa, MergeOption mergeOption)
-    {
-
-        var thangParameter = thang.HasValue ?
-            new ObjectParameter("Thang", thang) :
-            new ObjectParameter("Thang", typeof(int));
-
-
-        var namParameter = nam.HasValue ?
-            new ObjectParameter("Nam", nam) :
-            new ObjectParameter("Nam", typeof(int));
-
-
-        var maSanPhamParameter = maSanPham.HasValue ?
-            new ObjectParameter("MaSanPham", maSanPham) :
-            new ObjectParameter("MaSanPham", typeof(int));
-
-
-        var tonDauParameter = tonDau.HasValue ?
-            new ObjectParameter("TonDau", tonDau) :
-            new ObjectParameter("TonDau", typeof(int));
-
-
-        var tonCuoiParameter = tonCuoi.HasValue ?
-            new ObjectParameter("TonCuoi", tonCuoi) :
-            new ObjectParameter("TonCuoi", typeof(int));
-
-
-        var sLMuaVaoParameter = sLMuaVao.HasValue ?
-            new ObjectParameter("SLMuaVao", sLMuaVao) :
-            new ObjectParameter("SLMuaVao", typeof(int));
-
-
-        var sLBanRaParameter = sLBanRa.HasValue ?
-            new ObjectParameter("SLBanRa", sLBanRa) :
-            new ObjectParameter("SLBanRa", typeof(int));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BCTONKHO>("TAO_BCTONKHO", mergeOption, thangParameter, namParameter, maSanPhamParameter, tonDauParameter, tonCuoiParameter, sLMuaVaoParameter, sLBanRaParameter);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TAO_BCTONKHO", thangParameter, namParameter, maSanPhamParameter, tonDauParameter, tonCuoiParameter, sLMuaVaoParameter, sLBanRaParameter);
     }
 
 }

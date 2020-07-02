@@ -54,11 +54,15 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         // GET: Manager/BCTonKho
         public ActionResult Index(int? Thang, int? Nam)
         {
-            var thang = Convert.ToInt32(Thang);
+            //var thang = Convert.ToInt32(Thang);
             var bCTONKHOes = db.BCTONKHOes.Include(b => b.SANPHAM);
 
-            var result = (bCTONKHOes.Where(x => x.Thang == thang ).ToList());
-            return View(result.Where(y => y.Nam == Nam).ToList());
+            var result = (bCTONKHOes.Where(x => x.Thang == Thang && x.Nam == Nam ).ToList());
+            if (result.Count == 0)
+            {
+                TempData["testmsg"] = "<script> alert('Báo cáo tháng này chưa được tạo');</script>";
+            }                
+            return View(result);
             //return View(bCTONKHOes.ToList());
         }
         [HttpPost]
@@ -117,8 +121,9 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
             var bCTONKHOes = db.BCTONKHOes.Include(b => b.SANPHAM);
             ViewBag.MaSP = new SelectList(db.SANPHAMs, "MaSP", "TenSP");
 
-            //return RedirectToAction("Index", "BCTonKho", new { Thang = 1, Nam = 2020 });
-            return View();
+            return RedirectToAction("Index", "BCTonKho", new { Thang = 1, Nam = 2020 });
+            //return View();
+        
         }
 
         
@@ -148,7 +153,11 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
             }
             ViewBag.MaSP = new SelectList(db.SANPHAMs, "MaSP", "TenSP", bCTONKHO.MaSP);
 
-            return View();
+            ViewBag.Thang = bCTONKHO.Thang;
+
+            ViewBag.Nam = bCTONKHO.Nam;
+            return RedirectToAction("Index", "BCTonKho", new { ViewBag.Thang, ViewBag.Nam });
+            //return View("Index");
 
         }
         // GET: Manager/BCTonKho/Edit/5

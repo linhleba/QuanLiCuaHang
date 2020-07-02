@@ -85,7 +85,6 @@ C:\Users\linh\source\repos\QuanLiCuaHang\QuanLiCuaHang\bin\System.Web.Http.dll
 C:\Users\linh\source\repos\QuanLiCuaHang\QuanLiCuaHang\bin\System.Net.Http.Formatting.xml
 C:\Users\linh\source\repos\QuanLiCuaHang\QuanLiCuaHang\bin\System.Web.Http.xml
 C:\Users\linh\source\repos\QuanLiCuaHang\QuanLiCuaHang\obj\Debug\QuanLiCuaHang.csprojAssemblyReference.cache
-C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\obj\Debug\QuanLiCuaHang.csprojAssemblyReference.cache
 C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\obj\Debug\QuanLiCuaHang.csproj.CoreCompileInputs.cache
 C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\obj\Debug\QuanLiCuaHang.dll
 C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\obj\Debug\QuanLiCuaHang.pdb
@@ -180,3 +179,4 @@ C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\bin\ClosedXML.pdb
 C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\bin\ClosedXML.xml
 C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\bin\DocumentFormat.OpenXml.xml
 C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\bin\ExcelNumberFormat.xml
+C:\Users\linh\source\repos\QuanLiCuaHang-master\QuanLiCuaHang\obj\Debug\QuanLiCuaHang.csprojAssemblyReference.cache

@@ -351,7 +351,7 @@
       <End Role="SANPHAM" EntitySet="SANPHAMs" />
       <End Role="BCTONKHO" EntitySet="BCTONKHOes" />
     </AssociationSet>
-    <FunctionImport Name="TAO_BCTONKHO" EntitySet="BCTONKHOes" ReturnType="Collection(QUANLYCUAHANGModel.BCTONKHO)">
+    <FunctionImport Name="TAO_BCTONKHO">
       <Parameter Name="Thang" Mode="In" Type="Int32" />
       <Parameter Name="Nam" Mode="In" Type="Int32" />
       <Parameter Name="MaSanPham" Mode="In" Type="Int32" />
