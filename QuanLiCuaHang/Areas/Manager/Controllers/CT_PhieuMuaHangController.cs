@@ -97,12 +97,10 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CHITIET_PMH cHITIET_PMH = db.CHITIET_PMH.Find(id);
-            if (cHITIET_PMH == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cHITIET_PMH);
+            var CT_PhieuMuaHang = db.CHITIET_PMH.Include(b => b.PHIEUMUAHANG).Include(c => c.SANPHAM);
+            var result = (CT_PhieuMuaHang.Where(x => x.MaPMH == id)).ToList();
+            return View(result);
+
         }
 
         // GET: Manager/CT_PhieuMuaHang/Create

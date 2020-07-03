@@ -308,6 +308,18 @@
             });
         }
 
+        else if (maTinhTrang == 1 && traTruoc != thanhTien)
+        {
+            
+                swal({
+                    title: "Lỗi !",
+                    text: "Dịch vụ đã giao nên tiền trả trước phải bằng thành tiền",
+                    icon: "error",
+                    button: "Đồng ý!",
+                });
+            
+        }
+
         else {
             $("table tr:not(:first)").each(function () {
                 if (parseFloat(maLoaiDV) == parseFloat($(this).find("td:eq(0)").text())) {
@@ -603,7 +615,7 @@
                     </div>
                 </div>
 
-                <div class="row col-md-3">
+                <div class="row col-md-3" hidden>
                     <div class="form-group">
                         Tình trạng
 

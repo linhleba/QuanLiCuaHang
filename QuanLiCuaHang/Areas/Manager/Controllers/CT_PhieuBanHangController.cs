@@ -76,11 +76,11 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
 
 
         //GET: Manager/CT_PhieuBanHang
-        //public ActionResult Index()
-        //{
-        //    var cT_PHIEUBANHANG = db.CT_PHIEUBANHANG.Include(c => c.PHIEUBANHANG).Include(c => c.SANPHAM);
-        //    return View(cT_PHIEUBANHANG.ToList());
-        //}
+        public ActionResult Index()
+        {
+            var cT_PHIEUBANHANG = db.CT_PHIEUBANHANG.Include(c => c.PHIEUBANHANG).Include(c => c.SANPHAM);
+            return View(cT_PHIEUBANHANG.ToList());
+        }
 
         // GET: Manager/CT_PhieuBanHang/Details/5
         public ActionResult Details(int? id)
@@ -89,16 +89,16 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CT_PHIEUBANHANG cT_PHIEUBANHANG = db.CT_PHIEUBANHANG.Find(id);
-            if (cT_PHIEUBANHANG == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cT_PHIEUBANHANG);
+            //CT_PHIEUBANHANG cT_PHIEUBANHANG = db.CT_PHIEUBANHANG.Find(id);
+            var CT_PhieuBanHang = db.CT_PHIEUBANHANG.Include(b => b.PHIEUBANHANG).Include(c => c.SANPHAM);
+            var result = (CT_PhieuBanHang.Where(x => x.MaPBH == id)).ToList();
+            return View(result);
+
         }
 
-        // GET: Manager/CT_PhieuBanHang/Create
-        public ActionResult Create()
+    
+    // GET: Manager/CT_PhieuBanHang/Create
+    public ActionResult Create()
         {
             ViewBag.MaPBH = new SelectList(db.PHIEUBANHANGs, "MaPBH", "TenKH");
             ViewBag.MaSP = new SelectList(db.SANPHAMs, "MaSP", "TenSanPham");
