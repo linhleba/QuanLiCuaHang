@@ -61,18 +61,17 @@
                 <div class="card-body">
                     <form action="/action_page.php" class="needs-validation" novalidate>
                         <div class="form-row">
-                            @*<div class="form-group col-sm-3">
+                            <div class="form-group col-sm-3" hidden>
                                 <label>Mã loại dịch vụ</label>
 
                                 <input type="number" class="form-control" placeholder="Nhập mã loại sản phẩm" id="ma" readonly required>
-                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về mã loại sản phẩm</div>
 
-                            </div>*@
+                            </div>
 
                             <div class="form-group col-sm-3">
                                 <label>Tên loại dịch vụ</label>
 
-                                <input type="text" class="form-control" placeholder="Nhập tên loại sản phẩm" id="ten" required>
+                                <input type="text" class="form-control" placeholder="Nhập tên loại dịch vụ" id="ten" required>
                             </div>
                         </div>
 
@@ -80,20 +79,10 @@
                             <div class="form-group col-sm-3">
                                 <label>Đơn giá dịch vụ</label>
 
-                                <input type="number" class="form-control" placeholder="Nhập phần trăm lợi nhuận" id="phantramloinhuan" min="0" max="100" required>
-                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về phần trăm lợi nhuận</div>
+                                <input type="number" class="form-control" placeholder="Nhập đơn giá dịch vụ" id="dongia" required>
+                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về đơn giá dịch vụ</div>
                             </div>
-                            @*<div class="form-group col-sm-3">
-                                <label for="donvitinh">Đơn vị tính</label>
-                                <select class="form-control" placeholder="Chọn đơn vị tính" id="donvitinh" required>
-                                    <option>--- Chọn ---</option>
-                                    <option>cây</option>
-                                    <option>người</option>
-                                    <option>viên</option>
-                                </select>
-                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về đơn vị tính</div>
-
-                            </div>*@
+                     
                         </div>
 
 
@@ -107,17 +96,17 @@
 
         <div class="card mb-4">
 
-            <div class="card-header"><b>DANH SÁCH DỊCH VỤ</b></div>
+            <div class="card-header"><b>DANH SÁCH LOẠI DỊCH VỤ</b></div>
             <div class="card-body">
 
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped mb-none" id="datatable-editable" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-striped mb-none" id="loaidv" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Mã loại dịch vụ</th>
                                 <th>Tên loại dịch vụ</th>
                                 <th>Đơn giá</th>
-                                <th>Thao tác</th>
+                                <th> Thao tác </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -137,9 +126,7 @@
                                         @Html.DisplayFor(modelItem => item.DonGiaDV)
                                     </td>
                                     <td class="actions" style="text-align:center">
-                                        <a href="@Url.Action("Details","CT_PhieuMuaHang", new { id = item.MaLoaiDV })">
-                                            <i type="button" class="fa fa-search-plus fa-2x"> </i>
-                                        </a>
+                                       
                                     </td>
                                 </tr>
 
@@ -169,7 +156,7 @@
 <script src="~/Assets/Manager/dist/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
 
 <!-- Examples -->
-<script src="~/Assets/Manager/dist/assets/javascripts/tables/examples.datatables.editable.js"></script>
+<script src="~/Assets/Manager/dist/assets/javascripts/tables/LoaiDV.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using DocumentFormat.OpenXml.EMMA;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using QuanLiCuaHang.Areas.Manager.Data;
 using QuanLiCuaHang.Areas.Manager.Repository;
 using QuanLiCuaHang.Areas.Manager.ViewModel;
@@ -47,12 +49,10 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CHITIET_PHIEUDV cHITIET_PHIEUDV = db.CHITIET_PHIEUDV.Find(id);
-            if (cHITIET_PHIEUDV == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cHITIET_PHIEUDV);
+            var CT_PhieuDichVu = db.CHITIET_PHIEUDV.Include(b => b.PHIEUDV).Include(c => c.LOAIDV);
+            var result = (CT_PhieuDichVu.Where(x => x.MaPDV == id)).ToList();
+            return View(result);
+
         }
 
         // GET: Manager/CT_PhieuDichVu/Create
@@ -97,13 +97,13 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         //}
 
         // GET: Manager/CT_PhieuDichVu/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, int ?loaidv)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CHITIET_PHIEUDV cHITIET_PHIEUDV = db.CHITIET_PHIEUDV.Find(id);
+            CHITIET_PHIEUDV cHITIET_PHIEUDV = db.CHITIET_PHIEUDV.Find(id,loaidv);
             if (cHITIET_PHIEUDV == null)
             {
                 return HttpNotFound();
@@ -124,8 +124,9 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(cHITIET_PHIEUDV).State = EntityState.Modified;
+                var maPDV = cHITIET_PHIEUDV.MaPDV;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details","CT_PhieuDichVu", new { id = maPDV });
             }
             ViewBag.MaLoaiDV = new SelectList(db.LOAIDVs, "MaLoaiDV", "TenLoaiDV", cHITIET_PHIEUDV.MaLoaiDV);
             ViewBag.MaPDV = new SelectList(db.PHIEUDVs, "MaPDV", "TenKH", cHITIET_PHIEUDV.MaPDV);

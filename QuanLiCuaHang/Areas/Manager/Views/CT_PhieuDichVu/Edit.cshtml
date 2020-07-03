@@ -5,14 +5,52 @@
     Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>CHỈNH SỬA</h2>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+@*<link rel="stylesheet" type="text/css" href="~/Assets/Manager/dist/assets/sweetalert/dist/sweetalert2.css">*@
+@*<script src="~/Assets/Manager/dist/assets/sweetalert/dist/sweetalert2.all.min.js"></script>*@
+<link rel="stylesheet" href="https://npmcdn.com/sweetalert2@4.0.15/dist/sweetalert2.min.css">
+@*<script src="https://npmcdn.com/sweetalert2@4.0.15/dist/sweetalert2.min.js"></script>*@
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+    // Hàm chọn sản phẩm hiển thị đơn giá, đơn vị tinnhs
+    $(document).ready(function () {
+        var MaTinhTrangDV = $("#MaTinhTrangDV").val();
+
+        // Decalre select and name
+        var $select = $('#MaTinhTrangDV'),
+            name = $select.prop('name'),
+            $form = $select.parent('form');
+
+        // Disable MaTinhTrangDV
+        if (MaTinhTrangDV == 1) {
+            var $hiddenInput = $('<input/>', {
+                type: 'hidden',
+                name: name,
+                value: $select.val()
+            });
+
+            //append the hidden field to the form
+            $form.append($hiddenInput);
+            ////change name and disbale 
+            $select.prop({ name: name + "_1", disabled: true });
+
+        }
+        $("#MaTinhTrangDV").change(function () {
+            alert('yes');
+            var MaTinhTrangDV = $("#MaTinhTrangDV").val();
+            alert(MaTinhTrangDV);
+        });
+        });
+</script>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>CHITIET_PHIEUDV</h4>
+        <h4>CHI TIẾT PHIẾU DỊCH VỤ</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.MaPDV)
@@ -22,7 +60,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DonGiaDuocTinh, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DonGiaDuocTinh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.DonGiaDuocTinh, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.DonGiaDuocTinh, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -30,7 +68,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SoLuong, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -38,7 +76,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ThanhTien, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ThanhTien, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ThanhTien, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.ThanhTien, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -46,7 +84,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ThanhToanTraTruoc, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ThanhToanTraTruoc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ThanhToanTraTruoc, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.ThanhToanTraTruoc, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -54,7 +92,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ThanhToanConLai, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ThanhToanConLai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ThanhToanConLai, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.ThanhToanConLai, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -62,7 +100,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.NgayGiao, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NgayGiao, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.NgayGiao, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.NgayGiao, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -77,12 +115,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Lưu lại" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Trở về","Details", "CT_PhieuDichVu", new { id = Model.MaPDV })
 </div>

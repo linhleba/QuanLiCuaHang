@@ -290,6 +290,11 @@
     <Content Include="Assets\Manager\dist\assets\javascripts\tables\examples.datatables.editable.js" />
     <Content Include="Assets\Manager\dist\assets\javascripts\tables\examples.datatables.row.with.details.js" />
     <Content Include="Assets\Manager\dist\assets\javascripts\tables\examples.datatables.tabletools.js" />
+    <Content Include="Assets\Manager\dist\assets\javascripts\tables\LoaiDV.js" />
+    <Content Include="Assets\Manager\dist\assets\javascripts\tables\Sanpham.js" />
+    <Content Include="Assets\Manager\dist\assets\javascripts\tables\tra-cuu-ban-hang.js" />
+    <Content Include="Assets\Manager\dist\assets\javascripts\tables\tra-cuu-dich-vu.js" />
+    <Content Include="Assets\Manager\dist\assets\javascripts\tables\tra-cuu-mua-hang.js" />
     <Content Include="Assets\Manager\dist\assets\javascripts\theme.admin.extension.js" />
     <Content Include="Assets\Manager\dist\assets\javascripts\theme.custom.js" />
     <Content Include="Assets\Manager\dist\assets\javascripts\theme.init.js" />

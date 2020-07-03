@@ -19,7 +19,7 @@
     }
 </style>
 
-<h1 id="nhapphieu"> HÓA ĐƠN BÁN HÀNG </h1>
+<h1 id="nhapphieu"> TRA CỨU PHIẾU BÁN HÀNG </h1>
 
 
 
@@ -44,16 +44,54 @@
 <main>
     <div class="card mb-4">
 
+        <div class="card-header"><b>TIÊU CHÍ TRA CỨU</b></div>
+        <div class="card-body">
+            <form action="/action_page.php" class="needs-validation" novalidate>
+                <div class="form-row">
+
+                    <div class="form-group col-sm-3">
+                        <label>Số phiếu</label>
+
+                        <input type="number" class="form-control" id="so_phieu" required>
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label>Ngày lập</label>
+
+                        <input type="text" class="form-control" id="ngay_lap" required>
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label>Khách hàng</label>
+
+                        <input type="text" class="form-control" id="khach_hang" required>
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label>Tổng tiền</label>
+
+                        <input type="number" class="form-control" id="tong_tien" required>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+    <div class="card mb-4">
+
         <div class="card-header"><b>DANH SÁCH HÓA ĐƠN</b></div>
         <div class="card-body">
 
             <div class="table-responsive">
-                <table class="table table-bordered table-striped mb-none" id="datatable-editable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-striped mb-none" id="tra_cuu_ban_hang" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Mã phiếu bán hàng</th>
-                            <th>Tên khách hàng</th>
+                            <th>Số phiếu</th>
                             <th>Ngày lập</th>
+                            <th>Khách hàng</th>
                             <th>Tổng tiền</th>
                             <th>Thao tác</th>
                         </tr>
@@ -64,25 +102,26 @@
                         @foreach (var item in Model)
                         {
 
-                            <tr>
-                                <td style="text-align:center">
-                                    @Html.DisplayFor(modelItem => item.MaPBH)
-                                </td>
-                                <td style="text-align:center">
-                                    @Html.DisplayFor(modelItem => item.TenKH)
-                                </td>
-                                <td style="text-align:center">
-                                    @Html.DisplayFor(modelItem => item.NgayLap)
-                                </td>
-                                <td style="text-align:center">
-                                    @Html.DisplayFor(modelItem => item.TongTien)
-                                </td>
-                                <td class="actions" style="text-align:center">
-                                    <a href="@Url.Action("Details","CT_PhieuBanHang", new { id = item.MaPBH })">
-                                        <i type="button" class="fa fa-search-plus fa-2x"> </i>
-                                    </a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td style="text-align:center">
+                                @Html.DisplayFor(modelItem => item.MaPBH)
+                            </td>
+                            <td style="text-align:center">
+                                @Html.DisplayFor(modelItem => item.NgayLap)
+                            </td>
+                            <td style="text-align:center">
+                                @Html.DisplayFor(modelItem => item.TenKH)
+                            </td>
+
+                            <td style="text-align:center">
+                                @Html.DisplayFor(modelItem => item.TongTien)
+                            </td>
+                            <td class="actions" style="text-align:center">
+                                <a href="@Url.Action("Details","CT_PhieuBanHang", new { id = item.MaPBH })">
+                                    <i type="button" class="fa fa-search-plus fa-2x"> </i>
+                                </a>
+                            </td>
+                        </tr>
 
                         }
 
@@ -110,7 +149,7 @@
 <script src="~/Assets/Manager/dist/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
 
 <!-- Examples -->
-<script src="~/Assets/Manager/dist/assets/javascripts/tables/examples.datatables.editable.js"></script>
+<script src="~/Assets/Manager/dist/assets/javascripts/tables/tra-cuu-ban-hang.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
