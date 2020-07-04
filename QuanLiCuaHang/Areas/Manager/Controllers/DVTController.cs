@@ -20,6 +20,19 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
             return View(db.DONVITINHs.ToList());
         }
 
+
+
+        //CheckTenLoaiSP
+        public JsonResult IsTenDVTavailable(string TenDVT)
+        {
+            return Json(!db.DONVITINHs.Any(x => x.TenDVT == TenDVT), JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
+
         // GET: Manager/DVT/ChiTiet/5
         public ActionResult ChiTiet(int? id)
         {
@@ -46,8 +59,9 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Tao([Bind(Include = "MaDVT,TenDVT")] DONVITINH dONVITINH)
+        public ActionResult DanhSach([Bind(Include = "MaDVT,TenDVT")] DONVITINH dONVITINH)
         {
+
             if (ModelState.IsValid)
             {
                 db.DONVITINHs.Add(dONVITINH);

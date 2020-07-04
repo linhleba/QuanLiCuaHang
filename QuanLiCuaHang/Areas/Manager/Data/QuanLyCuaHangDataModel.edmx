@@ -718,6 +718,7 @@
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
             <End Role="BCTONKHO" EntitySet="BCTONKHOes" />
           </AssociationSet>
+          <EntitySet Name="THAMSOes" EntityType="QUANLYCUAHANGModel.THAMSO" />
           <FunctionImport Name="TAO_BCTONKHO">
             <Parameter Name="Thang" Mode="In" Type="Int32" />
             <Parameter Name="Nam" Mode="In" Type="Int32" />
@@ -727,7 +728,6 @@
             <Parameter Name="SLMuaVao" Mode="In" Type="Int32" />
             <Parameter Name="SLBanRa" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="THAMSOes" EntityType="QUANLYCUAHANGModel.THAMSO" />
         </EntityContainer>
         <EntityType Name="BCTONKHO">
           <Key>
@@ -918,7 +918,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="TAO_BCTONKHO" FunctionName="QUANLYCUAHANGModel.Store.TAO_BCTONKHO" />
           <EntitySetMapping Name="THAMSOes">
             <EntityTypeMapping TypeName="QUANLYCUAHANGModel.THAMSO">
               <MappingFragment StoreEntitySet="THAMSO">
@@ -927,6 +926,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="TAO_BCTONKHO" FunctionName="QUANLYCUAHANGModel.Store.TAO_BCTONKHO" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

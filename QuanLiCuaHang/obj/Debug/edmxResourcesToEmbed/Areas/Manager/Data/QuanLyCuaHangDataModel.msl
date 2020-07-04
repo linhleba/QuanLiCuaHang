@@ -150,7 +150,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="TAO_BCTONKHO" FunctionName="QUANLYCUAHANGModel.Store.TAO_BCTONKHO" />
     <EntitySetMapping Name="THAMSOes">
       <EntityTypeMapping TypeName="QUANLYCUAHANGModel.THAMSO">
         <MappingFragment StoreEntitySet="THAMSO">
@@ -159,5 +158,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="TAO_BCTONKHO" FunctionName="QUANLYCUAHANGModel.Store.TAO_BCTONKHO" />
   </EntityContainerMapping>
 </Mapping>

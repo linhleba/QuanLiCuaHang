@@ -344,6 +344,7 @@
       <End Role="SANPHAM" EntitySet="SANPHAMs" />
       <End Role="BCTONKHO" EntitySet="BCTONKHOes" />
     </AssociationSet>
+    <EntitySet Name="THAMSOes" EntityType="QUANLYCUAHANGModel.THAMSO" />
     <FunctionImport Name="TAO_BCTONKHO">
       <Parameter Name="Thang" Mode="In" Type="Int32" />
       <Parameter Name="Nam" Mode="In" Type="Int32" />
@@ -353,7 +354,6 @@
       <Parameter Name="SLMuaVao" Mode="In" Type="Int32" />
       <Parameter Name="SLBanRa" Mode="In" Type="Int32" />
     </FunctionImport>
-    <EntitySet Name="THAMSOes" EntityType="QUANLYCUAHANGModel.THAMSO" />
   </EntityContainer>
   <EntityType Name="BCTONKHO">
     <Key>
