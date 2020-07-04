@@ -18,6 +18,8 @@ using System;
 public partial class THAMSO
 {
 
+    public int Ma { get; set; }
+
     public int PhanTramTraTruoc { get; set; }
 
 }

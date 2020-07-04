@@ -131,12 +131,11 @@
           <Property Name="SoLuongTon" Type="int" Nullable="false" />
           <Property Name="MaLoaiSP" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="THAMSO">
           <Key>
-            <PropertyRef Name="PhanTramTraTruoc" />
+            <PropertyRef Name="Ma" />
           </Key>
+          <Property Name="Ma" Type="int" Nullable="false" />
           <Property Name="PhanTramTraTruoc" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TINHTRANGDV">
@@ -319,13 +318,9 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
           <EntitySet Name="PHIEUDV" EntityType="Self.PHIEUDV" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHIEUMUAHANG" EntityType="Self.PHIEUMUAHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THAMSO" EntityType="Self.THAMSO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TINHTRANGDV" EntityType="Self.TINHTRANGDV" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TINHTRANGPDV" EntityType="Self.TINHTRANGPDV" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="THAMSO" EntityType="Self.THAMSO" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [THAMSO].[PhanTramTraTruoc] AS [PhanTramTraTruoc]
-    FROM [dbo].[THAMSO] AS [THAMSO]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__BCTONKHO__MaSP__55F4C372" Association="Self.FK__BCTONKHO__MaSP__55F4C372">
             <End Role="SANPHAM" EntitySet="SANPHAM" />
             <End Role="BCTONKHO" EntitySet="BCTONKHO" />
@@ -528,12 +523,6 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
           <Property Name="TenTinhTrang" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="PHIEUDVs" Relationship="Self.FK_MATINHTRANGPDV_PHIEUDV" FromRole="TINHTRANGPDV" ToRole="PHIEUDV" />
         </EntityType>
-        <EntityType Name="THAMSO">
-          <Key>
-            <PropertyRef Name="PhanTramTraTruoc" />
-          </Key>
-          <Property Name="PhanTramTraTruoc" Type="Int32" Nullable="false" />
-        </EntityType>
         <Association Name="FK__CHITIET_P__MaLoa__123EB7A3">
           <End Role="LOAIDV" Type="Self.LOAIDV" Multiplicity="1" />
           <End Role="CHITIET_PHIEUDV" Type="Self.CHITIET_PHIEUDV" Multiplicity="*" />
@@ -680,7 +669,6 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
           <EntitySet Name="SANPHAMs" EntityType="Self.SANPHAM" />
           <EntitySet Name="TINHTRANGDVs" EntityType="Self.TINHTRANGDV" />
           <EntitySet Name="TINHTRANGPDVs" EntityType="Self.TINHTRANGPDV" />
-          <EntitySet Name="THAMSOes" EntityType="Self.THAMSO" />
           <AssociationSet Name="FK__CHITIET_P__MaLoa__123EB7A3" Association="Self.FK__CHITIET_P__MaLoa__123EB7A3">
             <End Role="LOAIDV" EntitySet="LOAIDVs" />
             <End Role="CHITIET_PHIEUDV" EntitySet="CHITIET_PHIEUDV" />
@@ -739,6 +727,7 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
             <Parameter Name="SLMuaVao" Mode="In" Type="Int32" />
             <Parameter Name="SLBanRa" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="THAMSOes" EntityType="QUANLYCUAHANGModel.THAMSO" />
         </EntityContainer>
         <EntityType Name="BCTONKHO">
           <Key>
@@ -767,6 +756,13 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="THAMSO">
+          <Key>
+            <PropertyRef Name="Ma" />
+          </Key>
+          <Property Name="Ma" Type="Int32" Nullable="false" />
+          <Property Name="PhanTramTraTruoc" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -909,13 +905,6 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="THAMSOes">
-            <EntityTypeMapping TypeName="QUANLYCUAHANGModel.THAMSO">
-              <MappingFragment StoreEntitySet="THAMSO">
-                <ScalarProperty Name="PhanTramTraTruoc" ColumnName="PhanTramTraTruoc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="BCTONKHOes">
             <EntityTypeMapping TypeName="QUANLYCUAHANGModel.BCTONKHO">
               <MappingFragment StoreEntitySet="BCTONKHO">
@@ -930,6 +919,14 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="TAO_BCTONKHO" FunctionName="QUANLYCUAHANGModel.Store.TAO_BCTONKHO" />
+          <EntitySetMapping Name="THAMSOes">
+            <EntityTypeMapping TypeName="QUANLYCUAHANGModel.THAMSO">
+              <MappingFragment StoreEntitySet="THAMSO">
+                <ScalarProperty Name="PhanTramTraTruoc" ColumnName="PhanTramTraTruoc" />
+                <ScalarProperty Name="Ma" ColumnName="Ma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

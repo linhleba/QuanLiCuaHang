@@ -126,12 +126,11 @@
     <Property Name="SoLuongTon" Type="int" Nullable="false" />
     <Property Name="MaLoaiSP" Type="int" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="THAMSO">
     <Key>
-      <PropertyRef Name="PhanTramTraTruoc" />
+      <PropertyRef Name="Ma" />
     </Key>
+    <Property Name="Ma" Type="int" Nullable="false" />
     <Property Name="PhanTramTraTruoc" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="TINHTRANGDV">
@@ -314,13 +313,9 @@ warning 6002: The table/view 'QUANLYCUAHANG.dbo.THAMSO' does not have a primary 
     <EntitySet Name="PHIEUDV" EntityType="Self.PHIEUDV" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PHIEUMUAHANG" EntityType="Self.PHIEUMUAHANG" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="THAMSO" EntityType="Self.THAMSO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TINHTRANGDV" EntityType="Self.TINHTRANGDV" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TINHTRANGPDV" EntityType="Self.TINHTRANGPDV" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="THAMSO" EntityType="Self.THAMSO" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [THAMSO].[PhanTramTraTruoc] AS [PhanTramTraTruoc]
-    FROM [dbo].[THAMSO] AS [THAMSO]</DefiningQuery>
-    </EntitySet>
     <AssociationSet Name="FK__BCTONKHO__MaSP__55F4C372" Association="Self.FK__BCTONKHO__MaSP__55F4C372">
       <End Role="SANPHAM" EntitySet="SANPHAM" />
       <End Role="BCTONKHO" EntitySet="BCTONKHO" />

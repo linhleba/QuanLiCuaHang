@@ -1,28 +1,116 @@
-﻿@model IEnumerable<QuanLiCuaHang.Areas.Manager.Data.THAMSO>
+﻿@model QuanLiCuaHang.Areas.Manager.Data.THAMSO
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+@*<link rel="stylesheet" type="text/css" href="~/Assets/Manager/dist/assets/sweetalert/dist/sweetalert2.css">*@
+@*<script src="~/Assets/Manager/dist/assets/sweetalert/dist/sweetalert2.all.min.js"></script>*@
+<link rel="stylesheet" href="https://npmcdn.com/sweetalert2@4.0.15/dist/sweetalert2.min.css">
+@*<script src="https://npmcdn.com/sweetalert2@4.0.15/dist/sweetalert2.min.js"></script>*@
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PhanTramTraTruoc }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PhanTramTraTruoc }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PhanTramTraTruoc })
-        </td>
-    </tr>
-}
+<script type="text/javascript">
 
-</table>
+    $(document).ready(function () {
+        GetPhanTramTraTruoc();
+
+            $("#submit").click(function () {
+                var thamso = {};
+                thamso.PhanTramTraTruoc = parseFloat($("#txtPhanTramTraTruoc").val());
+
+                if (thamso.PhanTramTraTruoc < 0 || thamso.PhanTramTraTruoc > 100) {
+                    swal({
+                        title: "Lỗi !",
+                        text: "Giá trị Phần trăm trả trước trong khoảng 0 đến 100",
+                        icon: "error",
+                        button: "Đồng ý!",
+                    });
+                }
+                else {
+                    $.ajax({
+                        async: true,
+                        type: 'POST',
+                        dataType: 'JSON',
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify(thamso),
+                        url: '/Manager/ThamSo/Index',
+                        success: function (data) {
+                            swal({
+                                title: "Thành công !",
+                                text: "Cập nhật thành công!",
+                                icon: "success",
+                                button: "Đồng ý!",
+                            });
+                        },
+                        error: function () {
+                            alert('Lỗi');
+                        },
+                    });
+                }
+        });
+
+        // lấy phần trăm trả trước
+        function GetPhanTramTraTruoc() {
+            $.ajax({
+                async: true,
+                type: 'GET',
+                dataType: 'JSON',
+                contentType: 'application/json; charset=utf-8',
+                url: '/Manager/ThamSo/GetPhanTramTraTruoc',
+                data: {},
+                success: function (data) {
+                    $("#txtPhanTramTraTruoc").val(parseFloat(data).toFixed(0));
+                },
+                error: function () {
+                    alert('Không lấy được dữ liệu, vui lòng thử lại sau');
+                }
+            });
+        }
+    });
+</script>
+
+
+@* CSS Begin *@
+<style>
+    #nhapphieu {
+        text-align: center;
+        color: white;
+        font-size: 35px;
+        font-weight: bold;
+        border: 1px solid #ddd;
+        background-color: forestgreen;
+        padding: 0px 0px;
+        margin: 0px 280px;
+    }
+</style>
+<div class="card-body">
+
+    <h1 id="nhapphieu">CÀI ĐẶT THAM SỐ </h1>
+    <hr />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="row col-md-3">
+                <div class="form-group">
+                    Phần trăm trả trước
+                    <input style="width:180px" type="number" class="form-control" id="txtPhanTramTraTruoc" />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row col-md-3">
+        <div class="form-group">
+            <button id="submit" style="margin:20px" value="Lưu" class="btn btn-primary"> Lưu  </button>
+        </div>
+    </div>
+
+
+
+
+</div>

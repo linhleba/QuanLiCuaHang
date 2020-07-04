@@ -18,7 +18,6 @@
         <EntityTypeShape EntityType="QUANLYCUAHANGModel.SANPHAM" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QUANLYCUAHANGModel.TINHTRANGDV" Width="1.5" PointX="13" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QUANLYCUAHANGModel.TINHTRANGPDV" Width="1.5" PointX="10.75" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QUANLYCUAHANGModel.THAMSO" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="QUANLYCUAHANGModel.FK__CHITIET_P__MaLoa__123EB7A3" ManuallyRouted="false" />
         <AssociationConnector Association="QUANLYCUAHANGModel.FK__CHITIET_P__MaPDV__114A936A" ManuallyRouted="false" />
         <AssociationConnector Association="QUANLYCUAHANGModel.FK_MaTinhTrangDV_CHITIETPDV" ManuallyRouted="false" />
@@ -32,6 +31,7 @@
         <AssociationConnector Association="QUANLYCUAHANGModel.FK_MATINHTRANGPDV_PHIEUDV" ManuallyRouted="false" />
         <EntityTypeShape EntityType="QUANLYCUAHANGModel.BCTONKHO" Width="1.5" PointX="7.5" PointY="4.75" />
         <AssociationConnector Association="QUANLYCUAHANGModel.FK__BCTONKHO__MaSP__55F4C372" />
+        <EntityTypeShape EntityType="QUANLYCUAHANGModel.THAMSO" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

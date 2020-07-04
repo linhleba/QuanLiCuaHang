@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using QuanLiCuaHang.Areas.Manager.Data;
+using QuanLiCuaHang.Areas.Manager.Repository;
+using QuanLiCuaHang.Areas.Manager.ViewModel;
 
 namespace QuanLiCuaHang.Areas.Manager.Controllers
 {
@@ -15,11 +17,43 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         private QUANLYCUAHANGEntity db = new QUANLYCUAHANGEntity();
 
         // GET: Manager/ThamSo
-        public ActionResult Index()
+        public JsonResult GetPhanTramTraTruoc()
         {
-            return View(db.THAMSOes.ToList());
+            decimal phanTramTraTruoc = db.THAMSOes.FirstOrDefault().PhanTramTraTruoc;
+
+            return Json(phanTramTraTruoc, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Index()
+        {
+            
+            //if (tHAMSO == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            return View();
+        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Index([Bind(Include = "PhanTramTraTruoc")] THAMSO tHAMSO)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(tHAMSO).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(tHAMSO);
+        //}
+
+        [HttpPost]
+        public JsonResult Index([System.Web.Http.FromBody] ThamSoViewModel thamso)
+        {
+            ThamSoRepository thamSoRepository = new ThamSoRepository();
+            thamSoRepository.AddThamSo(thamso);
+
+            return Json(data: "", JsonRequestBehavior.AllowGet);
+        }
         // GET: Manager/ThamSo/Details/5
         public ActionResult Details(int? id)
         {

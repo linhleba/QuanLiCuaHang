@@ -125,6 +125,28 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
             {
                 db.Entry(cHITIET_PHIEUDV).State = EntityState.Modified;
                 var maPDV = cHITIET_PHIEUDV.MaPDV;
+                var maTinhTrang = cHITIET_PHIEUDV.MaTinhTrangDV;
+                //PHIEUDV phieudichvu = new PHIEUDV();
+                PHIEUDV phieudichvu = db.PHIEUDVs.Find(maPDV);
+
+                if (maTinhTrang == 1)
+                {
+                    phieudichvu.TongTienTraTruoc += cHITIET_PHIEUDV.ThanhToanConLai;
+                    phieudichvu.TongTienConLai -= cHITIET_PHIEUDV.ThanhToanConLai;
+                    cHITIET_PHIEUDV.ThanhToanConLai = 0;
+                    cHITIET_PHIEUDV.ThanhToanTraTruoc = cHITIET_PHIEUDV.ThanhTien;
+                    //CHITIET_PHIEUDV ctphieu = db.CHITIET_PHIEUDV.Where(i => i.MaPDV == phieudichvu.MaPDV).Single();
+
+                    //if (ctphieu.MaTinhTrangDV == 1)
+                    //{
+                    //    phieudichvu.MaTinhTrangPDV = 1;
+                    //}                        
+
+                    if (phieudichvu.TongTienConLai == 0)
+                    {
+                        phieudichvu.MaTinhTrangPDV = 1;
+                    }    
+                }
                 db.SaveChanges();
                 return RedirectToAction("Details","CT_PhieuDichVu", new { id = maPDV });
             }

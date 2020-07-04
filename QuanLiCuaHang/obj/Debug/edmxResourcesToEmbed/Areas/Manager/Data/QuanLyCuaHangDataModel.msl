@@ -137,13 +137,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="THAMSOes">
-      <EntityTypeMapping TypeName="QUANLYCUAHANGModel.THAMSO">
-        <MappingFragment StoreEntitySet="THAMSO">
-          <ScalarProperty Name="PhanTramTraTruoc" ColumnName="PhanTramTraTruoc" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="BCTONKHOes">
       <EntityTypeMapping TypeName="QUANLYCUAHANGModel.BCTONKHO">
         <MappingFragment StoreEntitySet="BCTONKHO">
@@ -158,5 +151,13 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="TAO_BCTONKHO" FunctionName="QUANLYCUAHANGModel.Store.TAO_BCTONKHO" />
+    <EntitySetMapping Name="THAMSOes">
+      <EntityTypeMapping TypeName="QUANLYCUAHANGModel.THAMSO">
+        <MappingFragment StoreEntitySet="THAMSO">
+          <ScalarProperty Name="PhanTramTraTruoc" ColumnName="PhanTramTraTruoc" />
+          <ScalarProperty Name="Ma" ColumnName="Ma" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -61,9 +61,9 @@ public partial class QUANLYCUAHANGEntity : DbContext
 
     public virtual DbSet<TINHTRANGPDV> TINHTRANGPDVs { get; set; }
 
-    public virtual DbSet<THAMSO> THAMSOes { get; set; }
-
     public virtual DbSet<BCTONKHO> BCTONKHOes { get; set; }
+
+    public virtual DbSet<THAMSO> THAMSOes { get; set; }
 
 
     public virtual int TAO_BCTONKHO(Nullable<int> thang, Nullable<int> nam, Nullable<int> maSanPham, Nullable<int> tonDau, Nullable<int> tonCuoi, Nullable<int> sLMuaVao, Nullable<int> sLBanRa)

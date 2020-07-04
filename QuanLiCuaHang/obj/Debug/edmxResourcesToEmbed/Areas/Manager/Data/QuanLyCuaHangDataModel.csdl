@@ -149,12 +149,6 @@
     <Property Name="TenTinhTrang" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="PHIEUDVs" Relationship="Self.FK_MATINHTRANGPDV_PHIEUDV" FromRole="TINHTRANGPDV" ToRole="PHIEUDV" />
   </EntityType>
-  <EntityType Name="THAMSO">
-    <Key>
-      <PropertyRef Name="PhanTramTraTruoc" />
-    </Key>
-    <Property Name="PhanTramTraTruoc" Type="Int32" Nullable="false" />
-  </EntityType>
   <Association Name="FK__CHITIET_P__MaLoa__123EB7A3">
     <End Role="LOAIDV" Type="Self.LOAIDV" Multiplicity="1" />
     <End Role="CHITIET_PHIEUDV" Type="Self.CHITIET_PHIEUDV" Multiplicity="*" />
@@ -301,7 +295,6 @@
     <EntitySet Name="SANPHAMs" EntityType="Self.SANPHAM" />
     <EntitySet Name="TINHTRANGDVs" EntityType="Self.TINHTRANGDV" />
     <EntitySet Name="TINHTRANGPDVs" EntityType="Self.TINHTRANGPDV" />
-    <EntitySet Name="THAMSOes" EntityType="Self.THAMSO" />
     <AssociationSet Name="FK__CHITIET_P__MaLoa__123EB7A3" Association="Self.FK__CHITIET_P__MaLoa__123EB7A3">
       <End Role="LOAIDV" EntitySet="LOAIDVs" />
       <End Role="CHITIET_PHIEUDV" EntitySet="CHITIET_PHIEUDV" />
@@ -360,6 +353,7 @@
       <Parameter Name="SLMuaVao" Mode="In" Type="Int32" />
       <Parameter Name="SLBanRa" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="THAMSOes" EntityType="QUANLYCUAHANGModel.THAMSO" />
   </EntityContainer>
   <EntityType Name="BCTONKHO">
     <Key>
@@ -388,4 +382,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="THAMSO">
+    <Key>
+      <PropertyRef Name="Ma" />
+    </Key>
+    <Property Name="Ma" Type="Int32" Nullable="false" />
+    <Property Name="PhanTramTraTruoc" Type="Int32" Nullable="false" />
+  </EntityType>
 </Schema>

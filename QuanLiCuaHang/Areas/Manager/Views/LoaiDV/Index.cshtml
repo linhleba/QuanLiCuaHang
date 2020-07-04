@@ -43,14 +43,14 @@
 </head>
 
 <main>
+    @using (Html.BeginForm("Create","LoaiDV",FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
     <div class="container-fluid">
 
         <div col="mb-4">
 
-            <div class="alert alert-success" id="success-alert">
-                <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
-                Đã thêm mới loại sản phẩm thành công.
-            </div>
+
 
             <div class="alert alert-danger" id="danger-alert">
                 <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
@@ -65,13 +65,18 @@
                                 <label>Mã loại dịch vụ</label>
 
                                 <input type="number" class="form-control" placeholder="Nhập mã loại sản phẩm" id="ma" readonly required>
+                                @*@Html.EditorFor(model => model.FirstOrDefault().TenLoaiDV, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.FirstOrDefault().TenLoaiDV, "", new { @class = "text-danger" })*@
 
                             </div>
 
                             <div class="form-group col-sm-3">
                                 <label>Tên loại dịch vụ</label>
 
-                                <input type="text" class="form-control" placeholder="Nhập tên loại dịch vụ" id="ten" required>
+                                @*<input type="text" class="form-control" placeholder="Nhập tên loại dịch vụ" id="ten" required>*@
+                                @Html.EditorFor(model => model.FirstOrDefault().TenLoaiDV, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.FirstOrDefault().TenLoaiDV, "", new { @class = "text-danger" })
+
                             </div>
                         </div>
 
@@ -79,20 +84,26 @@
                             <div class="form-group col-sm-3">
                                 <label>Đơn giá dịch vụ</label>
 
-                                <input type="number" class="form-control" placeholder="Nhập đơn giá dịch vụ" id="dongia" required>
+                                @*<input type="number" class="form-control" placeholder="Nhập đơn giá dịch vụ" id="dongia" required>*@
+                                @Html.EditorFor(model => model.FirstOrDefault().DonGiaDV, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.FirstOrDefault().DonGiaDV, "", new { @class = "text-danger" })
                                 <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về đơn giá dịch vụ</div>
                             </div>
-                     
+
                         </div>
 
 
-                        <button id="addToTable" class="btn btn-primary">Thêm</button>
+
+                        <button type="submit" id="addToTable" class="btn btn-primary">Thêm</button>
                     </form>
                 </div>
-
             </div>
 
         </div>
+
+
+    </div>
+    }
 
         <div class="card mb-4">
 
@@ -126,7 +137,6 @@
                                         @Html.DisplayFor(modelItem => item.DonGiaDV)
                                     </td>
                                     <td class="actions" style="text-align:center">
-                                       
                                     </td>
                                 </tr>
 
@@ -138,7 +148,7 @@
             </div>
         </div>
 
-</main>
+    </main>
 
 <link rel="stylesheet" href="~Assets/Manager/dist/assets/stylesheets/theme.css" />
 

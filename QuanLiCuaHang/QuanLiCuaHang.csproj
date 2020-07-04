@@ -169,8 +169,6 @@
     <Compile Include="Areas\Manager\Controllers\PhieuMuaHangController.cs" />
     <Compile Include="Areas\Manager\Controllers\SanPhamController.cs" />
     <Compile Include="Areas\Manager\Controllers\ThamSoController.cs" />
-    <Compile Include="Areas\Manager\Controllers\TT_LoaiDichVuController.cs" />
-    <Compile Include="Areas\Manager\Controllers\TT_PhieuDichVuController.cs" />
     <Compile Include="Areas\Manager\Data\BCTONKHO.cs">
       <DependentUpon>QuanLyCuaHangDataModel.tt</DependentUpon>
     </Compile>
@@ -237,6 +235,7 @@
     <Compile Include="Areas\Manager\Repository\CT_PhieuMuaHangRepository.cs" />
     <Compile Include="Areas\Manager\Repository\PhieuBanHangRepository.cs" />
     <Compile Include="Areas\Manager\Repository\PhieuMuaHangRepository.cs" />
+    <Compile Include="Areas\Manager\Repository\ThamSoRepository.cs" />
     <Compile Include="Areas\Manager\ViewModel\BCTonKhoViewModel.cs" />
     <Compile Include="Areas\Manager\ViewModel\CT_PhieuDichVuViewModel.cs" />
     <Compile Include="Areas\Manager\ViewModel\CT_PhieuMuaHangViewModel.cs" />
@@ -244,6 +243,8 @@
     <Compile Include="Areas\Manager\ViewModel\CT_PhieuBanHangViewModel.cs" />
     <Compile Include="Areas\Manager\ViewModel\PhieuDichVuViewModel.cs" />
     <Compile Include="Areas\Manager\ViewModel\PhieuMuaHangViewModel.cs" />
+    <Compile Include="Areas\Manager\ViewModel\ThamSoViewModel.cs" />
+    <Compile Include="Areas\Manager\ViewModel\TongTienDVViewModel.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2013,16 +2014,6 @@
     <Content Include="Areas\Manager\Views\CT_PhieuDichVu\Details.cshtml" />
     <Content Include="Areas\Manager\Views\CT_PhieuDichVu\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\CT_PhieuDichVu\Index.cshtml" />
-    <Content Include="Areas\Manager\Views\TT_LoaiDichVu\Create.cshtml" />
-    <Content Include="Areas\Manager\Views\TT_LoaiDichVu\Delete.cshtml" />
-    <Content Include="Areas\Manager\Views\TT_LoaiDichVu\Details.cshtml" />
-    <Content Include="Areas\Manager\Views\TT_LoaiDichVu\Edit.cshtml" />
-    <Content Include="Areas\Manager\Views\TT_LoaiDichVu\Index.cshtml" />
-    <Content Include="Areas\Manager\Views\TT_PhieuDichVu\Create.cshtml" />
-    <Content Include="Areas\Manager\Views\TT_PhieuDichVu\Delete.cshtml" />
-    <Content Include="Areas\Manager\Views\TT_PhieuDichVu\Details.cshtml" />
-    <Content Include="Areas\Manager\Views\TT_PhieuDichVu\Edit.cshtml" />
-    <Content Include="Areas\Manager\Views\TT_PhieuDichVu\Index.cshtml" />
     <Content Include="Areas\Manager\Views\ThamSo\Create.cshtml" />
     <Content Include="Areas\Manager\Views\ThamSo\Delete.cshtml" />
     <Content Include="Areas\Manager\Views\ThamSo\Details.cshtml" />

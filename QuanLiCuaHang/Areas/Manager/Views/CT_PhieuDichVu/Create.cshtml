@@ -86,6 +86,17 @@
             $("#txtConLai").val(thanhTien - traTruoc);
         });
 
+        //$("#txtNgayGiao").change(function () {
+        //    var NgayGiao = $("#txtThanhTien").val();
+        //    var NgayLap = $("#txtNgayLap").val();
+        //    if (NgayGiao > NgayLap) {
+        //        $("#MaTinhTrangDV").val(0);
+        //    }
+        //    else {
+        //            $("#MaTinhTrangDV").val(1);
+        //    }
+        //});
+
 
         // Hàm đưa giá trị xuống database
         var clicked = 0;
@@ -96,7 +107,7 @@
             phieuDichVu.SDT = $("#txtSDT").val();
             phieuDichVu.NgayLap = $("#txtNgayLap").val();
             phieuDichVu.TongTien = $("#txtTongTien").val();
-            phieuDichVu.TongTienTraTruoc = parseFloat($("#txtTongTraTruoc").text());
+            phieuDichVu.TongTienTraTruoc = $("#txtTongTraTruoc").val();
             phieuDichVu.TongTienConLai = $("#txtTongConLai").val();
             phieuDichVu.MaTinhTrangPDV = $("#txtMaTinhTrangPDV").val();
             $("#tblDanhSachSanPham").find("tr:gt(0)").each(function () {
