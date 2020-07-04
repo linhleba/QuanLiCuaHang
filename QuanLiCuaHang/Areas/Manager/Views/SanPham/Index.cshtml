@@ -1,18 +1,92 @@
-﻿@model QuanLiCuaHang.Areas.Manager.Data.NHACUNGCAP
+﻿@model QuanLiCuaHang.Areas.Manager.Data.SANPHAM
+
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
 }
 
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Danh sách nhà cung cấp</title>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Danh sách các sản phẩm</title>
+   
+
+</head>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#MaLoaiSP").val(0);
+        $("#SoLuongTon").val(0);
+
+        $("#GiaMuaVao").change(function () {
+            var giamuavao = parseFloat($("#GiaMuaVao").val());
+
+            var phantramloinhuan = parseFloat($("#PhanTramLoiNhuan").val());
+            $("#txtGiaBanRa").val((giamuavao * phantramloinhuan) / 100);
+
+        });
+
+        $("#MaLoaiSP").change(function () {
+            var MaLoaiSP = $("#MaLoaiSP").val();
+
+            GetPhanTramLoiNhuan(MaLoaiSP);
+
+        });
+
+        $("#PhanTramLoiNhuan").change(function () {
 
 
-    </head>
+            var giamuavao = parseFloat($("#GiaMuaVao").val());
+            var phantramloinhuan = parseFloat($("#PhanTramLoiNhuan").val());
+            $("#txtGiaBanRa").val((giamuavao * phantramloinhuan) / 100);
+        });
+
+
+    });
+
+    function GetPhanTramLoiNhuan(MaLoaiSP) {
+        $.ajax(
+            {
+                async: true,
+                type: 'GET',
+                dataType: 'JSON',
+                contentType: 'application/json;charset=utf-8',
+                url: '/Manager/SanPham/GetPhanTramLoiNhuan',
+                data: { MaLoaiSP: MaLoaiSP },
+                success: function (data) {
+                    $("#PhanTramLoiNhuan").val(parseFloat(data).toFixed(0));
+
+                    var giamuavao = parseFloat($("#GiaMuaVao").val());
+                    var phantramloinhuan = parseFloat($("#PhanTramLoiNhuan").val());
+
+                    $("#txtGiaBanRa").val((giamuavao * phantramloinhuan) / 100);
+
+                },
+                error: function () { }
+
+
+
+            }
+        );
+    }
+
+
+</script>
+
+
+
+
+
+
+
 <main>
     <style>
         #nhapphieu {
@@ -26,16 +100,18 @@
             margin: 0px 290px;
         }
     </style>
+
     @* End CSS *@
 
-    <h1 id="nhapphieu">NHÀ CUNG CẤP</h1>
+    <h1 id="nhapphieu">SẢN PHẨM</h1>
+
     <div class="container-fluid">
         <div col="mb-4">
 
             <div class="card mb-4">
-                <div class="card-header"><b> Tạo mới nhà cung cấp </b></div>
+                <div class="card-header"><b>THÊM MỚI SẢN PHẨM</b></div>
                 <div class="card-body">
-                    @using (Html.BeginForm("Index", "NhaCungCap", FormMethod.Post))
+                    @using (Html.BeginForm("Index", "SanPham", FormMethod.Post))
                     {@Html.AntiForgeryToken()
 
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -44,51 +120,85 @@
                         <div class="form-row">
                             <div class="form-group col-sm-3" hidden>
 
-                                @Html.HiddenFor(model => model.MaNCC, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.MaNCC, "", new { @class = "text-danger" })
-
+                                @*@Html.HiddenFor(model => model.MaSP, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.MaSP, "", new { @class = "text-danger" })*@
+                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về mã sản phẩm</div>
 
 
 
                             </div>
                             <div class="form-group col-sm-3">
-                                <label>Tên nhà cung cấp</label>
+                                <label>Tên sản phẩm</label>
 
-                                @Html.EditorFor(model => model.TenNCC, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.TenNCC, "", new { @class = "text-danger" })
-                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về mã nhà cung cấp </div>
+                                @Html.EditorFor(model => model.TenSanPham, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TenSanPham, "", new { @class = "text-danger" })
+
                             </div>
+
                             <div class="form-group col-sm-3">
-                                <label for="diachi">Địa chỉ</label>
-                                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
 
-                                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
 
-                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về địa chỉ nhà cung cấp</div>
+                                @Html.LabelFor(model => model.MaLoaiSP, "Loại sản phẩm ")
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(m => m.MaLoaiSP, null, new { @class = "form-control", style = "width: 133%; margin-left: -10px " })
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.MaLoaiSP, "", new { @class = "text-danger" })
+
+                                </div>
+
+                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về tên loại sản phẩm</div>
                             </div>
 
+
+                            <div class="form-group col-sm-3" hidden>
+                                <label for="donvitinh">Số lượng tồn</label>
+
+                                @Html.EditorFor(model => model.SoLuongTon, new { htmlAttributes = new { @class = "form-control", type = "number", min = 0, value = 0, @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.SoLuongTon, "", new { @class = "text-danger" })
+
+                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về số lượng tồn</div>
+                            </div>
 
                         </div>
+
+
                         <div class="form-row">
+
+
                             <div class="form-group col-sm-3">
-                                <label>Số điện thoại</label>
+                                <label for="donvitinh">Giá mua vào</label>
 
-                                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control", type = "number" } })
-                                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.GiaMuaVao, new { htmlAttributes = new { @class = "form-control", type = "number", id = "GiaMuaVao", min = 0 } })
+                                @Html.ValidationMessageFor(model => model.GiaMuaVao, "", new { @class = "text-danger" })
 
-                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về số điện thoại</div>
+                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về giá mua vào</div>
                             </div>
+
+
+
+                            <div class="form-group col-sm-3">
+                                <label>Giá bán ra</label>
+
+                                <input type="text" id="txtGiaBanRa" class="form-control" readonly />
+                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về giá bán ra </div>
+                            </div>
+
+
+
 
                         </div>
 
                         <input type="submit" id="addToTable" class="btn btn-primary" value="Thêm" onclick="return confirm('Bạn có chắc chắn rằng muốn thêm ?');" />
-
+                        <input type="number" id="PhanTramLoiNhuan" hidden />
                     </form>
                 }
                 </div>
             </div>
         </div>
-   
+
+
+        @Html.Action("Details")
+
     </div>
 
 </main>
@@ -113,6 +223,7 @@
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 @*</body>
     </html>*@
+
 
 <style>
 

@@ -17,36 +17,12 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         // GET: Manager/NhaCungCap
         public ActionResult Index()
         {
-            return View(db.NHACUNGCAPs.ToList());
-        }
-
-        // GET: Manager/NhaCungCap/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            NHACUNGCAP nHACUNGCAP = db.NHACUNGCAPs.Find(id);
-            if (nHACUNGCAP == null)
-            {
-                return HttpNotFound();
-            }
-            return View(nHACUNGCAP);
-        }
-
-        // GET: Manager/NhaCungCap/Create
-        public ActionResult Create()
-        {
             return View();
         }
 
-        // POST: Manager/NhaCungCap/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaNCC,TenNCC,DiaChi,SDT")] NHACUNGCAP nHACUNGCAP)
+        public ActionResult Index([Bind(Include = "MaNCC,TenNCC,DiaChi,SDT")] NHACUNGCAP nHACUNGCAP)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +33,39 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
 
             return View(nHACUNGCAP);
         }
+
+
+
+
+
+        // GET: Manager/NhaCungCap/Details/5
+        public ActionResult Details()
+        {
+         
+            return View(db.NHACUNGCAPs.ToList());
+        }
+        //CheckTenNhacungcap
+        public JsonResult IsTenNhaCCavailable(string TenNCC)
+        {
+            return Json(!db.NHACUNGCAPs.Any(x => x.TenNCC == TenNCC), JsonRequestBehavior.AllowGet);
+        }
+
+        //CheckTenNhacungcap
+        public JsonResult IsDiaChiavailable(string DiaChi)
+        {
+            return Json(!db.NHACUNGCAPs.Any(x => x.DiaChi == DiaChi), JsonRequestBehavior.AllowGet);
+        }
+        //CheckTenNhacungcap
+        public JsonResult IsSDTavailable(string SDT)
+        {
+            return Json(!db.NHACUNGCAPs.Any(x => x.SDT == SDT), JsonRequestBehavior.AllowGet);
+        }
+
+
+        // POST: Manager/NhaCungCap/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+       
 
         // GET: Manager/NhaCungCap/Edit/5
         public ActionResult Edit(int? id)

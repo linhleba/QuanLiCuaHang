@@ -1,43 +1,47 @@
-﻿@model QuanLiCuaHang.Areas.Manager.Data.NHACUNGCAP
+﻿@model IEnumerable<QuanLiCuaHang.Areas.Manager.Data.NHACUNGCAP>
 
-@{
-    ViewBag.Title = "Details";
-    Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
-}
 
-<h2>Details</h2>
 
-<div>
-    <h4>NHACUNGCAP</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenNCC)
-        </dt>
+<div class="card mb-4">
+    <div class="card-header"><b>DANH MỤC CÁC NHÀ CUNG CẤP </b></div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped mb-none" id="datatable-editable" width="100" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã nhà cung cấp</th>
+                        <th>Tên nhà cung cấp</th>
+                        <th>Địa chỉ </th>
+                        <th>Số điện thoại </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenNCC)
-        </dd>
+                    </tr>
+                </thead>
+                <tbody>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DiaChi)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DiaChi)
-        </dd>
+                    @foreach (var item in Model)
+                    {
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SDT)
-        </dt>
+                        <tr>
+                            <td style="text-align:center">
+                                @Html.DisplayFor(modelItem => item.MaNCC)
+                            </td>
+                            <td style="text-align:center">
+                                @Html.DisplayFor(modelItem => item.TenNCC)
+                            </td>
+                            <td style="text-align:center">
+                                @Html.DisplayFor(modelItem => item.DiaChi)
+                            </td>
+                            <td style="text-align:center">
+                                @Html.DisplayFor(modelItem => item.SDT)
+                            </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.SDT)
-        </dd>
+                        </tr>
 
-    </dl>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaNCC }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

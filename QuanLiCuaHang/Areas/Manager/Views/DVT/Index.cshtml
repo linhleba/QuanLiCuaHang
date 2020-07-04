@@ -1,106 +1,149 @@
-﻿@model IEnumerable<QuanLiCuaHang.Areas.Manager.Data.LOAISANPHAM>
+﻿@model IEnumerable<QuanLiCuaHang.Areas.Manager.Data.DONVITINH>
 
 @{
     ViewBag.Title = "DanhSach";
     Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
 }
+@*<link href="~/Content/Site.css" rel="stylesheet" />*@
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
+<script src="~/Scripts/jquery.validate.min.js"></script>
+
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <head>
     <meta charset="utf-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Danh sách các loại sản phẩm</title>
-    <link href="~/Assets/Manager/dist/css/styles.css" rel="stylesheet" />
+    <title>Danh sách các đơn vị tính</title>
+    @*<link href="~/Assets/Manager/dist/css/styles.css" rel="stylesheet" />*@
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>*@
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel ="stylesheet" />
 
     <!-- Vendor CSS -->
     <link rel="stylesheet" href="~/Assets/Manager/dist/assets/vendor/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="~/Assets/Manager/dist/assets/vendor/magnific-popup/magnific-popup.css" />
 
-
 </head>
+
+<script type="text/javascript">
+    // Hàm chọn sản phẩm hiển thị đơn giá, đơn vị tinnhs
+
+
+    $(document).ready(function () {
+        $("#addToTable").click(function (event) {
+
+            var error_free = true;
+           
+
+            if ($(".input-validation-error").length != 0) {
+                error_free = false;
+            }
+
+            if ($("#TenDVT").val() == "") {
+                error_free = false;
+            }
+          
+
+            if (!error_free) {
+                event.preventDefault();
+                swal({
+                    title: "Lỗi !",
+                    text: "Thêm mới thất bại!",
+                    icon: "error",
+                    button: "Đồng ý!",
+                });
+            }
+            else {
+                swal({
+                    title: "Thành công !",
+                    text: "Thêm mới thành công!",
+                    icon: "success",
+                    button: "Đồng ý!",
+                });
+            }
+
+        });
+    });
+</script>
 <main>
+    <style>
+        #nhapphieu {
+            text-align: center;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            border: 1px solid #ddd;
+            background-color: forestgreen;
+            padding: 0px 0px;
+            margin: 0px 290px;
+        }
+    </style>
+
+    <h1 id="nhapphieu">ĐƠN VỊ TÍNH</h1>
     <div class="container-fluid">
-
         <div col="mb-4">
-
-            <div class="alert alert-success" id="success-alert">
-                <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
-                Đã thêm mới loại sản phẩm thành công.
-            </div>
-
-            <div class="alert alert-danger" id="danger-alert">
-                <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
-            </div>
+            @*<div class="alert alert-success" id="success-alert">
+                    <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
+                    Đã thêm mới loại sản phẩm thành công.
+                </div>*@
+            @*<div class="alert alert-danger" id="danger-alert">
+                    <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
+                </div>*@
             <div class="card mb-4">
-
-                <div class="card-header"><b>THÊM MỚI LOẠI SẢN PHẨM</b></div>
+                <div class="card-header"><b>THÊM MỚI ĐƠN VỊ TÍNH</b></div>
                 <div class="card-body">
+                    @using (Html.BeginForm())
+                    {@Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <form action="/action_page.php" class="needs-validation" novalidate>
-                        <div class="form-row">
-                            <div class="form-group col-sm-3">
-                                <label>Mã loại sản phẩm</label>
-
-                                <input type="number" class="form-control" placeholder="Nhập mã loại sản phẩm" id="ma" readonly required>
-                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về mã loại sản phẩm</div>
-
-                            </div>
-
-                            <div class="form-group col-sm-3">
-                                <label>Tên loại sản phẩm</label>
-
-                                <input type="text" class="form-control" placeholder="Nhập tên loại sản phẩm" id="ten" required>
-                            </div>
-                        </div>
 
                         <div class="form-row">
-                            <div class="form-group col-sm-3">
-                                <label>Phần trăm lợi nhuận</label>
+                            <div class="form-group col-sm-3" hidden>
 
-                                <input type="number" class="form-control" placeholder="Nhập phần trăm lợi nhuận" id="phantramloinhuan" min="0" max="100" required>
-                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về phần trăm lợi nhuận</div>
-                            </div>
-                            <div class="form-group col-sm-3">
-                                <label for="donvitinh">Đơn vị tính</label>
-                                <select class="form-control" placeholder="Chọn đơn vị tính" id="donvitinh" required>
-                                    <option>--- Chọn ---</option>
-                                    <option>cây</option>
-                                    <option>người</option>
-                                    <option>viên</option>
-                                </select>
-                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về đơn vị tính</div>
+                                @Html.HiddenFor(model => model.LastOrDefault().MaDVT, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LastOrDefault().MaDVT, "", new { @class = "text-danger" })
+                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về mã đơn vị tính</div>
+
+
 
                             </div>
+                            <div class="form-group col-sm-3">
+                                <label>Tên đơn vị tính</label>
+
+                                @Html.EditorFor(model => model.LastOrDefault().TenDVT, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LastOrDefault().TenDVT, "", new { @class = "text-danger" })
+                                <br />
+                                <br />
+                                <input type="submit" id="addToTable" class="btn btn-primary" value="Thêm" />
+                            </div>
+
                         </div>
 
 
-                        <button id="addToTable" class="btn btn-primary">Thêm</button>
                     </form>
+                }
                 </div>
-
             </div>
-
         </div>
 
+
+
+
+
+
         <div class="card mb-4">
-
-            <div class="card-header"><b>DANH MỤC CÁC LOẠI SẢN PHẨM</b></div>
+            <div class="card-header"><b>DANH MỤC CÁC ĐƠN VỊ TÍNH</b></div>
             <div class="card-body">
-
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped mb-none" id="datatable-editable" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-striped mb-none" id="datatable-editable" width="100" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Mã loại sản phẩm</th>
-                                <th>Tên loại sản phẩm</th>
-                                <th>Phần trăm lợi nhuận</th>
-                                <th>Đơn vị tính</th>
-                                <th>Thao tác</th>
+                                <th>Mã đơn vị tính</th>
+                                <th>Tên đơn vị tính</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -111,23 +154,12 @@
 
                                 <tr>
                                     <td style="text-align:center">
-                                        @Html.DisplayFor(modelItem => item.MaLoaiSP)
+                                        @Html.DisplayFor(modelItem => item.MaDVT)
                                     </td>
                                     <td style="text-align:center">
-                                        @Html.DisplayFor(modelItem => item.TenLoaiSP)
+                                        @Html.DisplayFor(modelItem => item.TenDVT)
                                     </td>
-                                    <td style="text-align:center">
-                                        @Html.DisplayFor(modelItem => item.PhanTramLoiNhuan)%
-                                    </td>
-                                    <td style="text-align:center">
-                                        @Html.DisplayFor(modelItem => item.DONVITINH.TenDVT)
-                                    </td>
-                                    <td class="actions">
-                                        <a href="#" class="hidden on-editing save-row"><i class="fa fa-save" style="font-size:20px"></i></a>
-                                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times" style="font-size:20px"></i></a>
-                                        <a href="#" class="on-default edit-row"><i class="fa fa-pencil-alt"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-alt"></i></a>
-                                    </td>
+
                                 </tr>
 
                             }
@@ -137,11 +169,9 @@
                 </div>
             </div>
         </div>
+
     </div>
-
 </main>
-
-<link rel="stylesheet" href="~Assets/Manager/dist/assets/stylesheets/theme.css" />
 
 <!-- Vendor -->
 <script src="~/Assets/Manager/dist/assets/vendor/jquery/jquery.js"></script>
@@ -151,14 +181,11 @@
 <script src="~/Assets/Manager/dist/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 <script src="~/Assets/Manager/dist/assets/vendor/magnific-popup/magnific-popup.js"></script>
 <script src="~/Assets/Manager/dist/assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
-
 <!-- Specific Page Vendor -->
 <script src="~/Assets/Manager/dist/assets/vendor/select2/select2.js"></script>
 <script src="~/Assets/Manager/dist/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
-
 <!-- Examples -->
-<script src="~/Assets/Manager/dist/assets/javascripts/tables/examples.datatables.editable.js"></script>
-
+@*<script src="~/Assets/Manager/dist/assets/javascripts/tables/examples.datatables.editable.js"></script>*@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="~/Assets/Manager/dist/js/scripts.js"></script>
@@ -167,31 +194,10 @@
 @*</body>
     </html>*@
 
-<div id="dialog" class="modal-block mfp-hide">
-    <section class="panel">
-        <header class="panel-heading">
-            <h2 class="panel-title">Xóa vĩnh viễn?</h2>
-        </header>
-        <div class="panel-body">
-            <div class="modal-wrapper">
-                <div class="modal-text">
-                    <p>Bạncó chắc chắn muốn xóa dòng này?</p>
-                </div>
-            </div>
-        </div>
-        <footer class="panel-footer">
-            <div class="row">
-                <div class="col-md-12 text-right">
-                    <button id="dialogConfirm" class="btn btn-primary">Đồng ý</button>
-                    <button id="dialogCancel" class="btn btn-default">Từ chối</button>
-                </div>
-            </div>
-        </footer>
-    </section>
-</div>
-
 
 <style>
+
+
     .dataTables_paginate {
         float: right;
         text-align: right;
@@ -343,5 +349,4 @@
         }
     }
 </style>
-
 

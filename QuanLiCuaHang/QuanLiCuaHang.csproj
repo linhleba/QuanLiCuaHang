@@ -1955,8 +1955,8 @@
     <Content Include="Areas\Manager\Views\LOAISP\Tao.cshtml" />
     <Content Include="Areas\Manager\Views\LOAISP\Xoa.cshtml" />
     <Content Include="Areas\Manager\Views\LOAISP\ChiTiet.cshtml" />
-    <Content Include="Areas\Manager\Views\LOAISP\Sua.cshtml" />
-    <Content Include="Areas\Manager\Views\LOAISP\DanhSach.cshtml" />
+    <Content Include="Areas\Manager\Views\LOAISP\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\LOAISP\Index.cshtml" />
     <EntityDeploy Include="Areas\Manager\Data\QuanLyCuaHangDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>QuanLyCuaHangDataModel.Designer.cs</LastGenOutput>
@@ -1966,14 +1966,14 @@
     </Content>
     <Content Include="Areas\Manager\Views\SanPham\Tao.cshtml" />
     <Content Include="Areas\Manager\Views\SanPham\Xoa.cshtml" />
-    <Content Include="Areas\Manager\Views\SanPham\ChiTiet.cshtml" />
-    <Content Include="Areas\Manager\Views\SanPham\Sua.cshtml" />
-    <Content Include="Areas\Manager\Views\SanPham\DanhSach.cshtml" />
+    <Content Include="Areas\Manager\Views\SanPham\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\SanPham\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\SanPham\Index.cshtml" />
     <Content Include="Areas\Manager\Views\DVT\Tao.cshtml" />
     <Content Include="Areas\Manager\Views\DVT\Xoa.cshtml" />
     <Content Include="Areas\Manager\Views\DVT\ChiTiet.cshtml" />
     <Content Include="Areas\Manager\Views\DVT\Sua.cshtml" />
-    <Content Include="Areas\Manager\Views\DVT\DanhSach.cshtml" />
+    <Content Include="Areas\Manager\Views\DVT\Index.cshtml" />
     <Content Include="Areas\Manager\Views\PhieuBanHang\Create.cshtml" />
     <Content Include="Areas\Manager\Views\PhieuBanHang\Delete.cshtml" />
     <Content Include="Areas\Manager\Views\PhieuBanHang\Details.cshtml" />

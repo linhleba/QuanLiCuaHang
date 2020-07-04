@@ -1,10 +1,10 @@
-﻿@model IEnumerable<QuanLiCuaHang.Areas.Manager.Data.DONVITINH>
+﻿@model IEnumerable<QuanLiCuaHang.Areas.Manager.Data.LOAISANPHAM>
 
 @{
-    ViewBag.Title = "DanhSach";
+    ViewBag.Title = "Index";
     Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
 }
-@*<link href="~/Content/Site.css" rel="stylesheet" />*@
+
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
 <script src="~/Scripts/jquery.validate.min.js"></script>
@@ -12,16 +12,10 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Danh sách các đơn vị tính</title>
-    @*<link href="~/Assets/Manager/dist/css/styles.css" rel="stylesheet" />*@
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-   
-    <!-- Vendor CSS -->
-    <link rel="stylesheet" href="~/Assets/Manager/dist/assets/vendor/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/Assets/Manager/dist/assets/vendor/magnific-popup/magnific-popup.css" />
+    <title>Danh sách các loại sản phẩm</title>
+
 
 </head>
 <main>
@@ -38,7 +32,10 @@
     }
     </style>
 
-    <h1 id="nhapphieu">ĐƠN VỊ TÍNH</h1>
+    @* End CSS *@
+
+    <h1 id="nhapphieu">LOẠI SẢN PHẨM</h1>
+
     <div class="container-fluid">
         <div col="mb-4">
             @*<div class="alert alert-success" id="success-alert">
@@ -49,36 +46,55 @@
                     <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
                 </div>*@
             <div class="card mb-4">
-                <div class="card-header"><b>THÊM MỚI ĐƠN VỊ TÍNH</b></div>
+                <div class="card-header"><b>THÊM MỚI LOẠI SẢN PHẨM</b></div>
                 <div class="card-body">
                     @using (Html.BeginForm())
                     {@Html.AntiForgeryToken()
-
+                    <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <form action="/action_page.php" class="needs-validation" novalidate>
 
                         <div class="form-row">
                             <div class="form-group col-sm-3" hidden>
 
-                                @Html.HiddenFor(model => model.LastOrDefault().MaDVT, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.LastOrDefault().MaDVT, "", new { @class = "text-danger" })
-                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về mã đơn vị tính</div>
+                                @Html.HiddenFor(model => model.LastOrDefault().MaLoaiSP, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LastOrDefault().MaLoaiSP, "", new { @class = "text-danger" })
+                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về mã loại sản phẩm</div>
 
 
 
                             </div>
                             <div class="form-group col-sm-3">
-                                <label>Tên đơn vị tính</label>
+                                <label>Tên loại sản phẩm</label>
 
-                                @Html.EditorFor(model => model.LastOrDefault().TenDVT, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.LastOrDefault().TenDVT, "", new { @class = "text-danger" })
-                                <br />
-                                <br />
-                                <input type="submit" id="addToTable" class="btn btn-primary" value="Thêm" onclick="return confirm('Bạn có chắc chắn rằng muốn thêm ?');" />
+                                @Html.EditorFor(model => model.LastOrDefault().TenLoaiSP, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LastOrDefault().TenLoaiSP, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label for="donvitinh">Đơn vị tính</label>
+
+                                @Html.DropDownList("MaDVT", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.LastOrDefault().DONVITINH, "", new { @class = "text-danger" })
+
+                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về đơn vị tính</div>
+                            </div>
+
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-sm-3">
+                                <label>Phần trăm lợi nhuận</label>
+
+                                @Html.EditorFor(model => model.LastOrDefault().PhanTramLoiNhuan, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                @Html.ValidationMessageFor(model => model.LastOrDefault().PhanTramLoiNhuan, "", new { @class = "text-danger" })
+
+                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về phần trăm lợi nhuận</div>
                             </div>
 
                         </div>
 
+                        <input type="submit" id="addToTable" class="btn btn-primary" value="Thêm" onclick="return confirm('Bạn có chắc chắn rằng muốn thêm ?');" />
 
                     </form>
                 }
@@ -92,14 +108,17 @@
 
 
         <div class="card mb-4">
-            <div class="card-header"><b>DANH MỤC CÁC ĐƠN VỊ TÍNH</b></div>
+            <div class="card-header"><b>DANH MỤC CÁC LOẠI SẢN PHẨM</b></div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped mb-none" id="datatable-editable" width="100" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Mã đơn vị tính</th>
-                                <th>Tên đơn vị tính</th>
+                                <th>Mã loại sản phẩm</th>
+                                <th>Tên loại sản phẩm</th>
+                                <th>Phần trăm lợi nhuận</th>
+                                <th>Đơn vị tính</th>
+                                <th>Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -110,12 +129,22 @@
 
                                 <tr>
                                     <td style="text-align:center">
-                                        @Html.DisplayFor(modelItem => item.MaDVT)
+                                        @Html.DisplayFor(modelItem => item.MaLoaiSP)
                                     </td>
                                     <td style="text-align:center">
-                                        @Html.DisplayFor(modelItem => item.TenDVT)
+                                        @Html.DisplayFor(modelItem => item.TenLoaiSP)
                                     </td>
-
+                                    <td style="text-align:center">
+                                        @Html.DisplayFor(modelItem => item.PhanTramLoiNhuan)%
+                                    </td>
+                                    <td style="text-align:center">
+                                        @Html.DisplayFor(modelItem => item.DONVITINH.TenDVT)
+                                    </td>
+                                    <td class="actions" style="text-align:center">
+                                        <a href='@Url.Action("Edit","LoaiSP",new { id = item.MaLoaiSP })'>
+                                            <i type="button" class="fa fa-pencil fa-2x"> </i>
+                                        </a>
+                                    </td>
                                 </tr>
 
                             }
@@ -125,7 +154,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </main>
 
@@ -150,28 +178,6 @@
 @*</body>
     </html>*@
 
-<div id="dialog" class="modal-block mfp-hide">
-    <section class="panel">
-        <header class="panel-heading">
-            <h2 class="panel-title">Xóa vĩnh viễn?</h2>
-        </header>
-        <div class="panel-body">
-            <div class="modal-wrapper">
-                <div class="modal-text">
-                    <p>Bạncó chắc chắn muốn xóa dòng này?</p>
-                </div>
-            </div>
-        </div>
-        <footer class="panel-footer">
-            <div class="row">
-                <div class="col-md-12 text-right">
-                    <button id="dialogConfirm" class="btn btn-primary">Đồng ý</button>
-                    <button id="dialogCancel" class="btn btn-default">Từ chối</button>
-                </div>
-            </div>
-        </footer>
-    </section>
-</div>
 <style>
 
 

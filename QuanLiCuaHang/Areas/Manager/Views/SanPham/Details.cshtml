@@ -1,0 +1,63 @@
+﻿@model IEnumerable<QuanLiCuaHang.Areas.Manager.Data.SANPHAM>
+
+
+@foreach (var sp in Model)
+{
+    sp.GiaBanRa = (sp.GiaMuaVao) * (decimal)((sp.LOAISANPHAM.PhanTramLoiNhuan) / 100);
+
+}
+<div class="card mb-4">
+    <div class="card-header"><b>DANH MỤC CÁC SẢN PHẨM</b></div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped mb-none" id="datatable-editable" width="100" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá mua vào</th>
+                        <th>Giá bán ra</th>
+                        <th>Số lượng tồn</th>
+                        <th>Tên loại sản phẩm</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td style="text-align:center">
+                                @Html.DisplayFor(modelItem => item.MaSP)
+                            </td>
+                            <td style="text-align:center">
+                                @Html.DisplayFor(modelItem => item.TenSanPham)
+                            </td>
+                            <td style="text-align:center">
+                                @Html.DisplayFor(modelItem => item.GiaMuaVao)
+                            </td>
+                            <td style="text-align:center">
+                                @Html.DisplayFor(modelItem => item.GiaBanRa)
+                            </td>
+                            <td style="text-align:center">
+                                @Html.DisplayFor(modelItem => item.SoLuongTon)
+                            </td>
+                            <td style="text-align:center">
+                                @Html.DisplayFor(modelItem => item.LOAISANPHAM.TenLoaiSP)
+                            </td>
+                            <td class="actions" style="text-align:center">
+                                <a href='@Url.Action("Edit","SanPham",new { id = item.MaSP })'>
+                                    <i type="button" class="fa fa-pencil fa-2x"> </i>
+                                </a>
+                            </td>
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

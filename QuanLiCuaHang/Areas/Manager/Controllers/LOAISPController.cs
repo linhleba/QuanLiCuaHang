@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using QuanLiCuaHang.Areas.Manager.Data;
+using QuanLiCuaHang;
 
 namespace QuanLiCuaHang.Areas.Manager.Controllers
 {
@@ -15,11 +16,27 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         private QUANLYCUAHANGEntity db = new QUANLYCUAHANGEntity();
 
         // GET: Manager/LOAISP
-        public ActionResult DanhSach()
+        public ActionResult Index()
         {
             var lOAISANPHAMs = db.LOAISANPHAMs.Include(l => l.DONVITINH);
+            ViewBag.MaDVT = new SelectList(db.DONVITINHs, "MaDVT", "TenDVT");
             return View(lOAISANPHAMs.ToList());
         }
+
+
+        //CheckTenLoaiSP
+        public JsonResult IsTenLoaiSPavailable(string TenLoaiSP)
+        {
+            return Json(!db.LOAISANPHAMs.Any(x => x.TenLoaiSP == TenLoaiSP), JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
+
+
+
 
         // GET: Manager/LOAISP/ChiTiet/5
         public ActionResult ChiTiet(int? id)
@@ -36,35 +53,24 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
             return View(lOAISANPHAM);
         }
 
-        // GET: Manager/LOAISP/Tao
-        public ActionResult Tao()
-        {
-            ViewBag.MaDVT = new SelectList(db.DONVITINHs, "MaDVT", "TenDVT");
-            return View();
-        }
+
 
         // POST: Manager/LOAISP/Tao
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Tao([Bind(Include = "MaLoaiSP,TenLoaiSP,PhanTramLoiNhuan,MaDVT")] LOAISANPHAM lOAISANPHAM)
+        public ActionResult Index([Bind(Include = "MaLoaiSP,TenLoaiSP,PhanTramLoiNhuan,MaDVT")] LOAISANPHAM lOAISANPHAM)
         {
-            if (string.IsNullOrEmpty(lOAISANPHAM.TenLoaiSP))
-            {
-                ModelState.AddModelError("TenLoaiSP", "Tên loại sản phẩm không được phép rỗng");
-            }
 
-            if (double.IsNaN(lOAISANPHAM.PhanTramLoiNhuan))
-            {
-                ModelState.AddModelError("PhanTramLoiNhuan", "Phần trăm lợi nhuận không được phép rỗng");
-            }
+
+
 
             if (ModelState.IsValid)
             {
                 db.LOAISANPHAMs.Add(lOAISANPHAM);
                 db.SaveChanges();
-                return RedirectToAction("Danhsach");
+                return RedirectToAction("Index");
             }
 
             ViewBag.MaDVT = new SelectList(db.DONVITINHs, "MaDVT", "TenDVT", lOAISANPHAM.MaDVT);
@@ -72,7 +78,7 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         }
 
         // GET: Manager/LOAISP/Sua/5
-        public ActionResult Sua(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -83,7 +89,7 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MaDVT = new SelectList(db.DONVITINHs, "MaDVT", "TenDVT", lOAISANPHAM.MaDVT);
+            //ViewBag.MaDVT = new SelectList(db.DONVITINHs, "MaDVT", "TenDVT", lOAISANPHAM.MaDVT);
             return View(lOAISANPHAM);
         }
 
@@ -92,15 +98,15 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Sua([Bind(Include = "MaLoaiSP,TenLoaiSP,PhanTramLoiNhuan,MaDVT")] LOAISANPHAM lOAISANPHAM)
+        public ActionResult Edit([Bind(Include = "MaLoaiSP,TenLoaiSP,PhanTramLoiNhuan,MaDVT")] LOAISANPHAM lOAISANPHAM)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(lOAISANPHAM).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("DanhSach");
+                return RedirectToAction("Index");
             }
-            ViewBag.MaDVT = new SelectList(db.DONVITINHs, "MaDVT", "TenDVT", lOAISANPHAM.MaDVT);
+            //ViewBag.MaDVT = new SelectList(db.DONVITINHs, "MaDVT", "TenDVT", lOAISANPHAM.MaDVT);
             return View(lOAISANPHAM);
         }
 

@@ -15,7 +15,7 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         private QUANLYCUAHANGEntity db = new QUANLYCUAHANGEntity();
 
         // GET: Manager/DVT
-        public ActionResult DanhSach()
+        public ActionResult Index()
         {
             return View(db.DONVITINHs.ToList());
         }
@@ -59,21 +59,21 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DanhSach([Bind(Include = "MaDVT,TenDVT")] DONVITINH dONVITINH)
+        public ActionResult Index([Bind(Include = "MaDVT,TenDVT")] DONVITINH dONVITINH)
         {
 
             if (ModelState.IsValid)
             {
                 db.DONVITINHs.Add(dONVITINH);
                 db.SaveChanges();
-                return RedirectToAction("DanhSach");
+                return RedirectToAction("Index");
             }
 
             return View(dONVITINH);
         }
 
         // GET: Manager/DVT/Sua/5
-        public ActionResult Sua(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -92,13 +92,13 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Sua([Bind(Include = "MaDVT,TenDVT")] DONVITINH dONVITINH)
+        public ActionResult Edit([Bind(Include = "MaDVT,TenDVT")] DONVITINH dONVITINH)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(dONVITINH).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("DanhSach");
+                return RedirectToAction("Index");
             }
             return View(dONVITINH);
         }
