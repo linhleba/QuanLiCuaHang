@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<QuanLiCuaHang.Areas.Manager.Data.SANPHAM>
 
 
-@foreach (var sp in Model)
+@*@foreach (var sp in Model)
 {
-    sp.GiaBanRa = (sp.GiaMuaVao) * (decimal)((sp.LOAISANPHAM.PhanTramLoiNhuan) / 100);
+    sp.GiaBanRa =(sp.GiaMuaVao) + (sp.GiaMuaVao) * (decimal)((sp.LOAISANPHAM.PhanTramLoiNhuan) / 100);
 
-}
+}*@
 <div class="card mb-4">
     <div class="card-header"><b>DANH MỤC CÁC SẢN PHẨM</b></div>
     <div class="card-body">

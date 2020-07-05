@@ -26,7 +26,7 @@
     <Property Name="ThanhTien" Type="money" Nullable="false" />
     <Property Name="ThanhToanTraTruoc" Type="money" Nullable="false" />
     <Property Name="ThanhToanConLai" Type="money" Nullable="false" />
-    <Property Name="NgayGiao" Type="datetime" Nullable="false" />
+    <Property Name="NgayGiao" Type="date" Nullable="false" />
     <Property Name="MaTinhTrangDV" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CHITIET_PMH">
@@ -64,7 +64,7 @@
     </Key>
     <Property Name="MaLoaiDV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TenLoaiDV" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="DonGiaDV" Type="smallmoney" Nullable="false" />
+    <Property Name="DonGiaDV" Type="money" Nullable="false" />
   </EntityType>
   <EntityType Name="LOAISANPHAM">
     <Key>
@@ -98,7 +98,7 @@
       <PropertyRef Name="MaPDV" />
     </Key>
     <Property Name="MaPDV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="NgayLap" Type="datetime" Nullable="false" />
+    <Property Name="NgayLap" Type="date" Nullable="false" />
     <Property Name="TenKH" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="SDT" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="TongTien" Type="money" Nullable="false" />
@@ -147,7 +147,7 @@
     <Property Name="MaTinhTrangPDV" Type="int" Nullable="false" />
     <Property Name="TenTinhTrang" Type="nvarchar" MaxLength="30" Nullable="false" />
   </EntityType>
-  <Association Name="FK__BCTONKHO__MaSP__55F4C372">
+  <Association Name="FK__BCTONKHO__MaSP__11D4A34F">
     <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
     <End Role="BCTONKHO" Type="Self.BCTONKHO" Multiplicity="*" />
     <ReferentialConstraint>
@@ -159,7 +159,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CHITIET_P__MaLoa__489AC854">
+  <Association Name="FK__CHITIET_P__MaLoa__0E04126B">
     <End Role="LOAIDV" Type="Self.LOAIDV" Multiplicity="1" />
     <End Role="CHITIET_PHIEUDV" Type="Self.CHITIET_PHIEUDV" Multiplicity="*" />
     <ReferentialConstraint>
@@ -171,7 +171,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CHITIET_P__MaPDV__47A6A41B">
+  <Association Name="FK__CHITIET_P__MaPDV__0D0FEE32">
     <End Role="PHIEUDV" Type="Self.PHIEUDV" Multiplicity="1" />
     <End Role="CHITIET_PHIEUDV" Type="Self.CHITIET_PHIEUDV" Multiplicity="*" />
     <ReferentialConstraint>
@@ -316,15 +316,15 @@
     <EntitySet Name="THAMSO" EntityType="Self.THAMSO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TINHTRANGDV" EntityType="Self.TINHTRANGDV" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TINHTRANGPDV" EntityType="Self.TINHTRANGPDV" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__BCTONKHO__MaSP__55F4C372" Association="Self.FK__BCTONKHO__MaSP__55F4C372">
+    <AssociationSet Name="FK__BCTONKHO__MaSP__11D4A34F" Association="Self.FK__BCTONKHO__MaSP__11D4A34F">
       <End Role="SANPHAM" EntitySet="SANPHAM" />
       <End Role="BCTONKHO" EntitySet="BCTONKHO" />
     </AssociationSet>
-    <AssociationSet Name="FK__CHITIET_P__MaLoa__489AC854" Association="Self.FK__CHITIET_P__MaLoa__489AC854">
+    <AssociationSet Name="FK__CHITIET_P__MaLoa__0E04126B" Association="Self.FK__CHITIET_P__MaLoa__0E04126B">
       <End Role="LOAIDV" EntitySet="LOAIDV" />
       <End Role="CHITIET_PHIEUDV" EntitySet="CHITIET_PHIEUDV" />
     </AssociationSet>
-    <AssociationSet Name="FK__CHITIET_P__MaPDV__47A6A41B" Association="Self.FK__CHITIET_P__MaPDV__47A6A41B">
+    <AssociationSet Name="FK__CHITIET_P__MaPDV__0D0FEE32" Association="Self.FK__CHITIET_P__MaPDV__0D0FEE32">
       <End Role="PHIEUDV" EntitySet="PHIEUDV" />
       <End Role="CHITIET_PHIEUDV" EntitySet="CHITIET_PHIEUDV" />
     </AssociationSet>

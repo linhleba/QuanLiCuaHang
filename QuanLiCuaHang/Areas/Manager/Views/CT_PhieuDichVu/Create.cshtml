@@ -570,7 +570,7 @@
                     <div class="form-group">
                         Số điện thoại
 
-                        @Html.EditorFor(model => model.PHIEUDV.SDT, new { htmlAttributes = new { @class = "form-control", id = "txtSDT", style = "width:180px", minLength = "10", maxLength = "10" } })
+                        @Html.EditorFor(model => model.PHIEUDV.SDT, new { htmlAttributes = new { @class = "form-control", id = "txtSDT", style = "width:180px", type="number", minLength = "10", maxLength = "10" } })
                         @Html.ValidationMessageFor(model => model.PHIEUDV.NgayLap, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -752,7 +752,7 @@
 
                 <div class="row col-md-3">
                     <div class="form-group">
-                        <input style="margin-top:20px" type="button" onclick="addItem()" id="btnThemSanPham" value="Thêm sản phẩm" name="ThemSanPham" class="btn btn-primary" />
+                        <input style="margin-top:20px" type="button" onclick="addItem()" id="btnThemSanPham" value="Thêm dịch vụ" name="ThemSanPham" class="btn btn-primary" />
                     </div>
                 </div>
 

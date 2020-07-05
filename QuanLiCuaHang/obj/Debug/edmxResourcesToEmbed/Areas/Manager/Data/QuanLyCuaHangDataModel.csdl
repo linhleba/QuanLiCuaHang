@@ -12,7 +12,7 @@
     <Property Name="ThanhTien" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="ThanhToanTraTruoc" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="ThanhToanConLai" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-    <Property Name="NgayGiao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NgayGiao" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="MaTinhTrangDV" Type="Int32" Nullable="false" />
     <NavigationProperty Name="LOAIDV" Relationship="Self.FK__CHITIET_P__MaLoa__123EB7A3" FromRole="CHITIET_PHIEUDV" ToRole="LOAIDV" />
     <NavigationProperty Name="PHIEUDV" Relationship="Self.FK__CHITIET_P__MaPDV__114A936A" FromRole="CHITIET_PHIEUDV" ToRole="PHIEUDV" />
@@ -58,7 +58,7 @@
     </Key>
     <Property Name="MaLoaiDV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TenLoaiDV" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="DonGiaDV" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+    <Property Name="DonGiaDV" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <NavigationProperty Name="CHITIET_PHIEUDV" Relationship="Self.FK__CHITIET_P__MaLoa__123EB7A3" FromRole="LOAIDV" ToRole="CHITIET_PHIEUDV" />
   </EntityType>
   <EntityType Name="LOAISANPHAM">
@@ -97,7 +97,7 @@
       <PropertyRef Name="MaPDV" />
     </Key>
     <Property Name="MaPDV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="NgayLap" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NgayLap" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="TenKH" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="SDT" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
     <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" Nullable="false" />

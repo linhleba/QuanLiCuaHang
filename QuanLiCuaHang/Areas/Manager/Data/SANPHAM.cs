@@ -34,7 +34,7 @@ namespace QuanLiCuaHang.Areas.Manager.Data
         public string TenSanPham { get; set; }
 
         [Required(ErrorMessage = "Giá mua vào trống")]
-        [Range(1, Int32.MaxValue, ErrorMessage = "Giá mua vào phải lớn hơn 0" )]
+        [Range(1, Int32.MaxValue, ErrorMessage = "Giá mua vào phải lớn hơn 0")]
         public decimal GiaMuaVao { get; set; }
 
         [Required(ErrorMessage = "Giá bán ra trống")]

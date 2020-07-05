@@ -33,7 +33,7 @@
             var giamuavao = parseFloat($("#GiaMuaVao").val());
 
             var phantramloinhuan = parseFloat($("#PhanTramLoiNhuan").val());
-            $("#txtGiaBanRa").val((giamuavao * phantramloinhuan) / 100);
+            $("#txtGiaBanRa").val(giamuavao + (giamuavao * phantramloinhuan) / 100);
 
         });
 
@@ -49,7 +49,7 @@
 
             var giamuavao = parseFloat($("#GiaMuaVao").val());
             var phantramloinhuan = parseFloat($("#PhanTramLoiNhuan").val());
-            $("#txtGiaBanRa").val((giamuavao * phantramloinhuan) / 100);
+            $("#txtGiaBanRa").val(giamuavao + (giamuavao * phantramloinhuan) / 100);
         });
 
         $("#addToTable").click(function (event) {
@@ -104,7 +104,7 @@
                     var giamuavao = parseFloat($("#GiaMuaVao").val());
                     var phantramloinhuan = parseFloat($("#PhanTramLoiNhuan").val());
 
-                    $("#txtGiaBanRa").val((giamuavao * phantramloinhuan) / 100);
+                    $("#txtGiaBanRa").val(giamuavao + (giamuavao * phantramloinhuan) / 100);
 
                 },
                 error: function () { }
@@ -215,8 +215,10 @@
 
                             <div class="form-group col-sm-3">
                                 <label>Giá bán ra</label>
+                                @Html.EditorFor(model => model.GiaBanRa, new { htmlAttributes = new { @class = "form-control", type = "number", id = "txtGiaBanRa", min = 0, @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.GiaBanRa, "", new { @class = "text-danger" })
 
-                                <input type="text" id="txtGiaBanRa" class="form-control" readonly />
+                           
                                 <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về giá bán ra </div>
                             </div>
 
@@ -225,7 +227,7 @@
 
                         </div>
 
-                        <input type="submit" id="addToTable" class="btn btn-primary" value="Thêm" onclick="return confirm('Bạn có chắc chắn rằng muốn thêm ?');" />
+                        <input type="submit" id="addToTable" class="btn btn-primary" value="Thêm" />
                         <input type="number" id="PhanTramLoiNhuan" hidden />
                     </form>
                 }

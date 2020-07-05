@@ -1,5 +1,4 @@
-﻿
-@model QuanLiCuaHang.Areas.Manager.Data.LOAIDV
+﻿@model QuanLiCuaHang.Areas.Manager.Data.LOAIDV
 
 @{
     ViewBag.Title = "Index";
@@ -11,20 +10,12 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script type="text/javascript">
-
-
-
     $(document).ready(function () {
         $("#submit").click(function (event) {
-
             var error_free = true;
-
-
             if ($(".input-validation-error").length != 0) {
                 error_free = false;
             }
-
-
             if (!error_free) {
                 event.preventDefault();
                 swal({
@@ -42,7 +33,6 @@
                     button: "Đồng ý!",
                 });
             }
-
         });
     });
 </script>
@@ -124,7 +114,7 @@
                                 <div class="form-group col-sm-3">
                                     <label>Đơn giá dịch vụ</label>
 
-                                    @*<input type="number" class="form-control" placeholder="Nhập đơn giá dịch vụ" id="dongia" required>*@
+
                                     @Html.EditorFor(model => model.DonGiaDV, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.DonGiaDV, "", new { @class = "text-danger" })
                                     <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về đơn giá dịch vụ</div>
@@ -178,7 +168,6 @@
 
 
 <style>
-
     .dataTables_paginate {
         float: right;
         text-align: right;
@@ -330,4 +319,3 @@
         }
     }
 </style>
-
