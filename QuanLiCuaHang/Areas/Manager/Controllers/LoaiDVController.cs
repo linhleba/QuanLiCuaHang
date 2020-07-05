@@ -38,7 +38,7 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
 
 
         // GET: Manager/LoaiDV/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details()
         {
             return View(db.LOAIDVs.ToList());
         }

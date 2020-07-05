@@ -16,6 +16,14 @@
             if ($(".input-validation-error").length != 0) {
                 error_free = false;
             }
+
+            if (parseFloat($("#DonGiaDV").val()) <= 0) {
+                error_free = false;
+            }
+
+            if ($("#TenLoaiDV").val() == '') {
+                error_free = false;
+            }
             if (!error_free) {
                 event.preventDefault();
                 swal({
@@ -158,7 +166,7 @@
 <script src="~/Assets/Manager/dist/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
 
 <!-- Examples -->
-<script src="~/Assets/Manager/dist/assets/javascripts/tables/LoaiDV.js"></script>
+<script src="~/Assets/Manager/dist/assets/javascripts/tables/examples.datatables.editable.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
