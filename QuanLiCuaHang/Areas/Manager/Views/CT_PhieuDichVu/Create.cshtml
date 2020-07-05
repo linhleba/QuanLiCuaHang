@@ -19,6 +19,7 @@
 
 
     $(document).ready(function () {
+        $("#MaTinhTrangDV").prop("disabled", true);
         //$("#txtNgayGiaoDich").val(new Date().toJSON().slice(0, 19));
         $("#MaLoaiDV").val(0);
         GetPhanTramTraTruoc();
@@ -39,19 +40,7 @@
             //$("#txtDonGiaDuocTinh").val(chiPhiRieng + donGiaDV);
         });
 
-        // Hàm tính đơn giá được tính
-        //$("#txtChiPhiRieng").change(function () {
-        //    var chiPhiRieng = parseFloat($("#txtChiPhiRieng").val());
-        //    var donGiaDV = parseFloat($("#txtDonGiaDichVu").val());
-        //    $("#txtDonGiaDuocTinh").val(chiPhiRieng + donGiaDV);
-        //});
-
-        //$("#txtDonGiaDichVu").change(function () {
-        //    var chiPhiRieng = parseFloat($("#txtChiPhiRieng").val());
-        //    var donGiaDV = parseFloat($("#txtDonGiaDichVu").val());
-        //    $("#txtDonGiaDuocTinh").val(chiPhiRieng + donGiaDV);
-        //});
-
+      
         // Hàm tính số lượng, đơn giá được tính
         $("#txtDonGiaDuocTinh").change(function () {
             var soLuong = parseFloat($("#txtSoLuong").val());
@@ -62,6 +51,8 @@
             var traTruoc = parseFloat($("#txtTraTruoc").val());
             $("#txtConLai").val(thanhTien - traTruoc);
         });
+
+
 
         $("#txtSoLuong").change(function () {
             var soLuong = parseFloat($("#txtSoLuong").val());
@@ -86,16 +77,16 @@
             $("#txtConLai").val(thanhTien - traTruoc);
         });
 
-        //$("#txtNgayGiao").change(function () {
-        //    var NgayGiao = $("#txtThanhTien").val();
-        //    var NgayLap = $("#txtNgayLap").val();
-        //    if (NgayGiao > NgayLap) {
-        //        $("#MaTinhTrangDV").val(0);
-        //    }
-        //    else {
-        //            $("#MaTinhTrangDV").val(1);
-        //    }
-        //});
+        $("#txtNgayGiao").change(function () {
+            var NgayGiao = $("#txtNgayGiao").val();
+            var NgayLap = $("#txtNgayLap").val();
+            if (new Date(NgayGiao) >= new Date(NgayLap)) {
+                $("#MaTinhTrangDV").val(0);
+            }
+            else {
+                    $("#MaTinhTrangDV").val(1);
+            }
+        });
 
 
         // Hàm đưa giá trị xuống database
@@ -185,6 +176,7 @@
                                 icon: "success",
                                 button: "Đồng ý!",
                             });
+                            Refresh();
                         },
                         error: function () {
                             alert('Lỗi');
@@ -474,15 +466,19 @@
     //    $("#txtSoLuong").val(0);
     //}
     // Refresh trang
-    //function Refresh() {
-    //    $("#txtTenKH").val('');
-    //    $("#MaSP").val(0);
-    //    $("#txtLoaiSanPham").val('');
-    //    $("#txtDonViTinh").val('');
-    //    $("#txtDonGia").val('');
-    //    $("#txtSoLuong").val(0);
-    //    $("table tr:not(:first)").remove();
-    //}
+    function Refresh() {
+        $("#txtTenKH").val('');
+        $("#txtSDT").val('');
+        $("#txtDonViTinh").val('');
+        $("#txtTongTraTruoc").val('0');
+        $("#txtTongTien").val('0');
+        $("#txtTongConLai").val('0');
+        TongTien = 0;
+        TongTraTruoc = 0;
+        TongConLai = 0; 
+        $("table tr:not(:first)").remove();
+    }
+
 
 </script>
 
