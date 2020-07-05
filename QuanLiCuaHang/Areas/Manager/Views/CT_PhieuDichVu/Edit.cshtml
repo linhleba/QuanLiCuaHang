@@ -5,7 +5,6 @@
     Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
 }
 
-<h2>CHỈNH SỬA</h2>
 <script src="~/Scripts/jquery-3.4.1.js"></script>
 @*<link rel="stylesheet" type="text/css" href="~/Assets/Manager/dist/assets/sweetalert/dist/sweetalert2.css">*@
 @*<script src="~/Assets/Manager/dist/assets/sweetalert/dist/sweetalert2.all.min.js"></script>*@
@@ -80,15 +79,29 @@
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>CHI TIẾT PHIẾU DỊCH VỤ</h4>
-    <hr />
+    <style>
+        #nhapphieu {
+            text-align: center;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            border: 1px solid #ddd;
+            background-color: forestgreen;
+            padding: 0px 0px;
+            margin: 0px 290px;
+        }
+    </style>
+
+    @* End CSS *@
+
+    <h1 id="nhapphieu">SỬA CHI TIẾT PHIẾU DỊCH VỤ</h1>
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.MaPDV)
 
     @Html.HiddenFor(model => model.MaLoaiDV)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.DonGiaDuocTinh, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.DonGiaDuocTinh,"Đơn Giá Được Tính", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.DonGiaDuocTinh, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
             @Html.ValidationMessageFor(model => model.DonGiaDuocTinh, "", new { @class = "text-danger" })
@@ -96,7 +109,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.SoLuong, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.SoLuong,"Số Lượng", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
             @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
@@ -104,7 +117,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ThanhTien, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.ThanhTien,"Thành Tiền", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.ThanhTien, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
             @Html.ValidationMessageFor(model => model.ThanhTien, "", new { @class = "text-danger" })
@@ -112,7 +125,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ThanhToanTraTruoc, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.ThanhToanTraTruoc,"Thanh Toán Trả Trước", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.ThanhToanTraTruoc, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
             @Html.ValidationMessageFor(model => model.ThanhToanTraTruoc, "", new { @class = "text-danger" })
@@ -120,7 +133,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ThanhToanConLai, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.ThanhToanConLai,"Thanh Toán Còn Lại", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.ThanhToanConLai, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
             @Html.ValidationMessageFor(model => model.ThanhToanConLai, "", new { @class = "text-danger" })
@@ -128,7 +141,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.NgayGiao, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.NgayGiao,"Ngày Giao", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.NgayGiao, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
             @Html.ValidationMessageFor(model => model.NgayGiao, "", new { @class = "text-danger" })
@@ -136,7 +149,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.MaTinhTrangDV, "MaTinhTrangDV", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.MaTinhTrangDV, "Tình Trạng", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownList("MaTinhTrangDV", null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.MaTinhTrangDV, "", new { @class = "text-danger" })
@@ -144,21 +157,21 @@
     </div>
 
     @*<div class="form-group">
-        @Html.LabelFor(model => model.MaTinhTrangDV, "MaTinhTrangDV", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <select id="tinhtrang">
-                <option value="Đã giao"> Đã giao </option>
-                <option value="Chưa giao"> Chưa giao </option>
-            </select>
-            </div>
-    </div>*@
+            @Html.LabelFor(model => model.MaTinhTrangDV, "MaTinhTrangDV", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="tinhtrang">
+                    <option value="Đã giao"> Đã giao </option>
+                    <option value="Chưa giao"> Chưa giao </option>
+                </select>
+                </div>
+        </div>*@
 
 
 
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input id="submit" type="submit" value="Lưu lại" class="btn btn-default" />
+            <input id="submit" type="submit" value="Lưu lại" class="btn btn-primary" />
         </div>
     </div>
 </div>

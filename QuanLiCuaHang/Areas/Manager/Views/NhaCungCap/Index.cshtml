@@ -3,16 +3,63 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
 }
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Danh sách nhà cung cấp</title>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Danh sách nhà cung cấp</title>
 
 
-    </head>
+</head>
+<script type="text/javascript">
+    // Hàm chọn sản phẩm hiển thị đơn giá, đơn vị tinnhs
+
+
+    $(document).ready(function () {
+        $("#addToTable").click(function (event) {
+
+            var error_free = true;
+
+
+            if ($(".input-validation-error").length != 0) {
+                error_free = false;
+            }
+
+            if ($("#TenDVT").val() == "") {
+                error_free = false;
+            }
+
+
+            if (!error_free) {
+                event.preventDefault();
+                swal({
+                    title: "Lỗi !",
+                    text: "Thêm mới thất bại!",
+                    icon: "error",
+                    button: "Đồng ý!",
+                });
+            }
+            else {
+                swal({
+                    title: "Thành công !",
+                    text: "Thêm mới thành công!",
+                    icon: "success",
+                    button: "Đồng ý!",
+                });
+            }
+
+        });
+    });
+</script>
 <main>
     <style>
         #nhapphieu {
@@ -33,7 +80,7 @@
         <div col="mb-4">
 
             <div class="card mb-4">
-                <div class="card-header"><b> Tạo mới nhà cung cấp </b></div>
+                <div class="card-header"><b> THÊM MỚI NHÀ CUNG CẤP </b></div>
                 <div class="card-body">
                     @using (Html.BeginForm("Index", "NhaCungCap", FormMethod.Post))
                     {@Html.AntiForgeryToken()
@@ -88,9 +135,9 @@
                 </div>
             </div>
         </div>
-   
-    </div>
 
+    </div>
+    @Html.Action("Details")
 </main>
 
 <!-- Vendor -->

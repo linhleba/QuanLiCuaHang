@@ -17,7 +17,8 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         // GET: Manager/NhaCungCap
         public ActionResult Index()
         {
-            return View();
+            var nHACUNGCAP = new NHACUNGCAP();
+            return View(nHACUNGCAP);
         }
 
         [HttpPost]

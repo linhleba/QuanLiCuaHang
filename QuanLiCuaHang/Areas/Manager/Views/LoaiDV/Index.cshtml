@@ -1,9 +1,51 @@
-﻿@model IEnumerable<QuanLiCuaHang.Areas.Manager.Data.LOAIDV>
+﻿
+@model QuanLiCuaHang.Areas.Manager.Data.LOAIDV
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
 }
+
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+
+
+
+    $(document).ready(function () {
+        $("#submit").click(function (event) {
+
+            var error_free = true;
+
+
+            if ($(".input-validation-error").length != 0) {
+                error_free = false;
+            }
+
+
+            if (!error_free) {
+                event.preventDefault();
+                swal({
+                    title: "Lỗi !",
+                    text: "Thêm mới thất bại!",
+                    icon: "error",
+                    button: "Đồng ý!",
+                });
+            }
+            else {
+                swal({
+                    title: "Thành công !",
+                    text: "Thêm mới thành công!",
+                    icon: "success",
+                    button: "Đồng ý!",
+                });
+            }
+
+        });
+    });
+</script>
 
 
 @* CSS Begin *@
@@ -43,112 +85,72 @@
 </head>
 
 <main>
-    @using (Html.BeginForm("Create","LoaiDV",FormMethod.Post))
+    @using (Html.BeginForm("Index", "LoaiDV", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-    <div class="container-fluid">
+        <div class="container-fluid">
 
-        <div col="mb-4">
-
-
-
-            <div class="alert alert-danger" id="danger-alert">
-                <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
-            </div>
-            <div class="card mb-4">
-
-                <div class="card-header"><b>THÊM MỚI LOẠI DỊCH VỤ</b></div>
-                <div class="card-body">
-                    <form action="/action_page.php" class="needs-validation" novalidate>
-                        <div class="form-row">
-                            <div class="form-group col-sm-3" hidden>
-                                <label>Mã loại dịch vụ</label>
-
-                                <input type="number" class="form-control" placeholder="Nhập mã loại sản phẩm" id="ma" readonly required>
-                                @*@Html.EditorFor(model => model.FirstOrDefault().TenLoaiDV, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.FirstOrDefault().TenLoaiDV, "", new { @class = "text-danger" })*@
-
-                            </div>
-
-                            <div class="form-group col-sm-3">
-                                <label>Tên loại dịch vụ</label>
-
-                                @*<input type="text" class="form-control" placeholder="Nhập tên loại dịch vụ" id="ten" required>*@
-                                @Html.EditorFor(model => model.FirstOrDefault().TenLoaiDV, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.FirstOrDefault().TenLoaiDV, "", new { @class = "text-danger" })
-
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col-sm-3">
-                                <label>Đơn giá dịch vụ</label>
-
-                                @*<input type="number" class="form-control" placeholder="Nhập đơn giá dịch vụ" id="dongia" required>*@
-                                @Html.EditorFor(model => model.FirstOrDefault().DonGiaDV, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.FirstOrDefault().DonGiaDV, "", new { @class = "text-danger" })
-                                <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về đơn giá dịch vụ</div>
-                            </div>
-
-                        </div>
+            <div col="mb-4">
 
 
 
-                        <button type="submit" id="addToTable" class="btn btn-primary">Thêm</button>
-                    </form>
+                <div class="alert alert-danger" id="danger-alert">
+                    <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
                 </div>
+                <div class="card mb-4">
+
+                    <div class="card-header"><b>THÊM MỚI LOẠI DỊCH VỤ</b></div>
+                    <div class="card-body">
+                        <form action="/action_page.php" class="needs-validation" novalidate>
+                            <div class="form-row">
+                                <div class="form-group col-sm-3" hidden>
+                                    <label>Mã loại dịch vụ</label>
+
+
+                                    @Html.EditorFor(model => model.MaLoaiDV, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.MaLoaiDV, "", new { @class = "text-danger" })
+
+                                </div>
+
+                                <div class="form-group col-sm-3">
+                                    <label>Tên loại dịch vụ</label>
+
+                                    @*<input type="text" class="form-control" placeholder="Nhập tên loại dịch vụ" id="ten" required>*@
+                                    @Html.EditorFor(model => model.TenLoaiDV, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.TenLoaiDV, "", new { @class = "text-danger" })
+
+                                </div>
+
+                                <div class="form-group col-sm-3">
+                                    <label>Đơn giá dịch vụ</label>
+
+                                    @*<input type="number" class="form-control" placeholder="Nhập đơn giá dịch vụ" id="dongia" required>*@
+                                    @Html.EditorFor(model => model.DonGiaDV, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DonGiaDV, "", new { @class = "text-danger" })
+                                    <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về đơn giá dịch vụ</div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                            <button id="submit" type="submit" class="btn btn-primary">Thêm</button>
+                        </form>
+                    </div>
+                </div>
+
             </div>
 
+            @Html.Action("Details")
         </div>
-
-
-    </div>
     }
 
-        <div class="card mb-4">
-
-            <div class="card-header"><b>DANH SÁCH LOẠI DỊCH VỤ</b></div>
-            <div class="card-body">
-
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped mb-none" id="loaidv" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Mã loại dịch vụ</th>
-                                <th>Tên loại dịch vụ</th>
-                                <th>Đơn giá</th>
-                                <th> Thao tác </th>
-                            </tr>
-                        </thead>
-                        <tbody>
 
 
-                            @foreach (var item in Model)
-                            {
-
-                                <tr>
-                                    <td style="text-align:center">
-                                        @Html.DisplayFor(modelItem => item.MaLoaiDV)
-                                    </td>
-                                    <td style="text-align:center">
-                                        @Html.DisplayFor(modelItem => item.TenLoaiDV)
-                                    </td>
-                                    <td style="text-align:center">
-                                        @Html.DisplayFor(modelItem => item.DonGiaDV)
-                                    </td>
-                                    <td class="actions" style="text-align:center">
-                                    </td>
-                                </tr>
-
-                            }
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-    </main>
+</main>
 
 <link rel="stylesheet" href="~Assets/Manager/dist/assets/stylesheets/theme.css" />
 

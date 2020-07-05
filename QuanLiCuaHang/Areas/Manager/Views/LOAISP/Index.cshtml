@@ -10,6 +10,8 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <head>
     <meta charset="utf-8" />
     <meta name="description" content="" />
@@ -18,18 +20,55 @@
 
 
 </head>
+
+<script type="text/javascript">
+ 
+
+
+    $(document).ready(function () {
+        $("#addToTable").click(function (event) {
+
+            var error_free = true;
+
+
+            if ($(".input-validation-error").length != 0) {
+                error_free = false;
+            }
+
+
+            if (!error_free) {
+                event.preventDefault();
+                swal({
+                    title: "Lỗi !",
+                    text: "Thêm mới thất bại!",
+                    icon: "error",
+                    button: "Đồng ý!",
+                });
+            }
+            else {
+                swal({
+                    title: "Thành công !",
+                    text: "Thêm mới thành công!",
+                    icon: "success",
+                    button: "Đồng ý!",
+                });
+            }
+
+        });
+    });
+</script>
 <main>
     <style>
-    #nhapphieu {
-    text-align: center;
-    color: white;
-    font-size: 35px;
-    font-weight: bold;
-    border: 1px solid #ddd;
-    background-color: forestgreen;
-    padding: 0px 0px;
-    margin: 0px 290px;
-    }
+        #nhapphieu {
+            text-align: center;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            border: 1px solid #ddd;
+            background-color: forestgreen;
+            padding: 0px 0px;
+            margin: 0px 290px;
+        }
     </style>
 
     @* End CSS *@
@@ -38,13 +77,7 @@
 
     <div class="container-fluid">
         <div col="mb-4">
-            @*<div class="alert alert-success" id="success-alert">
-                    <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
-                    Đã thêm mới loại sản phẩm thành công.
-                </div>*@
-            @*<div class="alert alert-danger" id="danger-alert">
-                    <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
-                </div>*@
+
             <div class="card mb-4">
                 <div class="card-header"><b>THÊM MỚI LOẠI SẢN PHẨM</b></div>
                 <div class="card-body">
@@ -57,8 +90,8 @@
                         <div class="form-row">
                             <div class="form-group col-sm-3" hidden>
 
-                                @Html.HiddenFor(model => model.LastOrDefault().MaLoaiSP, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.LastOrDefault().MaLoaiSP, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.FirstOrDefault().MaLoaiSP, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.FirstOrDefault().MaLoaiSP, "", new { @class = "text-danger" })
                                 <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về mã loại sản phẩm</div>
 
 
@@ -67,15 +100,15 @@
                             <div class="form-group col-sm-3">
                                 <label>Tên loại sản phẩm</label>
 
-                                @Html.EditorFor(model => model.LastOrDefault().TenLoaiSP, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.LastOrDefault().TenLoaiSP, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.FirstOrDefault().TenLoaiSP, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.FirstOrDefault().TenLoaiSP, "", new { @class = "text-danger" })
 
                             </div>
                             <div class="form-group col-sm-3">
                                 <label for="donvitinh">Đơn vị tính</label>
 
                                 @Html.DropDownList("MaDVT", null, htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.LastOrDefault().DONVITINH, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.FirstOrDefault().DONVITINH, "", new { @class = "text-danger" })
 
                                 <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về đơn vị tính</div>
                             </div>
@@ -86,8 +119,8 @@
                             <div class="form-group col-sm-3">
                                 <label>Phần trăm lợi nhuận</label>
 
-                                @Html.EditorFor(model => model.LastOrDefault().PhanTramLoiNhuan, new { htmlAttributes = new { @class = "form-control", type = "number" } })
-                                @Html.ValidationMessageFor(model => model.LastOrDefault().PhanTramLoiNhuan, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.FirstOrDefault().PhanTramLoiNhuan, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                @Html.ValidationMessageFor(model => model.FirstOrDefault().PhanTramLoiNhuan, "", new { @class = "text-danger" })
 
                                 <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về phần trăm lợi nhuận</div>
                             </div>
@@ -101,11 +134,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
 
         <div class="card mb-4">
             <div class="card-header"><b>DANH MỤC CÁC LOẠI SẢN PHẨM</b></div>
@@ -154,6 +182,9 @@
                 </div>
             </div>
         </div>
+
+
+
     </div>
 </main>
 

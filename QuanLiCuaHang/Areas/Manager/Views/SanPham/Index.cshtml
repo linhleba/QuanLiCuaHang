@@ -11,15 +11,18 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Danh sách các sản phẩm</title>
-   
+
 
 </head>
+
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -47,6 +50,40 @@
             var giamuavao = parseFloat($("#GiaMuaVao").val());
             var phantramloinhuan = parseFloat($("#PhanTramLoiNhuan").val());
             $("#txtGiaBanRa").val((giamuavao * phantramloinhuan) / 100);
+        });
+
+        $("#addToTable").click(function (event) {
+
+            var error_free = true;
+
+
+            if ($(".input-validation-error").length != 0) {
+                error_free = false;
+            }
+
+            if ($("#TenDVT").val() == "") {
+                error_free = false;
+            }
+
+
+            if (!error_free) {
+                event.preventDefault();
+                swal({
+                    title: "Lỗi !",
+                    text: "Thêm mới thất bại!",
+                    icon: "error",
+                    button: "Đồng ý!",
+                });
+            }
+            else {
+                swal({
+                    title: "Thành công !",
+                    text: "Thêm mới thành công!",
+                    icon: "success",
+                    button: "Đồng ý!",
+                });
+            }
+
         });
 
 

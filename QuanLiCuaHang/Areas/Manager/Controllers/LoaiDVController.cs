@@ -17,36 +17,13 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         // GET: Manager/LoaiDV
         public ActionResult Index()
         {
-            return View(db.LOAIDVs.ToList());
+            var lOAIDICHVU = new LOAIDV();
+            return View(lOAIDICHVU);
         }
 
-        // GET: Manager/LoaiDV/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            LOAIDV lOAIDV = db.LOAIDVs.Find(id);
-            if (lOAIDV == null)
-            {
-                return HttpNotFound();
-            }
-            return View(lOAIDV);
-        }
 
-        // GET: Manager/LoaiDV/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Manager/LoaiDV/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaLoaiDV,TenLoaiDV,DonGiaDV")] LOAIDV lOAIDV)
+        public ActionResult Index([Bind(Include = "MaLoaiDV,TenLoaiDV,DonGiaDV")] LOAIDV lOAIDV)
         {
             if (ModelState.IsValid)
             {
@@ -58,62 +35,24 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
             return View(lOAIDV);
         }
 
+
+
+        // GET: Manager/LoaiDV/Details/5
+        public ActionResult Details(int? id)
+        {
+            return View(db.LOAIDVs.ToList());
+        }
+
+        public JsonResult IsTenDVAvailable(string TenLoaiDV)
+        {
+            return Json(!db.LOAIDVs.Any(x => x.TenLoaiDV == TenLoaiDV), JsonRequestBehavior.AllowGet);
+
+        }
+
+        // GET: Manager/LoaiDV/Create
+
+
         // GET: Manager/LoaiDV/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            LOAIDV lOAIDV = db.LOAIDVs.Find(id);
-            if (lOAIDV == null)
-            {
-                return HttpNotFound();
-            }
-            return View(lOAIDV);
-        }
-
-        // POST: Manager/LoaiDV/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaLoaiDV,TenLoaiDV,DonGiaDV")] LOAIDV lOAIDV)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(lOAIDV).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(lOAIDV);
-        }
-
-        // GET: Manager/LoaiDV/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            LOAIDV lOAIDV = db.LOAIDVs.Find(id);
-            if (lOAIDV == null)
-            {
-                return HttpNotFound();
-            }
-            return View(lOAIDV);
-        }
-
-        // POST: Manager/LoaiDV/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            LOAIDV lOAIDV = db.LOAIDVs.Find(id);
-            db.LOAIDVs.Remove(lOAIDV);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {

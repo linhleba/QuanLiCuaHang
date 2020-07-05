@@ -29,7 +29,8 @@ public partial class PHIEUMUAHANG
 
     public int MaPMH { get; set; }
 
-    public System.DateTime NgayLap { get; set; }
+     
+    public System.DateTime NgayLap { get;  set;  }
 
     public decimal TongTien { get; set; }
 

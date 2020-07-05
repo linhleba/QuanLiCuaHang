@@ -20,9 +20,16 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         {
             var lOAISANPHAMs = db.LOAISANPHAMs.Include(l => l.DONVITINH);
             ViewBag.MaDVT = new SelectList(db.DONVITINHs, "MaDVT", "TenDVT");
-            return View(lOAISANPHAMs.ToList());
+            return View(lOAISANPHAMs);
         }
 
+        public ActionResult Details()
+        {
+            var lOAISANPHAMs = db.LOAISANPHAMs.Include(l => l.DONVITINH);
+            ViewBag.MaDVT = new SelectList(db.DONVITINHs, "MaDVT", "TenDVT");
+            return View(lOAISANPHAMs.ToList());
+        }
+            
 
         //CheckTenLoaiSP
         public JsonResult IsTenLoaiSPavailable(string TenLoaiSP)
