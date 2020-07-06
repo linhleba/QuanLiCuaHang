@@ -1,4 +1,5 @@
-﻿@model IEnumerable<QuanLiCuaHang.Areas.Manager.Data.DONVITINH>
+﻿
+@model QuanLiCuaHang.Areas.Manager.Data.DONVITINH
 
 @{
     ViewBag.Title = "DanhSach";
@@ -36,7 +37,7 @@
         $("#addToTable").click(function (event) {
 
             var error_free = true;
-           
+
 
             if ($(".input-validation-error").length != 0) {
                 error_free = false;
@@ -45,7 +46,7 @@
             if ($("#TenDVT").val() == "") {
                 error_free = false;
             }
-          
+
 
             if (!error_free) {
                 event.preventDefault();
@@ -105,8 +106,8 @@
                         <div class="form-row">
                             <div class="form-group col-sm-3" hidden>
 
-                                @Html.HiddenFor(model => model.LastOrDefault().MaDVT, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.LastOrDefault().MaDVT, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.MaDVT, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MaDVT, "", new { @class = "text-danger" })
                                 <div class="invalid-feedback">Vui lòng nhập đầy đủ thông tin về mã đơn vị tính</div>
 
 
@@ -115,8 +116,8 @@
                             <div class="form-group col-sm-3">
                                 <label>Tên đơn vị tính</label>
 
-                                @Html.EditorFor(model => model.LastOrDefault().TenDVT, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.LastOrDefault().TenDVT, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.TenDVT, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TenDVT, "", new { @class = "text-danger" })
                                 <br />
                                 <br />
                                 <input type="submit" id="addToTable" class="btn btn-primary" value="Thêm" />
@@ -136,40 +137,7 @@
 
 
 
-        <div class="card mb-4">
-            <div class="card-header"><b>DANH MỤC CÁC ĐƠN VỊ TÍNH</b></div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped mb-none" id="datatable-editable" width="100" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Mã đơn vị tính</th>
-                                <th>Tên đơn vị tính</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-
-                            @foreach (var item in Model)
-                            {
-
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.MaDVT)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.TenDVT)
-                                    </td>
-
-                                </tr>
-
-                            }
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+      @Html.Action("Details")
 
     </div>
 </main>

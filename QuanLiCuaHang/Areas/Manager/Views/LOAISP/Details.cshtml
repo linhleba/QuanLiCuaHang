@@ -1,0 +1,52 @@
+﻿
+
+@model IEnumerable<QuanLiCuaHang.Areas.Manager.Data.LOAISANPHAM>
+
+
+<div class="card mb-4">
+    <div class="card-header"><b>DANH MỤC CÁC LOẠI SẢN PHẨM</b></div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped mb-none" id="datatable-editable" width="100" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã loại sản phẩm</th>
+                        <th>Tên loại sản phẩm</th>
+                        <th>Phần trăm lợi nhuận</th>
+                        <th>Đơn vị tính</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaLoaiSP)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenLoaiSP)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhanTramLoiNhuan)%
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DONVITINH.TenDVT)
+                            </td>
+                            <td class="actions" style="text-align:center">
+                                <a href='@Url.Action("Edit","LoaiSP",new { id = item.MaLoaiSP })'>
+                                    <i type="button" class="fa fa-pencil fa-2x"> </i>
+                                </a>
+                            </td>
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

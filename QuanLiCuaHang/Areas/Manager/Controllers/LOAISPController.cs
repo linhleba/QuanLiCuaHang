@@ -18,9 +18,9 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         // GET: Manager/LOAISP
         public ActionResult Index()
         {
-            var lOAISANPHAMs = db.LOAISANPHAMs.Include(l => l.DONVITINH);
+            var lOAISANPHAM = new LOAISANPHAM();
             ViewBag.MaDVT = new SelectList(db.DONVITINHs, "MaDVT", "TenDVT");
-            return View(lOAISANPHAMs);
+            return View(lOAISANPHAM);
         }
 
         public ActionResult Details()

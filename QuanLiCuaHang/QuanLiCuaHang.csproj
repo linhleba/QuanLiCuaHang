@@ -2101,6 +2101,8 @@
     <Content Include="Assets\Manager\layout\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Areas\Manager\Views\CT_PhieuBanHang\Details.cshtml" />
     <Content Include="Areas\Manager\Views\LoaiDV\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\DVT\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\LOAISP\Details.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

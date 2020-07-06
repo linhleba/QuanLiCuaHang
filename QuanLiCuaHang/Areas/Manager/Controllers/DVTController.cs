@@ -17,7 +17,8 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
         // GET: Manager/DVT
         public ActionResult Index()
         {
-            return View(db.DONVITINHs.ToList());
+            var dONVITINH = new DONVITINH();
+            return View(dONVITINH);
         }
 
 
@@ -34,25 +35,13 @@ namespace QuanLiCuaHang.Areas.Manager.Controllers
 
 
         // GET: Manager/DVT/ChiTiet/5
-        public ActionResult ChiTiet(int? id)
+        public ActionResult Details()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            DONVITINH dONVITINH = db.DONVITINHs.Find(id);
-            if (dONVITINH == null)
-            {
-                return HttpNotFound();
-            }
-            return View(dONVITINH);
+           
+            return View(db.DONVITINHs.ToList());
         }
 
-        // GET: Manager/DVT/Tao
-        public ActionResult Tao()
-        {
-            return View();
-        }
+     
 
         // POST: Manager/DVT/Tao
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

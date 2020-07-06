@@ -1,0 +1,38 @@
+﻿
+@model IEnumerable<QuanLiCuaHang.Areas.Manager.Data.DONVITINH>
+
+
+<div class="card mb-4">
+    <div class="card-header"><b>DANH MỤC CÁC ĐƠN VỊ TÍNH</b></div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped mb-none" id="datatable-editable" width="100" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã đơn vị tính</th>
+                        <th>Tên đơn vị tính</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaDVT)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenDVT)
+                            </td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
