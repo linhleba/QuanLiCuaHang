@@ -83,7 +83,6 @@
                 <div class="card-body">
                     @using (Html.BeginForm())
                     {@Html.AntiForgeryToken()
-                    <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <form action="/action_page.php" class="needs-validation" novalidate>
 
@@ -156,16 +155,16 @@
                             {
 
                                 <tr>
-                                    <td style="text-align:center">
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.MaLoaiSP)
                                     </td>
-                                    <td style="text-align:center">
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.TenLoaiSP)
                                     </td>
-                                    <td style="text-align:center">
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.PhanTramLoiNhuan)%
                                     </td>
-                                    <td style="text-align:center">
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.DONVITINH.TenDVT)
                                     </td>
                                     <td class="actions" style="text-align:center">

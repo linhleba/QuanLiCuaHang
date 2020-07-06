@@ -80,7 +80,7 @@
         $("#txtNgayGiao").change(function () {
             var NgayGiao = $("#txtNgayGiao").val();
             var NgayLap = $("#txtNgayLap").val();
-            if (new Date(NgayGiao) >= new Date(NgayLap)) {
+            if (new Date(NgayGiao) > new Date(NgayLap)) {
                 $("#MaTinhTrangDV").val(0);
             }
             else {
@@ -545,7 +545,7 @@
         <div class="container">
             <div class="row">
                 <div class="row col-md-3">
-                    <div class="form-group was-validated">
+                    <div class="form-group">
                         Tên khách hàng
 
 
@@ -589,7 +589,7 @@
                 <div class="row col-md-3">
 
                     <div class="form-group">
-                        Trả trước
+                        Tổng trả trước
                         <input style="width:180px" type="text" id="txtTongTraTruoc" class="form-control" readonly="readonly" />
 
                     </div>
@@ -597,7 +597,7 @@
 
                 <div class="row col-md-3">
                     <div class="form-group was-validated">
-                        Tổng tiền
+                        Tổng thành tiền
                         <input style="width:180px" type="text" id="txtTongTien" class="form-control" readonly="readonly" />
 
 
@@ -615,7 +615,7 @@
 
                 <div class="row col-md-3">
                     <div class="form-group">
-                        Còn lại
+                        Tổng còn lại
 
                         <input style="width:180px" type="text" id="txtTongConLai" class="form-control" readonly="readonly" />
 
@@ -646,7 +646,7 @@
         <div class="container">
             <div class="row">
                 <div class="row col-md-3">
-                    <div class="form-group was-validated">
+                    <div class="form-group">
                         Tên loại dịch vụ
                         @Html.DropDownList("MaLoaiDV", null, htmlAttributes: new { @class = "form-control", type = "text", required = "true", style = "width:180px" })
                         @Html.ValidationMessageFor(model => model.MaLoaiDV, "", new { @class = "text-danger" })

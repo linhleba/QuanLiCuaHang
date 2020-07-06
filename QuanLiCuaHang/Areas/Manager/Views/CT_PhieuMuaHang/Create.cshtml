@@ -435,7 +435,7 @@
         <div class="container">
             <div class="row">
                 <div class="row col-md-4">
-                    <div class="form-group was-validated">
+                    <div class="form-group">
                         Nhà cung cấp
 
 
@@ -498,7 +498,7 @@
         <div class="container">
             <div class="row">
                 <div class="row col-md-4">
-                    <div class="form-group was-validated">
+                    <div class="form-group">
                         Tên sản phẩm
                         @Html.DropDownList("MaSP", null, htmlAttributes: new { @class = "form-control", type = "text", required = "true", style = "width:180px" })
                         @Html.ValidationMessageFor(model => model.MaSP, "", new { @class = "text-danger" })
@@ -550,7 +550,7 @@
 
                 <div class="row col-md-3">
                     <div class="form-group">
-                        <input style="margin-top:20px" type="button" onclick="addItem()" id="btnThemSanPham" value="Thêm sản phẩm" name="ThemSanPham" class="btn btn-success" />
+                        <input style="margin-top:20px" type="button" onclick="addItem()" id="btnThemSanPham" value="Thêm sản phẩm" name="ThemSanPham" class="btn btn-primary" />
                     </div>
                 </div>
             </div>
@@ -564,7 +564,7 @@
         <table class="table-bordered table-hover" style="width: 100%" id="tblDanhSachSanPham">
             <thead>
                 <tr>
-                    <th hidden>
+                    <th hidden style="text-align: center">
                         MaSP
                     </th>
                     <th style="text-align: center">
