@@ -115,16 +115,18 @@
 
 @* CSS Begin *@
 <style>
-   #nhapphieu {
+
+    #nhapphieu {
         text-align: center;
-        color: white;
+        color: purple;
         font-size: 35px;
         font-weight: bold;
-        border: 1px solid #ddd;
-        background-color: forestgreen;
+        /*border: 1px solid #ddd;
+            background-color: forestgreen;*/
         padding: 0px 0px;
-        margin: 0px 280px;
+        margin: 0px 290px;
     }
+
 </style>
 
 @* Index View *@
@@ -133,52 +135,52 @@
     {
         {
 
+    <div class="form-horizontal">
+        @*<h1 style="border-bottom: 3px solid #e5e5e5; text-align: center"> TẠO BÁO CÁO TỒN KHO </h1>*@
 
-            <div class="form-horizontal">
-                @*<h1 style="border-bottom: 3px solid #e5e5e5; text-align: center"> TẠO BÁO CÁO TỒN KHO </h1>*@
-
-                <h1 id="nhapphieu">TẠO BÁO CÁO TỒN KHO</h1>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
-                <fieldset>
-
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="row col-md-2">
-                                <div class="form-group">
-                                    <label>Chọn tháng</label>
+        <h1 id="nhapphieu">TẠO BÁO CÁO TỒN KHO</h1>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
+        <fieldset>
 
-                                    @Html.EditorFor(model => model.FirstOrDefault().Thang, new { htmlAttributes = new { @class = "form-control", style = "width:80px", @id = "searchThang" } })
-                                    @Html.ValidationMessageFor(model => model.FirstOrDefault().Thang, "", new { @class = "text-danger" })
-
-                                </div>
-                            </div>
-
-
-                            <div class="row col-md-2">
-                                <div class="form-group">
-                                    <label>Chọn năm</label>
-
-                                    @Html.EditorFor(model => model.FirstOrDefault().Nam, new { htmlAttributes = new { @class = "form-control", style = "width:80px", @id = "searchNam" } })
-                                    @Html.ValidationMessageFor(model => model.FirstOrDefault().Nam, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="row col-md-2">
+                        <div class="form-group">
+                            <label>Chọn tháng</label>
 
 
+
+                            @Html.EditorFor(model => model.FirstOrDefault().Thang, new { htmlAttributes = new { @class = "form-control", style = "width:80px", @id = "searchThang" } })
+                            @Html.ValidationMessageFor(model => model.FirstOrDefault().Thang, "", new { @class = "text-danger" })
 
                         </div>
                     </div>
-                    <div class="form-group">
-                        <button id="searchSubmit" type="submit" name="searchSubmit" style="margin-left:15px; float: left" class="btn btn-primary" hidden> Tra cứu </button>
+
+
+                    <div class="row col-md-2">
+                        <div class="form-group">
+                            <label>Chọn năm</label>
+
+                            @Html.EditorFor(model => model.FirstOrDefault().Nam, new { htmlAttributes = new { @class = "form-control", style = "width:80px", @id = "searchNam" } })
+                            @Html.ValidationMessageFor(model => model.FirstOrDefault().Nam, "", new { @class = "text-danger" })
+                        </div>
                     </div>
 
 
-                </fieldset>
+
+                </div>
             </div>
+            <div class="form-group">
+                <button id="searchSubmit" type="submit" name="searchSubmit" style="margin-left:15px; float: left" class="btn btn-primary" hidden> Tra cứu </button>
+            </div>
+
+
+        </fieldset>
+    </div>
+
         }
     }
 

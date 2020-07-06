@@ -97,11 +97,11 @@
     <style>
         #nhapphieu {
             text-align: center;
-            color: white;
+            color: purple;
             font-size: 35px;
             font-weight: bold;
-            border: 1px solid #ddd;
-            background-color: forestgreen;
+            /*border: 1px solid #ddd;
+            background-color: forestgreen;*/
             padding: 0px 0px;
             margin: 0px 290px;
         }
@@ -110,11 +110,12 @@
     @* End CSS *@
 
     <h1 id="nhapphieu">SỬA SẢN PHẨM</h1>
+    <br />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.MaSP)
     <div class="form-group">
         @Html.LabelFor(model => model.TenSanPham, "Tên sản phẩm", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10"  style="padding-top: 8px">
+        <div class="col-md-10" style="padding-top: 8px">
             @Html.DisplayFor(model => model.TenSanPham, new { htmlAttributes = new { @class = "form-control" } })
             @Html.HiddenFor(model => model.TenSanPham, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.TenSanPham, "", new { @class = "text-danger" })
@@ -143,7 +144,7 @@
             @Html.ValidationMessageFor(model => model.SoLuongTon, "", new { @class = "text-danger" })
         </div>
     </div>
-    <div class="form-group" >
+    <div class="form-group">
         @Html.LabelFor(model => model.MaLoaiSP, "Tên loại sản phẩm", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10" style="padding-top: 8px">
             @Html.HiddenFor(model => model.MaLoaiSP)
