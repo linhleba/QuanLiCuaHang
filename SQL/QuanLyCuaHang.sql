@@ -131,7 +131,8 @@ create table CHITIET_PHIEUDV
 )
 
 create table BCTONKHO
-( Thang date,
+( Thang int,
+  Nam	int,
   MaSP int foreign key references SANPHAM(MaSP),
   constraint PK_BCTONKHO primary key (Thang, MaSP),
   Tondau int NOT NULL,
@@ -142,7 +143,7 @@ create table BCTONKHO
 
 
 CREATE TABLE THAMSO
-(
+(	Ma INT PRIMARY KEY,
 	PhanTramTraTruoc INT NOT NULL
 )
 
